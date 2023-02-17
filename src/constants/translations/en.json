@@ -1,0 +1,77 @@
+{
+  "common": {
+    "appDetails": "App Details",
+    "appName": "App name",
+    "appVersion": "App version",
+    "buildVersion": "Build version",
+    "expoVersion": "Expo version",
+    "about": "About",
+    "visit": "Visit",
+    "posted": "Posted on {{date}}",
+    "recommended": "Recommended for you",
+    "viewall": "View All",
+    "more": "More",
+    "follow": "Follow",
+    "followed": "Followed",
+    "search": "Search",
+    "night": "night",
+    "day": "day",
+    "selectDate": "Select date",
+    "checkInOut": "Check-In & Check-Out",
+    "adults": "Adults",
+    "roomType": "Room Type",
+    "luxury": "Luxury",
+    "message": "Enter your message",
+    "album": "Album",
+    "or": "or",
+    "name": "Name",
+    "agree": "I agree with the ",
+    "terms": "Terms and Conditions",
+    "goBack": "Go back",
+    "readArticle": "Read Article",
+    "mapPage":"Map",
+    "galleryPage":"Gallery",
+    "aboutPage":"About",
+    "send": "Send"
+  },
+  "app": {
+    "name": "Behrend Immersive",
+    "fullname": "Behrend Immersive App",
+    "native": "React Native",
+    "link": "https://var.psu.edu/"
+  },
+  "screens": {
+    "home": "Home",
+    "maps": "Maps",
+    "gallery": "Gallery",
+    "objects": "3D Objects",
+    "about": "About",
+    "settings": "Settings"
+
+  },
+  "navigation": {
+    "maps": "Maps",
+    "settings": "Settings",
+    "gallery": "Gallery",
+    "notifications": "Notifications",
+    "agreement": "User Agreement",
+    "about": "About",
+    "privacy": "Privacy",
+    "objects": "3D Objects"
+  },
+  "menu": {
+    "started": "Settings"
+  },
+  "home": {
+    "welcome": "Welcome!"
+  },
+  "register": {
+    "title": "Welcome",
+    "subtitle": "Register with"
+  },
+  "About": {
+    "title": "About",
+    "posts": "Posts",
+    "aboutMe": "About me"
+  }
+}
