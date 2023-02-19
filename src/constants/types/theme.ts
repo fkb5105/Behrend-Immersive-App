@@ -6,6 +6,7 @@ import {
   ScaledSize,
   TextStyle,
 } from 'react-native';
+import { SvgProps } from 'react-native-svg';
 
 // Spacing types
 export interface ISpacing
@@ -255,8 +256,8 @@ export interface ThemeAssets {
   logo: ImageSourcePropType;
   header: ImageSourcePropType;
   background: ImageSourcePropType;
-  map: ImageSourcePropType;
-  map2: ImageSourcePropType;
+  map: SvgProps;
+  map2: SvgProps;
 
   card1: ImageSourcePropType;
   card2: ImageSourcePropType;

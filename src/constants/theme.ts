@@ -155,3 +155,5 @@ export const THEME: ICommonTheme = {
   lines: LINE_HEIGHTS,
   sizes: {width, height},
 };
+export { ThemeAssets };
+
