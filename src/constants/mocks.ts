@@ -295,7 +295,8 @@ export const GALLERIES: IGallery[] = [
     options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
-    user: USERS[0],
+    location: LOCATIONS[0],
+    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -307,7 +308,8 @@ export const GALLERIES: IGallery[] = [
     options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1563492065599-3520f775eeed?fit=crop&w=450&q=80',
-    user: USERS[1],
+    location: LOCATIONS[1],
+    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -319,7 +321,8 @@ export const GALLERIES: IGallery[] = [
     options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?fit=crop&w=450&q=80',
-    user: USERS[2],
+    location: LOCATIONS[3],
+    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -331,7 +334,8 @@ export const GALLERIES: IGallery[] = [
     options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
-    user: USERS[3],
+    location: LOCATIONS[2],
+    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -342,7 +346,8 @@ export const GALLERIES: IGallery[] = [
     options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1596720426673-e4e14290f0cc?fit=crop&w=450&q=80',
-    user: USERS[4],
+    location: LOCATIONS[0],
+    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -354,7 +359,8 @@ export const GALLERIES: IGallery[] = [
     options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
-    user: USERS[5],
+    location: LOCATIONS[2],
+    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -366,7 +372,8 @@ export const GALLERIES: IGallery[] = [
     options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
-    user: USERS[6],
+    location: LOCATIONS[1],
+    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -378,7 +385,8 @@ export const GALLERIES: IGallery[] = [
     options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
-    user: USERS[1],
+    location: LOCATIONS[3],
+    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -390,7 +398,8 @@ export const GALLERIES: IGallery[] = [
     options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
-    user: USERS[5],
+    location: LOCATIONS[1],
+    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -402,7 +411,8 @@ export const GALLERIES: IGallery[] = [
     options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
-    user: USERS[6],
+    location: LOCATIONS[0],
+    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {

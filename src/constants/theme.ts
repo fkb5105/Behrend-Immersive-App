@@ -66,7 +66,8 @@ export const ICONS: ThemeIcons = {
   train: require('../assets/icons/train.png'),
   users: require('../assets/icons/users.png'),
   warning: require('../assets/icons/warning.png'),
-  VAR: require('../assets/icons/VAR.png')
+  VAR: require('../assets/icons/VAR.png'),
+  articles: 0
 };
 
 export const ASSETS: ThemeAssets = {
@@ -112,6 +113,7 @@ export const ASSETS: ThemeAssets = {
   x5: require('../assets/images/x5.png'),
   gle: require('../assets/images/gle.png'),
   tesla: require('../assets/images/tesla.png'),
+  switch: null
 };
 
 export const FONTS: ThemeFonts = {

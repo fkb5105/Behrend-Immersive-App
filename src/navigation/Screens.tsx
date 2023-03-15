@@ -20,7 +20,7 @@ export default () => {
       <Stack.Screen
         name="Maps"
         component={Maps}
-        options={screenOptions.maps}
+        options={{title: t('navigation.maps')}}
       />
       <Stack.Screen
         name="Objects"

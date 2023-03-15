@@ -11,11 +11,11 @@ const Objects: React.FC<{ data?: IObjects[] }> = ({ data = [] }) => {
       return (
         <TouchableOpacity
           key={object.id}
-          onPress={() => Linking.openURL(objects.link)}
+          onPress={() => Linking.openURL(Objects.link)}
           style={styles.box}>
           <Text style={styles.title}>{object.title}</Text>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={() => Linking.openURL(objects.link)}>
+            <TouchableOpacity onPress={() => Linking.openURL(Objects.link)}>
               <Text style={styles.buttonText}>{object.linkLabel}</Text>
             </TouchableOpacity>
           </View>
