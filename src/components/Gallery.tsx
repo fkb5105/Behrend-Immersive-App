@@ -23,7 +23,7 @@ const Gallery = ({
   const {colors, gradients, icons, sizes} = useTheme();
 
   // render card for Newest & Fashion
-  if (category?.id !== 1) {
+  if (category?.id !== 0) {
     return (
       <TouchableWithoutFeedback onPress={onPress}>
         <Block card padding={sizes.sm} marginTop={sizes.sm}>
@@ -52,30 +52,7 @@ const Gallery = ({
               {description}
             </Text>
           )}
-
-          {/* user details */}
-          {user?.name && (
-            <Block row marginLeft={sizes.xs} marginBottom={sizes.xs}>
-              <Image
-                radius={sizes.s}
-                width={sizes.xl}
-                height={sizes.xl}
-                source={{uri: user?.avatar}}
-                style={{backgroundColor: colors.white}}
-              />
-              <Block justify="center" marginLeft={sizes.s}>
-                <Text p semibold>
-                  {user?.name}
-                </Text>
-                <Text p gray>
-                  {t('common.posted', {
-                    date: dayjs(timestamp).format('DD MMMM') || '-',
-                  })}
-                </Text>
-              </Block>
-            </Block>
-          )}
-
+          
           {/* location & rating */}
           {(Boolean(location) || Boolean(rating)) && (
             <Block row align="center">
@@ -96,46 +73,6 @@ const Gallery = ({
       </TouchableWithoutFeedback>
     );
   }
-
-  // render card for Popular
-  return (
-    <TouchableWithoutFeedback onPress={onPress}>
-      <Block card white padding={0} marginTop={sizes.sm}>
-        <Image
-          background
-          resizeMode="cover"
-          radius={sizes.cardRadius}
-          source={{uri: image}}>
-          <Block color={colors.overlay} padding={sizes.padding}>
-            <Text h4 white marginBottom={sizes.sm}>
-              {title}
-            </Text>
-            <Text p white>
-              {description}
-            </Text>
-            {/* user details */}
-            <Block row marginTop={sizes.xxl}>
-              <Image
-                radius={sizes.s}
-                width={sizes.xl}
-                height={sizes.xl}
-                source={{uri: user?.avatar}}
-                style={{backgroundColor: colors.white}}
-              />
-              <Block justify="center" marginLeft={sizes.s}>
-                <Text p white semibold>
-                  {user?.name}
-                </Text>
-                <Text p white>
-                  {user?.department}
-                </Text>
-              </Block>
-            </Block>
-          </Block>
-        </Image>
-      </Block>
-    </TouchableWithoutFeedback>
-  );
 };
 
 export default Gallery;
