@@ -7,25 +7,29 @@ import Block from './Block';
 import Image from './Image';
 import {useTheme, useTranslation} from '../hooks/';
 import {IGallery} from '../constants/types';
+import {useNavigation} from '@react-navigation/native';
 
 const Gallery = ({
-  title,
   description,
   image,
   category,
   rating,
   location,
-  timestamp,
-  user,
   onPress,
 }: IGallery) => {
   const {t} = useTranslation();
   const {colors, gradients, icons, sizes} = useTheme();
 
-  // render card for Newest & Fashion
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    // Navigate to the Description page
+    navigation.navigate('Description', {image, description});
+  }
+
   if (category?.id !== 0) {
     return (
-      <TouchableWithoutFeedback onPress={onPress}>
+      <TouchableWithoutFeedback onPress={onPress ?? handlePress}>
         <Block card padding={sizes.sm} marginTop={sizes.sm}>
           <Image height={170} resizeMode="cover" source={{uri: image}} />
           {/* gallery category */}
@@ -52,7 +56,7 @@ const Gallery = ({
               {description}
             </Text>
           )}
-          
+
           {/* location & rating */}
           {(Boolean(location) || Boolean(rating)) && (
             <Block row align="center">

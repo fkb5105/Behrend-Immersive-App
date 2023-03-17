@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import { t } from 'i18n-js';
+import { Description } from '../screens';
 import {
   IGallery,
   IGalleryOptions,
@@ -8,6 +9,7 @@ import {
   IExtra,
   ILocation,
   INotification,
+  IDescription,
   IProduct,
   IUser,
 } from './types';
@@ -493,51 +495,87 @@ export const RECOMMENDATIONS: IGallery[] = [
     timestamp: dayjs().unix(),
   },
 ];
-
-// chat messages
-export const MESSSAGES = [
+// gallery description data
+export const DESCRIPTION: IDescription[] = [
   {
-    _id: 1,
-    text: 'Bye, bye 👋🏻',
-    createdAt: dayjs().subtract(1, 'm').toDate(),
-    user: {
-      _id: USERS[0].id,
-      name: USERS[0].name,
-      avatar: USERS[0].avatar,
-    },
+    id: 1,
+    title: 'Tomato',
+    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
   {
-    _id: 2,
-    text: 'Ok. Cool! See you 😁',
-    createdAt: dayjs().subtract(2, 'm').toDate(),
-    user: {
-      _id: USERS[1].id,
-      name: USERS[1].name,
-      avatar: USERS[1].avatar,
-    },
+    id: 2,
+    title: 'Onion',
+    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
   {
-    _id: 3,
-    text: 'Sure, just let me finish somerhing and I’ll call you.',
-    createdAt: dayjs().subtract(3, 'm').toDate(),
-    user: {
-      _id: USERS[0].id,
-      name: USERS[0].name,
-      avatar: USERS[0].avatar,
-    },
+    id: 3,
+    title: 'Potato',
+    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
   {
-    _id: 4,
-    text: 'Hey there! How are you today? Can we meet and talk about location? Thanks!',
-    createdAt: dayjs().subtract(4, 'm').toDate(),
-    user: {
-      _id: USERS[1].id,
-      name: USERS[1].name,
-      avatar: USERS[1].avatar,
-    },
+    id: 4,
+    title: 'Garlic',
+    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
-];
-
+  {
+    id: 5,
+    title: 'Squash',
+    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
+  },
+  {
+    id: 6,
+    title: 'Carrot',
+    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
+  },
+  {
+    id: 7,
+    title: 'Spinach',
+    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
+  },
+  {
+    id: 8,
+    title: 'Lettuce',
+    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
+  },
+  {
+    id: 9,
+    title: 'Pepper',
+    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
+  },
+  {
+    id: 10,
+    title: 'Oregano',
+    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
+  },
+  {
+    id: 11,
+    title: 'Basil',
+    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
+  },
+  {
+    id: 12,
+    title: 'Cilantro',
+    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
+  },
+  {
+    id: 13,
+    title: 'Avocado',
+    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
+  },
+]
 // extras cards
 export const EXTRAS: IExtra[] = [
   {
@@ -616,7 +654,7 @@ export default {
   OBJECTS,
   GALLERIES,
   RECOMMENDATIONS,
-  MESSSAGES,
+  DESCRIPTION,
   EXTRAS,
   NOTIFICATIONS,
 };

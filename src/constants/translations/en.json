@@ -46,7 +46,8 @@
     "gallery": "Gallery",
     "objects": "3D Objects",
     "about": "About",
-    "settings": "Settings"
+    "settings": "Settings",
+    "description": "Description"
 
   },
   "navigation": {
@@ -57,7 +58,8 @@
     "agreement": "User Agreement",
     "about": "About",
     "privacy": "Privacy",
-    "objects": "3D Objects"
+    "objects": "3D Objects",
+    "description": "Description"
   },
   "menu": {
     "started": "Settings"

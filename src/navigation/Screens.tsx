@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import {Gallery, Maps, Home, About, Objects} from '../screens';
 import {useScreenOptions, useTranslation} from '../hooks';
+import Description from '../screens/Description';
 
 const Stack = createStackNavigator();
 
@@ -37,6 +38,12 @@ export default () => {
         name="About"
         component={About}
         options={{title: t('navigation.about')}}
+      />
+
+      <Stack.Screen
+        name="Description"
+        component={Description}
+        options={screenOptions.back}
       />
     </Stack.Navigator>
   );

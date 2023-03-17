@@ -1,16 +1,21 @@
-import React, {useEffect, useState} from 'react';
-import {FlatList} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { FlatList } from 'react-native';
+import Gallery from '../components/Gallery';
+import { useData, useTheme } from '../hooks/';
+import { IGallery, ICategory } from '../constants/types';
+import { Block, Button, Text } from '../components/';
+import { NavigationProp } from '@react-navigation/native';
 
-import {useData, useTheme} from '../hooks/';
-import {IGallery, ICategory} from '../constants/types';
-import {Block, Button, Gallery, Text} from '../components/';
+interface GalleryScreenProps {
+  navigation: NavigationProp<Record<string, object | undefined>>;
+}
 
-const Galleries = () => {
+const GalleryScreen = ({ navigation }: GalleryScreenProps) => {
   const data = useData();
   const [selected, setSelected] = useState<ICategory>();
   const [galleries, setGalleries] = useState<IGallery[]>([]);
   const [categories, setCategories] = useState<ICategory[]>([]);
-  const {colors, gradients, sizes} = useTheme();
+  const { colors, gradients, sizes } = useTheme();
 
   // init galleries
   useEffect(() => {
@@ -32,6 +37,10 @@ const Galleries = () => {
     setGalleries(newGalleries);
   }, [data, selected, setGalleries]);
 
+  const handlePress = (gallery: IGallery) => {
+    navigation.navigate('Description', { gallery });
+  };
+
   return (
     <Block>
       {/* categories list */}
@@ -41,7 +50,7 @@ const Galleries = () => {
           horizontal
           renderToHardwareTextureAndroid
           showsHorizontalScrollIndicator={false}
-          contentOffset={{x: -sizes.padding, y: 0}}>
+          contentOffset={{ x: -sizes.padding, y: 0 }}>
           {categories?.map((category) => {
             const isSelected = category?.id === selected?.id;
             return (
@@ -69,12 +78,14 @@ const Galleries = () => {
         data={galleries}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => `${item?.id}`}
-        style={{paddingHorizontal: sizes.padding}}
-        contentContainerStyle={{paddingBottom: sizes.l}}
-        renderItem={({item}) => <Gallery {...item} />}
+        style={{ paddingHorizontal: sizes.padding }}
+        contentContainerStyle={{ paddingBottom: sizes.l }}
+        renderItem={({ item }) => (
+          <Gallery {...item} onPress={() => handlePress(item)} />
+        )}
       />
     </Block>
   );
 };
 
-export default Galleries;
+export default GalleryScreen;

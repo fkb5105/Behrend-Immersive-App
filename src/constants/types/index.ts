@@ -104,6 +104,12 @@ export interface IExtra {
   onSave?: () => void;
   onTimeSelect?: (id?: number) => void;
 }
+export interface IDescription {
+  id?: number;
+  title?: string;
+  image?: string;
+  description?: string;
+}
 
 export interface INotification {
   id?: number;
