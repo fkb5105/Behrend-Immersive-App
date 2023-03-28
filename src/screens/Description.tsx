@@ -1,27 +1,69 @@
-import React from 'react';
-import {ScrollView} from 'react-native';
-import {useTranslation} from '../hooks/';
-import Block from '../components/Block';
-import Text from '../components/Text';
-import Image from '../components/Image';
-import {useTheme} from '../hooks/';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Image } from 'react-native';
+import Swiper from 'react-native-swiper';
+import { COLORS } from '../constants/light';
+import { IDescription } from '../constants/types';
 
-const Description = ({route}) => {
-  const {t} = useTranslation();
-  const {colors, gradients, sizes} = useTheme();
-  const {image, description} = route.params;
+
+type Props = {
+  route: {
+    params: {
+      description: IDescription;
+    };
+  };
+};
+
+const Description: React.FC<Props> = ({ route }) => {
+  const { description } = route.params;
+
+  const [selectedDescription, setSelectedDescription] = useState<IDescription>(description);
 
   return (
-    <ScrollView style={{backgroundColor: colors.background}}>
-      <Block card padding={sizes.sm}>
-        <Image height={170} resizeMode="cover" source={{uri: image}} />
-        <Text p marginTop={sizes.m} marginBottom={sizes.sm}>
-          {description}
-        </Text>
-        <Text p>{t('description')}</Text>
-      </Block>
-    </ScrollView>
+    <View style={styles.container}>
+      <Swiper style={styles.slider} showsButtons={false} showsPagination={false}>
+        {selectedDescription.image.map((image, index) => (
+          <View style={styles.slide} key={index}>
+            <Image style={styles.image} source={{ uri: image }} />
+          </View>
+        ))}
+      </Swiper>
+      <View style={styles.descriptionContainer}>
+        <Text style={styles.title}>{selectedDescription.title}</Text>
+        <Text style={styles.description}>{selectedDescription.description}</Text>
+      </View>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.background,
+    paddingHorizontal: 10,
+  },
+  slider: {
+    height: 250,
+  },
+  slide: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+  },
+  descriptionContainer: {
+    paddingVertical: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: COLORS.primary,
+  },
+  description: {
+    fontSize: 16,
+    color: COLORS.secondary,
+  },
+});
 
 export default Description;

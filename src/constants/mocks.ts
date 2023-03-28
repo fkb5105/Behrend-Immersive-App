@@ -164,7 +164,7 @@ export const WELCOME: IProduct[] = [
   {
     id: 1,
     type: 'horizontal',
-    title: "Explore Behrend's campus past and present.",
+    title: "Compare Behrend's campus past and present.",
     linkLabel: 'Maps',
     image:
       'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
@@ -172,21 +172,29 @@ export const WELCOME: IProduct[] = [
   {
     id: 2,
     type: 'horizontal',
-    title: "Check out these 3-D models created by VAR Labs.",
-    linkLabel: 'Objects',
+    title: "Immerse yourself in Behrend's history with AR",
+    linkLabel: 'AR Gallery',
     image:
       'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
   },
   {
     id: 3,
     type: 'horizontal',
-    title: 'Discover locations around campus and and learn their history.',
-    linkLabel: 'Gallery',
+    title: "Learn more about the Behrend's history",
+    linkLabel: 'History',
+    image:
+      'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?fit=crop&w=450&q=80',
+  },
+  {
+    id: 4,
+    type: 'horizontal',
+    title: 'Check out these 3-D models created by VAR Labs.',
+    linkLabel: 'Objects',
     image:
       'https://images.unsplash.com/photo-1563492065599-3520f775eeed?fit=crop&w=450&q=80',
   },
   {
-    id: 4,
+    id: 5,
     type: 'horizontal',
     title: 'Meet the VAR Labs team and see what else we are working on.',
     linkLabel: 'About',
@@ -500,79 +508,131 @@ export const DESCRIPTION: IDescription[] = [
   {
     id: 1,
     title: 'Tomato',
-    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    image: [
+      'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80'
+    ],
     description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
   {
     id: 2,
     title: 'Onion',
-    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    image: [
+      'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80'
+    ],
     description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
   {
     id: 3,
     title: 'Potato',
-    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    image: [
+      'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80'
+    ],
     description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
   {
     id: 4,
     title: 'Garlic',
-    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    image: [
+      'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80'
+    ],
     description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
   {
     id: 5,
     title: 'Squash',
-    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    image: [
+      'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80'
+    ],
     description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
   {
     id: 6,
     title: 'Carrot',
-    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    image: [
+      'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80'
+    ],
     description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
   {
     id: 7,
     title: 'Spinach',
-    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    image: [
+      'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80'
+    ],
     description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
   {
     id: 8,
     title: 'Lettuce',
-    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    image: [
+      'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80'
+    ],
     description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
   {
     id: 9,
     title: 'Pepper',
-    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    image: [
+            'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+            'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
+            'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80'
+          ],
     description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
   {
     id: 10,
     title: 'Oregano',
-    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    image: [
+      'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80'
+    ],
     description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
   {
     id: 11,
     title: 'Basil',
-    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    image: [
+      'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80'
+    ],
     description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
   {
     id: 12,
     title: 'Cilantro',
-    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    image: [
+      'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80'
+    ],
     description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
   {
     id: 13,
     title: 'Avocado',
-    image: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+    image: [
+      'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80'
+    ],
     description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
 ]

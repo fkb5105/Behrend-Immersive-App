@@ -25,7 +25,6 @@ const Home = () => {
         <Input search placeholder={t('common.search')} />
       </Block>
 
-      {/* toggle products list */}
       <Block
         row
         flex={0}
@@ -35,17 +34,6 @@ const Home = () => {
         paddingBottom={sizes.sm}>
         <Button>
           <Block row align="center">
-            <Block
-              flex={0}
-              radius={6}
-              align="center"
-              justify="center"
-              marginRight={sizes.s}
-              width={sizes.socialIconSize}
-              height={sizes.socialIconSize}
-              gradient={gradients?.[tab === 0 ? 'primary' : 'secondary']}>
-              <Image source={assets.extras} color={colors.white} radius={0} />
-            </Block>
             <Text h4 color={colors.tertiary} font={fonts?.[tab === 0 ? 'medium' : 'normal']}>
               {t('home.welcome')}
             </Text>
@@ -53,7 +41,6 @@ const Home = () => {
         </Button>
       </Block>
 
-      {/* products list */}
       <Block
         scroll
         paddingHorizontal={sizes.padding}

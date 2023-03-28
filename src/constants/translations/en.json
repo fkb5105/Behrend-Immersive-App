@@ -43,7 +43,8 @@
   "screens": {
     "home": "Home",
     "maps": "Maps",
-    "gallery": "Gallery",
+    "gallery": "AR Gallery",
+    "history": "History",
     "objects": "3D Objects",
     "about": "About",
     "settings": "Settings",
@@ -53,7 +54,8 @@
   "navigation": {
     "maps": "Maps",
     "settings": "Settings",
-    "gallery": "Gallery",
+    "gallery": "AR Gallery",
+    "history": "History",
     "notifications": "Notifications",
     "agreement": "User Agreement",
     "about": "About",

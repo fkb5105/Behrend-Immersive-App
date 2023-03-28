@@ -61,9 +61,5 @@ export const TranslationProvider = ({
   );
 };
 
-/*
- * useTranslation hook based on i18n-js
- * Source: https://github.com/fnando/i18n-js
- */
 export const useTranslation = () =>
   useContext(TranslationContext) as ITranslate;

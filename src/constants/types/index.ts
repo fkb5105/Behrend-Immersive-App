@@ -107,7 +107,7 @@ export interface IExtra {
 export interface IDescription {
   id?: number;
   title?: string;
-  image?: string;
+  image?: string[];
   description?: string;
 }
 

@@ -17,10 +17,12 @@ const Product = ({ id, image, title, type, linkLabel }: IProduct) => {
     if (id === 1) {
       navigation.navigate('Maps');
     } else if (id === 2) {
-      navigation.navigate('Objects');
+      navigation.navigate('AR Gallery');
     } else if (id === 3) {
-      navigation.navigate('Gallery');
+      navigation.navigate('History');
     } else if (id === 4) {
+      navigation.navigate('Objects');
+    } else if (id === 5) {
       navigation.navigate('About');
     }
   };

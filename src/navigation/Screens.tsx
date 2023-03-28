@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {Gallery, Maps, Home, About, Objects} from '../screens';
+import {Gallery, Maps, Home, About, Objects, History} from '../screens';
 import {useScreenOptions, useTranslation} from '../hooks';
 import Description from '../screens/Description';
 
@@ -24,15 +24,22 @@ export default () => {
         options={{title: t('navigation.maps')}}
       />
       <Stack.Screen
+        name="AR Gallery"
+        component={Gallery}
+        options={{title: t('navigation.gallery')}}
+      />
+
+      <Stack.Screen
+        name="History"
+        component={History}
+        options={{title: t('navigation.history')}}
+      />
+      <Stack.Screen
         name="Objects"
         component={Objects}
         options={{title: t('navigation.objects')}}
       />
-      <Stack.Screen
-        name="Gallery"
-        component={Gallery}
-        options={{title: t('navigation.gallery')}}
-      />
+
  
       <Stack.Screen
         name="About"
