@@ -1,43 +1,35 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, ImageBackground } from 'react-native';
+import { IObjects } from '../constants/types';
+import { OBJECTS } from '../constants/mocks';
 
-import {OBJECTS} from '../constants/mocks';
-import {IObjects} from '../constants/types/index'
-
-
-const Objects: React.FC<{ data?: IObjects[] }> = ({ data = [] }) => {
+const Objects: React.FC = () => {
   const renderObjects = () => {
-    return data.map(object => {
+    return OBJECTS.map((object: IObjects) => {
       return (
-        <TouchableOpacity
-          key={object.id}
-          onPress={() => Linking.openURL(Objects.link)}
-          style={styles.box}>
-          <Text style={styles.title}>{object.title}</Text>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={() => Linking.openURL(Objects.link)}>
-              <Text style={styles.buttonText}>{object.linkLabel}</Text>
-            </TouchableOpacity>
-          </View>
+        <TouchableOpacity key={object.id} onPress={() => Linking.openURL(object.link ??'')}>
+          <ImageBackground source={{ uri: object.imageURL }} style={styles.box}>
+            <View style={styles.textContainer}>
+              <Text style={styles.title}>{object.title}</Text>
+              <View style={styles.buttonContainer}>
+                <Text style={styles.buttonText}>{object.linkLabel}</Text>
+              </View>
+            </View>
+          </ImageBackground>
         </TouchableOpacity>
       );
     });
   };
 
-  return <View style={styles.container}>{renderObjects()}</View>;
+  return <ScrollView contentContainerStyle={styles.container}>{renderObjects()}</ScrollView>;
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
     padding: 10,
   },
   box: {
-    width: '48%',
     height: 200,
-    backgroundColor: '#fff',
     borderRadius: 10,
     marginBottom: 20,
     shadowColor: '#000',
@@ -45,15 +37,26 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 2,
     elevation: 3,
-    padding: 10,
+  },
+  textContainer: {
+    flex: 1,
     justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    padding: 10,
+    borderRadius: 10,
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: '#fff',
   },
   buttonContainer: {
     alignSelf: 'flex-end',
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
   },
   buttonText: {
     fontSize: 16,

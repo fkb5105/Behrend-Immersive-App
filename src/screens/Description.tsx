@@ -16,12 +16,21 @@ type Props = {
 const Description: React.FC<Props> = ({ route }) => {
   const { description } = route.params;
 
-  const [selectedDescription, setSelectedDescription] = useState<IDescription>(description);
+  const [selectedDescription, setSelectedDescription] = useState<IDescription | null>(null);
+
+  // Set the selected description once the component mounts
+  React.useEffect(() => {
+    setSelectedDescription(description);
+  }, [description]);
+
+  if (!selectedDescription) {
+    return null; // or render a loading spinner
+  }
 
   return (
     <View style={styles.container}>
       <Swiper style={styles.slider} showsButtons={false} showsPagination={false}>
-        {selectedDescription.image.map((image, index) => (
+        {selectedDescription?.image?.map((image, index) => (
           <View style={styles.slide} key={index}>
             <Image style={styles.image} source={{ uri: image }} />
           </View>

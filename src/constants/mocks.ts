@@ -6,12 +6,12 @@ import {
   IGalleryOptions,
   ICategory,
   IObjects,
+  IHistory,
   IExtra,
+  IUser,
   ILocation,
-  INotification,
   IDescription,
   IProduct,
-  IUser,
 } from './types';
 
 // users
@@ -88,72 +88,84 @@ export const OBJECTS: IObjects[] = [
   {
     id: 1,
     title: 'High Chair',
+    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
     link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
     linkLabel: 'View Model',
   },
   {
     id: 2,
     title: 'Griswaold Iron',
+    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
     link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
     linkLabel: 'View Model',
   },
   {
     id: 3,
     title: 'Wash Tub',
+    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
     link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
     linkLabel: 'View Model',
   },
   {
     id: 4,
     title: 'Metal Highchair',
+    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
     link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
     linkLabel: 'View Model',
   },
   {
     id: 5,
     title: 'Camera',
+    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
     link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
     linkLabel: 'View Model',
   },
   {
     id: 6,
     title: 'Sewing Machine',
+    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
     link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
     linkLabel: 'View Model',
   },
   {
     id: 7,
     title: 'Wooden Shoes',
+    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
     link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
     linkLabel: 'View Model',
   },
   {
     id: 8,
     title: 'Cheese Box',
+    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
     link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
     linkLabel: 'View Model',
   },
   {
     id: 9,
     title: 'Phone',
+    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
     link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
     linkLabel: 'View Model',
   },
   {
     id: 10,
     title: 'Telescope',
+    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
     link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
     linkLabel: 'View Model',
   },
   {
     id: 11,
     title: 'Radio',
+    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
     link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
     linkLabel: 'View Model',
   },
   {
     id: 12,
     title: 'Nittany Lion',
+    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
     link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
     linkLabel: 'View Model',
   }
@@ -202,7 +214,40 @@ export const WELCOME: IProduct[] = [
       'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?fit=crop&w=450&q=80',
   },
 ];
-
+export const HISTORY: IHistory[] = [
+  {
+    id:1,
+    title: 'Glenhill Farm',
+    imageURL: 'https://www.48ws.com/images/product/S/A/daltile-sa55-1x1-slate-radiance-flint-1-x-1-random-tile.jpg',
+    description:'Explore the home of the Behrends',
+    linkLabel:'Learn More',
+    type: 'horizontal',
+  },
+  {
+    id:2,
+    title: 'Turnboil Building',
+    imageURL: 'https://www.48ws.com/images/product/S/A/daltile-sa55-1x1-slate-radiance-flint-1-x-1-random-tile.jpg',
+    description:"Don't know what Turnboil was",
+    linkLabel:'Learn More',
+    type: 'horizontal'
+  },
+  {
+    id:3,
+    title: 'Hamermill Factory',
+    imageURL: 'https://www.48ws.com/images/product/S/A/daltile-sa55-1x1-slate-radiance-flint-1-x-1-random-tile.jpg',
+    description:'Sentence for Hamermill Factory',
+    linkLabel:'Learn More',
+    type: 'vertical',
+  },
+  {
+    id:4,
+    title: 'Behrend Family',
+    imageURL: 'https://www.48ws.com/images/product/S/A/daltile-sa55-1x1-slate-radiance-flint-1-x-1-random-tile.jpg',
+    description:'Meet the Behrend family',
+    linkLabel:'Learn More',
+    type: 'vertical',
+  },
+]
 
 // categories
 export const CATEGORIES: ICategory[] = [
@@ -589,10 +634,10 @@ export const DESCRIPTION: IDescription[] = [
     id: 9,
     title: 'Pepper',
     image: [
-            'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
-            'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
-            'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80'
-          ],
+      'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
+      'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80'
+    ],
     description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
   {
@@ -636,85 +681,14 @@ export const DESCRIPTION: IDescription[] = [
     description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
 ]
-// extras cards
-export const EXTRAS: IExtra[] = [
-  {
-    id: 1,
-    name: 'BMW X5',
-    time: dayjs().format('hh:00'),
-    image: require('../assets/images/x5.png'),
-    saved: false,
-    booked: false,
-    available: true,
-  },
-  {
-    id: 2,
-    name: 'Tesla',
-    time: dayjs().format('hh:00'),
-    image: require('../assets/images/tesla.png'),
-    saved: false,
-    booked: false,
-    available: true,
-  },
-  {
-    id: 3,
-    name: 'Mercedes GLE',
-    time: dayjs().format('hh:00'),
-    image: require('../assets/images/gle.png'),
-    saved: false,
-    booked: false,
-    available: false,
-  },
-];
-
-// notifications
-export const NOTIFICATIONS: INotification[] = [
-  {
-    id: 1,
-    subject: 'New Message',
-    message: 'You have a new message from the owner.',
-    type: 'document',
-    business: true,
-    read: false,
-    createdAt: dayjs().subtract(2, 'h').toDate(),
-  },
-  {
-    id: 2,
-    subject: 'New Order',
-    message: 'A confirmed request by one client.',
-    type: 'extras',
-    business: true,
-    read: false,
-    createdAt: dayjs().subtract(4, 'h').toDate(),
-  },
-  {
-    id: 3,
-    subject: 'New Likes',
-    message: 'Your posts have been liked by 2,342.',
-    type: 'notification',
-    business: true,
-    read: true,
-    createdAt: dayjs().subtract(6, 'h').toDate(),
-  },
-  {
-    id: 4,
-    subject: 'Last Message',
-    message: 'Your posts have been liked by 2,342.',
-    type: 'document',
-    business: true,
-    read: true,
-    createdAt: dayjs().subtract(2, 'd').toDate(),
-  },
-];
 
 export default {
   USERS,
   WELCOME,
   CATEGORIES,
   OBJECTS,
+  HISTORY,
   GALLERIES,
   RECOMMENDATIONS,
   DESCRIPTION,
-  EXTRAS,
-  NOTIFICATIONS,
 };

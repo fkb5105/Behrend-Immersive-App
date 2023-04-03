@@ -33,8 +33,17 @@ export interface IGalleryOptions {
 export interface IObjects {
   id?: number;
   title?: string;
+  imageURL?: string;
   link?: string;
   linkLabel?: string;
+}
+export interface IHistory {
+  id?: number;
+  title?: string;
+  imageURL?: string;
+  description?: string;
+  linkLabel?: string;
+  type: 'vertical' | 'horizontal';
 }
 export interface IGallery {
   id?: number;
@@ -82,8 +91,6 @@ export interface IUseData {
   setGalleries: (data?: IGallery[]) => void;
   gallery: IGallery;
   handleGallery: (data?: IGallery) => void;
-  notifications: INotification[];
-  handleNotifications: (data?: INotification[]) => void;
 }
 
 export interface ITranslate {
@@ -111,19 +118,3 @@ export interface IDescription {
   description?: string;
 }
 
-export interface INotification {
-  id?: number;
-  subject?: string;
-  message?: string;
-  read?: boolean;
-  business?: boolean;
-  createdAt?: number | Date;
-  type:
-    | 'document'
-    | 'documentation'
-    | 'payment'
-    | 'notification'
-    | 'about'
-    | 'extras'
-    | 'office';
-}
