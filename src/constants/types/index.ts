@@ -51,6 +51,8 @@ export interface IGallery {
   description?: string;
   category?: ICategory;
   image?: string;
+  latitude?: number,
+  longitude?: number,
   location?: ILocation;
   rating?: number;
   user?: IUser;

@@ -225,9 +225,9 @@ export const HISTORY: IHistory[] = [
   },
   {
     id:2,
-    title: 'Turnboil Building',
+    title: 'Turnbull Building',
     imageURL: 'https://www.48ws.com/images/product/S/A/daltile-sa55-1x1-slate-radiance-flint-1-x-1-random-tile.jpg',
-    description:"Don't know what Turnboil was",
+    description:"Don't know what Turnbull was",
     linkLabel:'Learn More',
     type: 'horizontal'
   },
@@ -252,7 +252,6 @@ export const HISTORY: IHistory[] = [
 // categories
 export const CATEGORIES: ICategory[] = [
   {id: 1, name: 'Nearest'},
-  {id: 2, name: 'AR'},
   {id: 3, name: 'Recommended'},
   {id: 4, name: 'Most Visited'},
 ];
@@ -348,6 +347,8 @@ export const GALLERIES: IGallery[] = [
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
     category: CATEGORIES[0],
     options: GALLERY_OPTIONS,
+    latitude: 42.119422,
+    longitude: -79.985721,
     image:
       'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
     location: LOCATIONS[0],

@@ -22,10 +22,9 @@ const Gallery = ({
 
   const navigation = useNavigation();
 
-  const handlePress = () => {
-    // Navigate to the Description page
-    navigation.navigate('Description', {image, description});
-  }
+  const handlePress = (id: number) => {
+    navigation.navigate('ARmap', { id });
+  };
 
   if (category?.id !== 0) {
     return (

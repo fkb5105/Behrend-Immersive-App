@@ -1,23 +1,25 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { HISTORY } from '../constants/mocks';
 import { IDescription } from '../constants/types';
 
 const History = () => {
   const navigation = useNavigation();
-
-  const handleHistoryOptionPress = (id: number) => {
-    const description: IDescription | undefined = HISTORY.find((desc) => desc.id === id);
-    if (description) {
-      navigation.navigate('Description', { description });
+ 
+  const handleHistoryOptionPress = (id: number | undefined) => {
+    if (id) {
+      const description = HISTORY.find((desc) => desc.id === id);
+      if (description) {
+        navigation.navigate('Description', description);
+      }
     }
   };
+  
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>History</Text>
-      <View style={styles.historyOptionsContainer}>
+      <ScrollView contentContainerStyle={styles.historyOptionsContainer}>
         {HISTORY.map((historyOption) => (
           <TouchableOpacity
             key={historyOption.id}
@@ -28,11 +30,16 @@ const History = () => {
             <View style={styles.historyOptionTextContainer}>
               <Text style={styles.historyOptionTitle}>{historyOption.title}</Text>
               <Text style={styles.historyOptionDescription}>{historyOption.description}</Text>
-              <Text style={styles.historyOptionLink}>{historyOption.linkLabel}</Text>
+              <TouchableOpacity
+                style={styles.historyOptionButton}
+                onPress={() => handleHistoryOptionPress(historyOption.id)}
+              >
+                <Text style={styles.historyOptionButtonText}>Learn more</Text>
+              </TouchableOpacity>
             </View>
           </TouchableOpacity>
         ))}
-      </View>
+      </ScrollView>
     </View>
   );
 };
@@ -51,48 +58,47 @@ const styles = StyleSheet.create({
   historyOptionsContainer: {
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
+    alignItems: 'stretch',
+    flexGrow: 1,
   },
   historyOption: {
-    width: '100%',
+    flex: 1,
     height: 150,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 16,
     borderRadius: 8,
     overflow: 'hidden',
+    marginBottom: 16,
   },
   historyOptionImage: {
     flex: 1,
     height: '100%',
     resizeMode: 'cover',
-    position: 'absolute',
-    top: 0,
-    left: 0,
   },
   historyOptionTextContainer: {
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    padding: 8,
     flex: 2,
+    padding: 8,
   },
   historyOptionTitle: {
-    color: '#fff',
+    color: '#000',
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 4,
   },
   historyOptionDescription: {
-    color: '#fff',
+    color: '#000',
     fontSize: 16,
-    marginBottom: 8,
+    marginBottom: 16,
   },
-  historyOptionLink: {
+  historyOptionButton: {
+    backgroundColor: '#4F7CAC',
+    padding: 8,
+    borderRadius: 4,
+    alignSelf: 'flex-end',
+  },
+  historyOptionButtonText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
-    textAlign: 'right',
   },
 });
 

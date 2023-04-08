@@ -1,77 +1,62 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
-import Swiper from 'react-native-swiper';
-import { COLORS } from '../constants/light';
+import React from 'react';
+import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
 import { IDescription } from '../constants/types';
+import { DESCRIPTION } from '../constants/mocks';
 
-
-type Props = {
+type DescriptionProps = {
   route: {
     params: {
-      description: IDescription;
+      id: number;
     };
   };
 };
 
-const Description: React.FC<Props> = ({ route }) => {
-  const { description } = route.params;
+const Description: React.FC<DescriptionProps> = ({ route }) => {
+  const { id } = route.params;
+  const description: IDescription | undefined = DESCRIPTION.find(
+    (desc) => desc.id === id
+  );
 
-  const [selectedDescription, setSelectedDescription] = useState<IDescription | null>(null);
-
-  // Set the selected description once the component mounts
-  React.useEffect(() => {
-    setSelectedDescription(description);
-  }, [description]);
-
-  if (!selectedDescription) {
-    return null; // or render a loading spinner
+  if (!description) {
+    return <Text>No description found for ID {id}</Text>;
   }
 
+  const { title, image, description: desc } = description;
+
   return (
-    <View style={styles.container}>
-      <Swiper style={styles.slider} showsButtons={false} showsPagination={false}>
-        {selectedDescription?.image?.map((image, index) => (
-          <View style={styles.slide} key={index}>
-            <Image style={styles.image} source={{ uri: image }} />
-          </View>
-        ))}
-      </Swiper>
-      <View style={styles.descriptionContainer}>
-        <Text style={styles.title}>{selectedDescription.title}</Text>
-        <Text style={styles.description}>{selectedDescription.description}</Text>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.title}>{title}</Text>
+      <View style={styles.imageContainer}>
+        <Image source={{ uri: image[0] }} style={styles.image} />
       </View>
-    </View>
+      <Text style={styles.description}>{desc}</Text>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.background,
-    paddingHorizontal: 10,
-  },
-  slider: {
-    height: 250,
-  },
-  slide: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-  },
-  descriptionContainer: {
-    paddingVertical: 20,
+    padding: 16,
+    backgroundColor: '#fff',
   },
   title: {
-    fontSize: 24,
+    fontSize: 32,
     fontWeight: 'bold',
-    color: COLORS.primary,
+    marginBottom: 16,
+  },
+  imageContainer: {
+    height: 200,
+    marginBottom: 16,
+  },
+  image: {
+    flex: 1,
+    height: '100%',
+    resizeMode: 'cover',
   },
   description: {
+    color: '#000',
     fontSize: 16,
-    color: COLORS.secondary,
   },
 });
 
