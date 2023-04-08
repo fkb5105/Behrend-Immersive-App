@@ -8,14 +8,15 @@ import Image from './Image';
 import {useTheme, useTranslation} from '../hooks/';
 import {IGallery} from '../constants/types';
 import {useNavigation} from '@react-navigation/native';
+import { GALLERIES } from '../constants/mocks';
 
 const Gallery = ({
+  id,
   description,
   image,
   category,
   rating,
   location,
-  onPress,
 }: IGallery) => {
   const {t} = useTranslation();
   const {colors, gradients, icons, sizes} = useTheme();
@@ -23,8 +24,17 @@ const Gallery = ({
   const navigation = useNavigation();
 
   const handlePress = (id: number) => {
-    navigation.navigate('ARmap', { id });
+    const gallery = GALLERIES.find(g => g.id === id);
+    if (gallery) {
+      navigation.navigate('ARMap', {
+        latitude: gallery.latitude,
+        longitude: gallery.longitude,
+      });
+    }
   };
+  
+  
+  
 
   if (category?.id !== 0) {
     return (
@@ -70,7 +80,7 @@ const Gallery = ({
               marginRight={sizes.s} 
               color={colors.tertiary}/>
               <TouchableOpacity
-                onPress={onPress ?? handlePress}>
+                onPress={() => handlePress(id ?? 0)}>
                 <Text 
                 p
                 color={colors.link} 
