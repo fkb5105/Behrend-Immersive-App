@@ -38,7 +38,7 @@ const GalleryScreen = ({ navigation }: GalleryScreenProps) => {
   }, [data, selected, setGalleries]);
 
   const handlePress = (gallery: IGallery) => {
-    navigation.navigate('Description', { gallery });
+    navigation.navigate('ARmap', { gallery });
   };
 
   return (

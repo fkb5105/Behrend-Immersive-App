@@ -1,6 +1,6 @@
 import React from 'react';
 import dayjs from 'dayjs';
-import {TouchableWithoutFeedback} from 'react-native';
+import {TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
 
 import Text from './Text';
 import Block from './Block';
@@ -28,7 +28,7 @@ const Gallery = ({
 
   if (category?.id !== 0) {
     return (
-      <TouchableWithoutFeedback onPress={onPress ?? handlePress}>
+      <TouchableWithoutFeedback>
         <Block card padding={sizes.sm} marginTop={sizes.sm}>
           <Image height={170} resizeMode="cover" source={{uri: image}} />
           {/* gallery category */}
@@ -59,17 +59,24 @@ const Gallery = ({
           {/* location & rating */}
           {(Boolean(location) || Boolean(rating)) && (
             <Block row align="center">
-              <Image source={icons.location} marginRight={sizes.s} />
               <Text p size={12} semibold>
                 {location?.city}, {location?.country}
               </Text>
               <Text p bold marginHorizontal={sizes.s}>
                 •
               </Text>
-              <Image source={icons.star} marginRight={sizes.s} />
-              <Text p size={12} semibold>
-                {rating}/5
-              </Text>
+              <Image 
+              source={icons.location} 
+              marginRight={sizes.s} 
+              color={colors.tertiary}/>
+              <TouchableOpacity
+                onPress={onPress ?? handlePress}>
+                <Text 
+                p
+                color={colors.link} 
+                semibold>
+                Take me there</Text>
+              </TouchableOpacity>
             </Block>
           )}
         </Block>

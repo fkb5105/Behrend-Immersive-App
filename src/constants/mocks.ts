@@ -3,11 +3,9 @@ import { t } from 'i18n-js';
 import { Description } from '../screens';
 import {
   IGallery,
-  IGalleryOptions,
   ICategory,
   IObjects,
   IHistory,
-  IExtra,
   IUser,
   ILocation,
   IDescription,
@@ -256,48 +254,6 @@ export const CATEGORIES: ICategory[] = [
   {id: 4, name: 'Most Visited'},
 ];
 
-// gallery options
-export const GALLERY_OPTIONS: IGalleryOptions[] = [
-  {
-    id: 1,
-    title: 'Single room in center',
-    description:
-      'As Uber works through a huge amount of internal management turmoil, the company is also consolidating.',
-    type: 'room',
-    guests: 1,
-    sleeping: {total: 1, type: 'sofa'},
-    price: 89,
-    user: USERS[0],
-    image:
-      'https://images.unsplash.com/photo-1543489822-c49534f3271f?fit=crop&w=450&q=80',
-  },
-  {
-    id: 2,
-    title: 'Cosy apartment',
-    description:
-      'Different people have different taste, and various types of music have many ways of leaving an impact on someone.',
-    type: 'apartment',
-    guests: 3,
-    sleeping: {total: 2, type: 'bed'},
-    price: 200,
-    user: USERS[0],
-    image:
-      'https://images.unsplash.com/photo-1603034203013-d532350372c6?fit=crop&w=450&q=80',
-  },
-  {
-    id: 3,
-    title: 'Single room in center',
-    description:
-      'As Uber works through a huge amount of internal management turmoil, the company is also consolidating.',
-    type: 'room',
-    guests: 1,
-    sleeping: {total: 1, type: 'sofa'},
-    price: 89,
-    user: USERS[0],
-    image:
-      'https://images.unsplash.com/photo-1543489822-c49534f3271f?fit=crop&w=450&q=80',
-  },
-];
 
 // offers
 export const OFFERS: IProduct[] = [
@@ -346,12 +302,11 @@ export const GALLERIES: IGallery[] = [
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
     category: CATEGORIES[0],
-    options: GALLERY_OPTIONS,
     latitude: 42.119422,
     longitude: -79.985721,
     image:
       'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
-    location: LOCATIONS[0],
+    location: LOCATIONS[2],
     rating: 4.0,
     timestamp: dayjs().unix(),
   },
@@ -361,10 +316,9 @@ export const GALLERIES: IGallery[] = [
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay.',
     category: CATEGORIES[0],
-    options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1563492065599-3520f775eeed?fit=crop&w=450&q=80',
-    location: LOCATIONS[1],
+    location: LOCATIONS[3],
     rating: 4.0,
     timestamp: dayjs().unix(),
   },
@@ -374,7 +328,6 @@ export const GALLERIES: IGallery[] = [
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
     category: CATEGORIES[0],
-    options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?fit=crop&w=450&q=80',
     location: LOCATIONS[3],
@@ -387,7 +340,6 @@ export const GALLERIES: IGallery[] = [
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
     category: CATEGORIES[0],
-    options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
     location: LOCATIONS[2],
@@ -399,7 +351,6 @@ export const GALLERIES: IGallery[] = [
     title: 'Office space means growth.',
     description: `The mission of LinkedIn is simple: connect the world's professionals.`,
     category: CATEGORIES[1],
-    options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1596720426673-e4e14290f0cc?fit=crop&w=450&q=80',
     location: LOCATIONS[0],
@@ -412,10 +363,9 @@ export const GALLERIES: IGallery[] = [
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
     category: CATEGORIES[1],
-    options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
-    location: LOCATIONS[2],
+    location: LOCATIONS[1],
     rating: 4.0,
     timestamp: dayjs().unix(),
   },
@@ -425,7 +375,6 @@ export const GALLERIES: IGallery[] = [
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
     category: CATEGORIES[1],
-    options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
     location: LOCATIONS[1],
@@ -438,7 +387,6 @@ export const GALLERIES: IGallery[] = [
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
     category: CATEGORIES[2],
-    options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
     location: LOCATIONS[3],
@@ -451,7 +399,6 @@ export const GALLERIES: IGallery[] = [
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
     category: CATEGORIES[2],
-    options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
     location: LOCATIONS[1],
@@ -464,10 +411,9 @@ export const GALLERIES: IGallery[] = [
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
     category: CATEGORIES[2],
-    options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
-    location: LOCATIONS[0],
+    location: LOCATIONS[1],
     rating: 4.0,
     timestamp: dayjs().unix(),
   },
@@ -476,7 +422,6 @@ export const GALLERIES: IGallery[] = [
     description:
       'A great to stay in Paris without feeling you are in the city!',
     category: CATEGORIES[3], // best deal
-    options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80',
     location: LOCATIONS[0],
@@ -487,7 +432,6 @@ export const GALLERIES: IGallery[] = [
     id: 12,
     description: 'Best Italy location in a bustling neighbourhood, 2 min.',
     category: CATEGORIES[3], // best deal
-    options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
     location: LOCATIONS[1],
@@ -499,7 +443,6 @@ export const GALLERIES: IGallery[] = [
     description:
       'The most beautiful and complex UI Kits built by Creative Tim.',
     category: CATEGORIES[3], // best deal
-    options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
     location: LOCATIONS[2],
@@ -515,7 +458,6 @@ export const RECOMMENDATIONS: IGallery[] = [
     description:
       'A great to stay in Paris without feeling you are in the city!',
     category: CATEGORIES[3], // best deal
-    options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80',
     location: LOCATIONS[0],
@@ -527,7 +469,6 @@ export const RECOMMENDATIONS: IGallery[] = [
     id: 2,
     description: 'Best Italy location in a bustling neighbourhood, 2 min.',
     category: CATEGORIES[3], // best deal
-    options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
     location: LOCATIONS[1],
@@ -540,7 +481,6 @@ export const RECOMMENDATIONS: IGallery[] = [
     description:
       'The most beautiful and complex UI Kits built by Creative Tim.',
     category: CATEGORIES[3], // best deal
-    options: GALLERY_OPTIONS,
     image:
       'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
     location: LOCATIONS[2],
