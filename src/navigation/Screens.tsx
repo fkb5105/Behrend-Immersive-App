@@ -1,10 +1,11 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {Gallery, Maps, Home, About, Objects, History} from '../screens';
+import {Gallery, Maps, Home, About, Objects, History} from '../screens'
 import {useScreenOptions, useTranslation} from '../hooks';
 import Description from '../screens/Description';
-import ARMap from '../screens/ARmap';
+import ARmap from '../screens/ARmap';
+
 
 const Stack = createStackNavigator();
 
@@ -43,7 +44,7 @@ export default () => {
 
       <Stack.Screen
         name="ARmap"
-        component={ARMap}
+        component={ARmap}
         options={screenOptions.back}
       />
       <Stack.Screen

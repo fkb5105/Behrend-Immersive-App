@@ -26,7 +26,7 @@ const Gallery = ({
   const handlePress = (id: number) => {
     const gallery = GALLERIES.find(g => g.id === id);
     if (gallery) {
-      navigation.navigate('ARMap', {
+      navigation.navigate('ARmap', {
         latitude: gallery.latitude,
         longitude: gallery.longitude,
       });

@@ -14,7 +14,7 @@ type Props = {
   };
 };
 
-const ARMap = ({ route }: Props) => {
+const ARmap = ({ route }: Props) => {
   const { latitude, longitude } = route.params;
   const { colors, sizes } = useTheme();
   const cameraRef = React.useRef<Camera>(null);
@@ -88,4 +88,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ARMap;
+export default ARmap;
