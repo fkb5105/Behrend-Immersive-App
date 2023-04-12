@@ -86,7 +86,7 @@ const DrawerContent = (
     {name: t('screens.home'), to: 'Home', icon: assets.home},
     {name: t('screens.maps'), to: 'Maps', icon: assets.location},
     {name: t('screens.gallery'), to: 'AR Gallery', icon: assets.image},
-    {name: t('screens.history'), to: 'History', icon: assets.articles},
+    {name: t('screens.history'), to: 'History', icon: assets.register},
     {name: t('screens.objects'), to: 'Objects', icon: assets.basket},
     {name: t('screens.about'), to: 'About', icon: assets.profile},
   ];

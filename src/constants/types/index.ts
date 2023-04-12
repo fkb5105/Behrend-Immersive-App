@@ -8,7 +8,7 @@ export * from './theme';
 export interface IUser {
   id: number | string;
   name?: string;
-  department?: string;
+  position?: string;
   avatar?: string;
   stats?: {posts?: number; followers?: number; following?: number};
   social?: {twitter?: string; dribbble?: string};

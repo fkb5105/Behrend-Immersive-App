@@ -1,9 +1,10 @@
-import React from 'react';
-import {View, StyleSheet, TouchableOpacity} from 'react-native';
-import MapView, {Marker} from 'react-native-maps';
-import { Camera } from 'expo-camera';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, TouchableOpacity, Linking, Platform } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
+import * as Location from 'expo-location';
 import { useTheme } from '../hooks';
 import Text from '../components/Text';
+import { Camera } from 'expo-camera';
 
 type Props = {
   route: {
@@ -17,16 +18,52 @@ type Props = {
 const ARmap = ({ route }: Props) => {
   const { latitude, longitude } = route.params;
   const { colors, sizes } = useTheme();
-  const cameraRef = React.useRef<Camera>(null);
+  const [location, setLocation] = useState<Location.LocationObject | null>(null);
+  const [cameraVisible, setCameraVisible] = useState(false);
+  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+  const [type, setType] = useState(Camera.Constants.Type.back);
 
-  const handlePress = async () => {
-    try {
-      const data = await cameraRef.current?.takePictureAsync();
-      console.log(data);
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+
+    (async () => {
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
+
+  useEffect(() => {
+    if (location) {
+      const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
+      const latLng = `${latitude},${longitude}`;
+      const url = Platform.select({
+        ios: `${scheme}${latLng}`,
+        android: `${scheme}${latLng}(${encodeURIComponent('Custom Label')})`,
+      }) || '';
+
+      Linking.openURL(url);
     }
+  }, [location]);
+
+  const handleImHere = () => {
+    setCameraVisible(true);
   };
+
+  const handleCameraClose = () => {
+    setCameraVisible(false);
+  };
+
+  if (!location) {
+    return null;
+  }
 
   return (
     <View style={styles.container}>
@@ -39,21 +76,22 @@ const ARmap = ({ route }: Props) => {
           longitudeDelta: 0.01,
         }}>
         <Marker coordinate={{ latitude: latitude, longitude: longitude }} />
+        <Marker coordinate={{ latitude: location.coords.latitude, longitude: location.coords.longitude }} />
       </MapView>
-      <View style={styles.infoContainer}>
-        <Text h3 color={colors.primary} semibold marginBottom={sizes.s}>
-          AR Map
+      <TouchableOpacity style={styles.cameraButton} onPress={handleImHere} activeOpacity={0.8}>
+        <Text p color={colors.white} semibold>
+          I'm Here!
         </Text>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handlePress}
-          activeOpacity={0.8}>
-          <Text p color={colors.white} semibold>
-            I'm Here!
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <Camera style={StyleSheet.absoluteFillObject} ref={cameraRef} type={Camera.Constants.Type.front} />
+      </TouchableOpacity>
+      {cameraVisible && hasPermission && (
+        <Camera style={styles.camera} type={type}>
+          <TouchableOpacity style={styles.cameraCloseButton} onPress={handleCameraClose}>
+            <Text p color={colors.white} semibold>
+              Close
+            </Text>
+          </TouchableOpacity>
+        </Camera>
+      )}
     </View>
   );
 };
@@ -65,27 +103,24 @@ const styles = StyleSheet.create({
   map: {
     flex: 1,
   },
-  infoContainer: {
+  cameraButton: {
     position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    padding: 16,
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    shadowColor: 'rgba(0, 0, 0, 0.2)',
-    shadowOpacity: 1,
-    shadowRadius: 10,
-    elevation: 10,
+    bottom: 16,
+    left: 16,
+    backgroundColor: 'blue',
   },
-  button: {
-    height: 40,
-    borderRadius: 4,
-    backgroundColor: '#4D9EF6',
-    justifyContent: 'center',
+  camera: {
+    flex: 1,
+  },
+  cameraCloseButton: {
+    position: 'absolute',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    borderRadius: 25,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    marginBottom: 20,
     alignItems: 'center',
-    marginTop: 16,
-  },
-});
-
-export default ARmap;
+    },
+    });
+    
+    export default ARmap;

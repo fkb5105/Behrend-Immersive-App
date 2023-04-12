@@ -24,7 +24,11 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#CB0C9F"
+        "backgroundColor": "#CB0C9F",
+        "permissions": [
+          "CAMERA",
+          "ACCESS_FINE_LOCATION"
+        ]
       }
     },
     "web": {

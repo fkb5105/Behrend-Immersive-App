@@ -2,10 +2,12 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { HISTORY } from '../constants/mocks';
+import { useTheme } from '../hooks';
 import { IDescription } from '../constants/types';
 
 const History = () => {
   const navigation = useNavigation();
+  const {assets, colors, fonts, gradients, sizes} = useTheme();
  
   const handleHistoryOptionPress = (id: number | undefined) => {
     if (id) {
@@ -90,9 +92,9 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   historyOptionButton: {
-    backgroundColor: '#4F7CAC',
+    backgroundColor: '#1E407C',
     padding: 8,
-    borderRadius: 4,
+    borderRadius: 6,
     alignSelf: 'flex-end',
   },
   historyOptionButtonText: {

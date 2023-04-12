@@ -1,94 +1,110 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, Image } from 'react-native';
-import { COLORS } from '../constants/light';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Linking } from 'react-native';
 import { USERS } from '../constants/mocks';
+import { COLORS } from '../constants/light';
 
 const About = () => {
-
-  const renderItem = ({ item }) => (
-    <View style={styles.userBox}>
-      <Image style={styles.avatar} source={{ uri: item.avatar }} />
-      <Text style={styles.userName}>{item.name}</Text>
-      <Text style={styles.userDepartment}>{item.department}</Text>
-      <View style={styles.statsContainer}>
-        <Text style={styles.stat}>{item.stats.posts} posts</Text>
-        <Text style={styles.stat}>{item.stats.followers} followers</Text>
-        <Text style={styles.stat}>{item.stats.following} following</Text>
-      </View>
-      <View style={styles.socialContainer}>
-        <Text style={styles.socialIcon}>Twitter: {item.social.twitter}</Text>
-        <Text style={styles.socialIcon}>Dribbble: {item.social.dribbble}</Text>
-      </View>
-      <Text style={styles.about}>{item.about}</Text>
-    </View>
-  );
-
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={USERS}
-        renderItem={renderItem}
-        keyExtractor={item => item.id.toString()}
-      />
-    </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.title}>Meet the Team</Text>
+      {USERS.map((user) => (
+        <View style={styles.card} key={user.id}>
+          <Image style={styles.avatar} source={{ uri: user.avatar }} />
+          <View style={styles.info}>
+            <Text style={styles.name}>{user.name}</Text>
+            <Text style={styles.position}>{user.position}</Text>
+            <Text style={styles.about}>{user.about}</Text>
+          </View>
+        </View>
+      ))}
+      <View style={styles.projectSection}>
+        <Text style={styles.projectText}>
+          See what else VAR Labs is working on
+        </Text>
+        <TouchableOpacity style={styles.visitButton} onPress={() => Linking.openURL('https://var.psu.edu/projects/')}>
+          <Text style={styles.buttonText}>Visit Projects</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'COLORS.secondary',
-    paddingHorizontal: 20,
-    paddingTop: 30,
+    flexGrow: 1,
+    backgroundColor: '#F5FCFF',
+    alignItems: 'center',
+    paddingVertical: 20,
+    paddingHorizontal: 30,
   },
-  userBox: {
-    backgroundColor: '#FFF',
-    padding: 20,
+  title: {
+    fontSize: 28,
+    fontWeight: 'bold',
     marginBottom: 20,
+    textAlign: 'center',
+  },
+  card: {
+    flexDirection: 'row',
+    backgroundColor: '#fff',
     borderRadius: 10,
+    width: '100%',
+    marginBottom: 20,
+    padding: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
     elevation: 5,
   },
   avatar: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    marginBottom: 10,
+    width: '30%',
+    height: '100%',
+    borderRadius: 10,
+    marginRight: 20,
   },
-  userName: {
+  info: {
+    width: '70%',
+  },
+  name: {
+    fontSize: 20,
     fontWeight: 'bold',
-    fontSize: 18,
     marginBottom: 5,
-    color: '#343A40',
   },
-  userDepartment: {
-    color: '#6C757D',
-    marginBottom: 10,
+  position: {
     fontSize: 16,
-  },
-  statsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    color: '#777',
     marginBottom: 10,
-  },
-  stat: {
-    fontWeight: 'bold',
-    color: '#343A40',
-    fontSize: 16,
-  },
-  socialContainer: {
-    marginBottom: 10,
-  },
-  socialIcon: {
-    color: '#6C757D',
-    fontSize: 16,
   },
   about: {
+    fontSize: 14,
     lineHeight: 20,
-    color: '#343A40',
+  },
+  projectSection: {
+    alignItems: 'center',
+    marginVertical: 20,
+    margin: 10,
+  },
+  projectText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    margin:10,
+    marginBottom: 16,
+    color: '#333',
+    textAlign: 'center',
+  },
+  visitButton: {
+    backgroundColor: COLORS.tertiary,
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: '#fff',
+    marginTop: 4,
+    padding: 8,
+    fontSize: 16,
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
   },
 });
 
