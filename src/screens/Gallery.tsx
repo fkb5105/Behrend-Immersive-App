@@ -5,6 +5,8 @@ import { useData, useTheme } from '../hooks/';
 import { IGallery, ICategory } from '../constants/types';
 import { Block, Button, Text } from '../components/';
 import { NavigationProp } from '@react-navigation/native';
+import { calculateDistance } from '../utils/helpers';
+
 
 interface GalleryScreenProps {
   navigation: NavigationProp<Record<string, object | undefined>>;
@@ -38,8 +40,18 @@ const GalleryScreen = ({ navigation }: GalleryScreenProps) => {
   }, [data, selected, setGalleries]);
 
   const handlePress = (gallery: IGallery) => {
-    navigation.navigate('ARmap', { gallery });
+    const location = gallery.location;
+    if (selected?.id === 1 && location) {
+      const sortedGalleries = galleries
+        .map((g) => ({ ...g, distance: calculateDistance(location!, g.location!) }))
+        .sort((a, b) => a.distance - b.distance);
+      navigation.navigate('ARmap', { gallery: sortedGalleries[0] });
+    } else {
+      navigation.navigate('ARmap', { gallery });
+    }
   };
+  
+  
 
   return (
     <Block>

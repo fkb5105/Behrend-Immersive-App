@@ -72,6 +72,7 @@ export interface IProduct {
   type: 'vertical' | 'horizontal';
 }
 export interface ILocation {
+  coords?: any;
   id?: number;
   city?: string;
   country?: string;

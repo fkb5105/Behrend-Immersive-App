@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import { t } from 'i18n-js';
-import { Description } from '../screens';
+import { calculateDistance } from '../utils/helpers';
+
 import {
   IGallery,
   ICategory,
@@ -221,11 +222,16 @@ export const HISTORY: IHistory[] = [
 ]
 
 // categories
-export const CATEGORIES: ICategory[] = [
-  {id: 1, name: 'Nearest'},
-  {id: 3, name: 'Recommended'},
-  {id: 4, name: 'Most Visited'},
+interface ICategoryWithSortFunction extends ICategory {
+  sortFunction?: (a: IGallery, b: IGallery) => number;
+}
+
+export const CATEGORIES: ICategoryWithSortFunction[] = [
+  { id: 1, name: 'Nearest', sortFunction: (a, b) => calculateDistance(a.location, USER_LOCATION) - calculateDistance(b.location, USER_LOCATION) },
+  { id: 3, name: 'Recommended' },
+  { id: 4, name: 'Most Visited' },
 ];
+
 
 
 // offers
