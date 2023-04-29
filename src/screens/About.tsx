@@ -1,19 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Linking } from 'react-native';
-import { USERS } from '../constants/mocks';
 import { COLORS } from '../constants/light';
+import axios from 'axios';
+
+interface AboutData {
+  about_id: number;
+  image_url: string;
+  name: string;
+  position: string;
+  description: string;
+}
 
 const About = () => {
+  const [aboutData, setAboutData] = useState<AboutData[]>([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/ABOUT')
+      .then(response => {
+        setAboutData(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Meet the Team</Text>
-      {USERS.map((user) => (
-        <View style={styles.card} key={user.id}>
-          <Image style={styles.avatar} source={{ uri: user.avatar }} />
+      {aboutData.map((member: AboutData) => (
+        <View style={styles.card} key={member.about_id}>
+          <Image style={styles.avatar} source={{ uri: member.image_url }} />
           <View style={styles.info}>
-            <Text style={styles.name}>{user.name}</Text>
-            <Text style={styles.position}>{user.position}</Text>
-            <Text style={styles.about}>{user.about}</Text>
+            <Text style={styles.name}>{member.name}</Text>
+            <Text style={styles.position}>{member.position}</Text>
+            <Text style={styles.about}>{member.description}</Text>
           </View>
         </View>
       ))}
@@ -75,7 +95,8 @@ const styles = StyleSheet.create({
     color: '#777',
     marginBottom: 10,
   },
-  about: {
+  about:
+ {
     fontSize: 14,
     lineHeight: 20,
   },
@@ -102,6 +123,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     marginTop: 4,
     padding: 8,
+
     fontSize: 16,
     fontWeight: 'bold',
     textTransform: 'uppercase',

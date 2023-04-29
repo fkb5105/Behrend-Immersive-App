@@ -22,7 +22,7 @@ function getAbout() {
   });
 }
 
-app.get('/ABOUT', async (req, res) => {
+app.get('/about', async (req, res) => {
   try {
     const aboutData = await getAbout();
     res.json(aboutData);
@@ -48,7 +48,7 @@ function getMenu() {
     });
   }
   
-  app.get('/MENU', async (req, res) => {
+  app.get('/menu', async (req, res) => {
     try {
       const menuData = await getMenu();
       res.json(menuData);
@@ -70,7 +70,7 @@ function getMenu() {
     });
   }
   
-  app.get('/OBJECTS', async (req, res) => {
+  app.get('/objects', async (req, res) => {
     try {
       const objectsData = await getObjects();
       res.json(objectsData);
@@ -92,7 +92,7 @@ function getDescription() {
     });
   }
   
-  app.get('/DESCRIPTION', async (req, res) => {
+  app.get('/description', async (req, res) => {
     try {
       const descriptionData = await getDescription();
       res.json(descriptionData);
@@ -114,7 +114,7 @@ function getImageMetadata() {
     });
   }
   
-  app.get('/IMAGE_METADATA', async (req, res) => {
+  app.get('/image_metadata', async (req, res) => {
     try {
       const imageData = await getImageMetadata();
       res.json(imageData);
@@ -136,7 +136,7 @@ function getDescriptionText() {
     });
   }
   
-  app.get('/DESCRIPTION_TEXT', async (req, res) => {
+  app.get('/description_text', async (req, res) => {
     try {
       const descriptionTextData = await getDescriptionText();
       res.json(descriptionTextData);
