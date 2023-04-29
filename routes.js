@@ -12,7 +12,7 @@ const pool = mysql.createPool({
 
 function getAbout() {
   return new Promise((resolve, reject) => {
-    pool.query('SELECT * FROM about', (error, results) => {
+    pool.query('SELECT * FROM ABOUT', (error, results) => {
       if (error) {
         reject(error);
       } else {
@@ -22,7 +22,7 @@ function getAbout() {
   });
 }
 
-app.get('/about', async (req, res) => {
+app.get('/ABOUT', async (req, res) => {
   try {
     const aboutData = await getAbout();
     res.json(aboutData);
@@ -38,7 +38,7 @@ app.listen(3000, () => {
 
 function getMenu() {
     return new Promise((resolve, reject) => {
-      pool.query('SELECT * FROM menu', (error, results) => {
+      pool.query('SELECT * FROM MENU', (error, results) => {
         if (error) {
           reject(error);
         } else {
@@ -48,7 +48,7 @@ function getMenu() {
     });
   }
   
-  app.get('/menu', async (req, res) => {
+  app.get('/MENU', async (req, res) => {
     try {
       const menuData = await getMenu();
       res.json(menuData);
@@ -60,7 +60,7 @@ function getMenu() {
 
   function getObjects() {
     return new Promise((resolve, reject) => {
-      pool.query('SELECT * FROM objects', (error, results) => {
+      pool.query('SELECT * FROM OBJECTS', (error, results) => {
         if (error) {
           reject(error);
         } else {
@@ -70,7 +70,7 @@ function getMenu() {
     });
   }
   
-  app.get('/objects', async (req, res) => {
+  app.get('/OBJECTS', async (req, res) => {
     try {
       const objectsData = await getObjects();
       res.json(objectsData);
@@ -92,7 +92,7 @@ function getDescription() {
     });
   }
   
-  app.get('/description', async (req, res) => {
+  app.get('/DESCRIPTION', async (req, res) => {
     try {
       const descriptionData = await getDescription();
       res.json(descriptionData);
@@ -114,7 +114,7 @@ function getImageMetadata() {
     });
   }
   
-  app.get('/image_metadata', async (req, res) => {
+  app.get('/IMAGE_METADATA', async (req, res) => {
     try {
       const imageData = await getImageMetadata();
       res.json(imageData);
@@ -136,7 +136,7 @@ function getDescriptionText() {
     });
   }
   
-  app.get('/description_text', async (req, res) => {
+  app.get('/DESCRIPTION_TEXT', async (req, res) => {
     try {
       const descriptionTextData = await getDescriptionText();
       res.json(descriptionTextData);
