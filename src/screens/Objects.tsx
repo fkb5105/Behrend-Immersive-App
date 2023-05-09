@@ -1,14 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, ImageBackground } from 'react-native';
-import { IObjects } from '../constants/types';
-import { OBJECTS } from '../constants/mocks';
+import { COLORS } from '../constants/light';
+
+interface ObjectsInfo {
+  object_id: number;
+  title: string;
+  image_url: string;
+  linkLabel: string;
+  link: string;
+}
 
 const Objects: React.FC = () => {
+  const [objectsData, setObjectsData] = useState<ObjectsInfo[]>([]);
+
+  async function fetchObjectsData() {
+    try {
+      const response = await fetch('http://66.71.1.174:3000/objects');
+      console.log('Response status:', response.status);
+      const data = await response.json();
+      console.log('Data:', data);
+      setObjectsData(data);
+    } catch (error) {
+      console.error('Error fetching objects data:', error);
+    }
+  }
+
+  useEffect(() => {
+    fetchObjectsData();
+  }, []);
+
   const renderObjects = () => {
-    return OBJECTS.map((object: IObjects) => {
+    return objectsData.map((object) => {
       return (
-        <TouchableOpacity key={object.id} onPress={() => Linking.openURL(object.link ??'')}>
-          <ImageBackground source={{ uri: object.imageURL }} style={styles.box}>
+        <TouchableOpacity key={object.object_id} onPress={() => Linking.openURL(object.link)}>
+          <ImageBackground source={{ uri: object.image_url }} style={styles.box}>
             <View style={styles.textContainer}>
               <Text style={styles.title}>{object.title}</Text>
               <View style={styles.buttonContainer}>
@@ -36,7 +61,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 2,
-    elevation: 3,
+    elevation: 1,
   },
   textContainer: {
     flex: 1,

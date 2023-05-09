@@ -15,7 +15,7 @@ const About = () => {
 
   async function fetchAboutData() {
     try {
-      const response = await fetch('http://localhost:3000/about');
+      const response = await fetch('http://66.71.1.174:3000/about');
       console.log('Response status:', response.status);
       const data = await response.json();
       console.log('Data:', data);
@@ -33,7 +33,7 @@ const About = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Meet the Team</Text>
-      {aboutData.map((about) => (
+      {aboutData.map((about: { about_id: any; image_url: any; name: any; position: any; description: any; }) => (
         <View style={styles.card} key={about.about_id}>
           <Image style={styles.avatar} source={{ uri: about.image_url }} />
           <View style={styles.info}>

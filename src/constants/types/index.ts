@@ -1,6 +1,7 @@
 import i18n from 'i18n-js';
 import {ImageSourcePropType} from 'react-native';
 import {ITheme} from './theme';
+import { Key } from 'react';
 
 export * from './components';
 export * from './theme';
@@ -31,7 +32,8 @@ export interface IGalleryOptions {
   image?: string;
 }
 export interface IObjects {
-  id?: number;
+  image_url: string;
+  object_id: number;
   title?: string;
   imageURL?: string;
   link?: string;
