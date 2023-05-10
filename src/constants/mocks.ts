@@ -151,7 +151,7 @@ export const WELCOME: IProduct[] = [
     title: "Compare Behrend's campus past and present.",
     linkLabel: 'Maps',
     image:
-      'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
+      'https://pennstateoffice365-my.sharepoint.com/:i:/r/personal/czs791_psu_edu/Documents/VAR%20Lab/Behrend%20History/App%20Media/Behrend%20Family%20-%20Initial%20Photos%20%26%20Videos/Potential%20AR/img134.jpg?csf=1&web=1&e=fRZDOT',
   },
   {
     id: 2,
@@ -159,7 +159,8 @@ export const WELCOME: IProduct[] = [
     title: "Immerse yourself in Behrend's history with AR",
     linkLabel: 'AR Gallery',
     image:
-      'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
+    'https://blog.hubspot.com/hubfs/Augmented-reality-customer-experience.jpg',
+    
   },
   {
     id: 3,
@@ -167,7 +168,7 @@ export const WELCOME: IProduct[] = [
     title: "Learn more about the Behrend's history",
     linkLabel: 'History',
     image:
-      'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?fit=crop&w=450&q=80',
+      'https://pennstateoffice365-my.sharepoint.com/:i:/r/personal/czs791_psu_edu/Documents/VAR%20Lab/Behrend%20History/App%20Media/Behrend%20Family%20-%20Initial%20Photos%20%26%20Videos/dans%20files/edited%20photos/ernstwithbaby.jpg?csf=1&web=1&e=yefdHv',
   },
   {
     id: 4,
@@ -175,7 +176,7 @@ export const WELCOME: IProduct[] = [
     title: 'Check out these 3-D models created by VAR Labs.',
     linkLabel: 'Objects',
     image:
-      'https://images.unsplash.com/photo-1563492065599-3520f775eeed?fit=crop&w=450&q=80',
+      'https://pennstateoffice365-my.sharepoint.com/personal/czs791_psu_edu/_layouts/15/download.aspx?sourceurl=/personal/czs791_psu_edu/VAR%20Lab/Behrend%20History/App%20Media/Objects/object_menu.png',
   },
   {
     id: 5,
@@ -183,7 +184,7 @@ export const WELCOME: IProduct[] = [
     title: 'Meet the VAR Labs team and see what else we are working on.',
     linkLabel: 'About',
     image:
-      'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?fit=crop&w=450&q=80',
+      'https://pennstateoffice365-my.sharepoint.com/:i:/g/personal/czs791_psu_edu/ERmHXk30pjdNnJ7q2ax9wGcBfI_8dAca8ClY0PXyFJ-law?e=mIPjyh',
   },
 ];
 export const HISTORY: IHistory[] = [
@@ -232,39 +233,6 @@ export const CATEGORIES: ICategoryWithSortFunction[] = [
   { id: 4, name: 'Most Visited' },
 ];
 
-
-
-// offers
-export const OFFERS: IProduct[] = [
-  {
-    id: 1,
-    type: 'vertical',
-    title: 'Unique activities with local experts.',
-    image:
-      'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
-  },
-  {
-    id: 2,
-    type: 'vertical',
-    title: 'The highest status people.',
-    image:
-      'https://images.unsplash.com/photo-1563492065599-3520f775eeed?fit=crop&w=450&q=80',
-  },
-  {
-    id: 3,
-    type: 'vertical',
-    title: 'Get more followers and grow.',
-    image:
-      'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?fit=crop&w=450&q=80',
-  },
-  {
-    id: 4,
-    type: 'vertical',
-    title: 'New ways to meet your business goals.',
-    image:
-      'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
-  },
-];
 
 // rental locations
 export const LOCATIONS: ILocation[] = [

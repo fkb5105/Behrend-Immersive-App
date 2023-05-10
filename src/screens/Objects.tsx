@@ -15,7 +15,7 @@ const Objects: React.FC = () => {
 
   async function fetchObjectsData() {
     try {
-      const response = await fetch('http://66.71.1.174:3000/objects');
+      const response = await fetch('http://10.0.0.6:3000/objects');
       console.log('Response status:', response.status);
       const data = await response.json();
       console.log('Data:', data);
