@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.immersiveapp">
+  <application>
+    <!-- Other existing configurations -->
+
+    <!-- Add the following line inside the <application> tag -->
+    <meta-data
+      android:name="com.google.android.geo.API_KEY"
+      android:value="AIzaSyCn8voDgWTZb9QyZjtFn2McLWCnYTr5xFw" />
+  </application>
+</manifest>
