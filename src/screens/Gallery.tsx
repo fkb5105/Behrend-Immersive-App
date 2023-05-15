@@ -5,8 +5,6 @@ import { useData, useTheme } from '../hooks/';
 import { IGallery, ICategory } from '../constants/types';
 import { Block, Button, Text } from '../components/';
 import { NavigationProp } from '@react-navigation/native';
-import { calculateDistance } from '../utils/helpers';
-
 
 interface GalleryScreenProps {
   navigation: NavigationProp<Record<string, object | undefined>>;
@@ -19,50 +17,37 @@ const GalleryScreen = ({ navigation }: GalleryScreenProps) => {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const { colors, gradients, sizes } = useTheme();
 
-  // init galleries
+  // Init galleries and categories
   useEffect(() => {
     setGalleries(data?.galleries);
     setCategories(data?.categories);
     setSelected(data?.categories[0]);
-  }, [data.galleries, data.categories]);
+  }, [data?.galleries, data?.categories]);
 
-  // update galleries on category change
+  // Update galleries on category change
   useEffect(() => {
-    const category = data?.categories?.find(
-      (category) => category?.id === selected?.id,
-    );
-
     const newGalleries = data?.galleries?.filter(
-      (gallery) => gallery?.category?.id === category?.id,
+      (gallery) => gallery.category && gallery.category.includes(selected?.id ?? 0),
     );
 
     setGalleries(newGalleries);
-  }, [data, selected, setGalleries]);
+  }, [data?.galleries, selected]);
 
   const handlePress = (gallery: IGallery) => {
-    const location = gallery.location;
-    if (selected?.id === 1 && location) {
-      const sortedGalleries = galleries
-        .map((g) => ({ ...g, distance: calculateDistance(location!, g.location!) }))
-        .sort((a, b) => a.distance - b.distance);
-      navigation.navigate('ARmap', { gallery: sortedGalleries[0] });
-    } else {
-      navigation.navigate('ARmap', { gallery });
-    }
+    navigation.navigate('ARmap', { gallery });
   };
-  
-  
 
   return (
     <Block>
-      {/* categories list */}
+      {/* Categories list */}
       <Block color={colors.card} row flex={0} paddingVertical={sizes.padding}>
         <Block
           scroll
           horizontal
           renderToHardwareTextureAndroid
           showsHorizontalScrollIndicator={false}
-          contentOffset={{ x: -sizes.padding, y: 0 }}>
+          contentOffset={{ x: -sizes.padding, y: 0 }}
+        >
           {categories?.map((category) => {
             const isSelected = category?.id === selected?.id;
             return (
@@ -71,13 +56,15 @@ const GalleryScreen = ({ navigation }: GalleryScreenProps) => {
                 marginHorizontal={sizes.s}
                 key={`category-${category?.id}}`}
                 onPress={() => setSelected(category)}
-                gradient={gradients?.[isSelected ? 'primary' : 'light']}>
+                gradient={gradients?.[isSelected ? 'primary' : 'light']}
+              >
                 <Text
                   p
                   bold={isSelected}
                   white={isSelected}
                   black={!isSelected}
-                  marginHorizontal={sizes.m}>
+                  marginHorizontal={sizes.m}
+                >
                   {category?.name}
                 </Text>
               </Button>
@@ -92,9 +79,7 @@ const GalleryScreen = ({ navigation }: GalleryScreenProps) => {
         keyExtractor={(item) => `${item?.id}`}
         style={{ paddingHorizontal: sizes.padding }}
         contentContainerStyle={{ paddingBottom: sizes.l }}
-        renderItem={({ item }) => (
-          <Gallery {...item} onPress={() => handlePress(item)} />
-        )}
+        renderItem={({ item }) => <Gallery {...item} onPress={() => handlePress(item)} />}
       />
     </Block>
   );

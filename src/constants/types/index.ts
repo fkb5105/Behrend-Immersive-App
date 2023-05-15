@@ -20,17 +20,6 @@ export interface ICategory {
   id?: number;
   name?: string;
 }
-export interface IGalleryOptions {
-  id?: number;
-  title?: string;
-  description?: string;
-  type?: 'room' | 'apartment' | 'house'; // private room | entire apartment | entire house
-  sleeping?: {total?: number; type?: 'sofa' | 'bed'};
-  guests?: number;
-  price?: number;
-  user?: IUser;
-  image?: string;
-}
 export interface IObjects {
   image_url: string;
   object_id: number;
@@ -51,15 +40,13 @@ export interface IGallery {
   id?: number;
   title?: string;
   description?: string;
-  category?: ICategory;
+  category?: number[];
   image?: string;
   latitude?: number,
   longitude?: number,
   location?: ILocation;
   rating?: number;
-  user?: IUser;
   offers?: IProduct[];
-  options?: IGalleryOptions[];
   timestamp?: number;
   onPress?: (event?: any) => void;
 }

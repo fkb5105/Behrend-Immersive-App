@@ -3,6 +3,7 @@ import { View, StyleSheet, TouchableOpacity, Platform, Linking } from 'react-nat
 import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { useTheme } from '../hooks';
+import { COLORS, GRADIENTS } from '../constants/light';
 import Text from '../components/Text';
 import { Camera } from 'expo-camera';
 import axios from 'axios';
@@ -49,26 +50,42 @@ const ARmap = ({ route }: Props) => {
     })();
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (location) {
+        updateCurrentLocation();
+      }
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [location]);
+
+  const updateCurrentLocation = async () => {
+    let currentLocation = await Location.getCurrentPositionAsync({});
+    setLocation(currentLocation);
+  };
+
   const handleImHere = () => {
     setCameraVisible(true);
   };
-
   const handleCameraClose = () => {
     setCameraVisible(false);
   };
+  
+  // Rest of the code...
 
   const openDirections = () => {
     if (location) {
       const origin = `${location.coords.latitude},${location.coords.longitude}`;
       const destination = `${latitude},${longitude}`;
-      const apiKey = 'AIzaSyCn8voDgWTZb9QyZjtFn2McLWCnYTr5xFw'; // Replace with your Google Maps API key
-      const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${apiKey}`;
-
+      const apiKey = 'AIzaSyCn8voDgWTZb9QyZjtFn2McLWCnYTr5xFw';
+      const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&mode=walking&key=${apiKey}`;
+  
       axios
         .get(url)
         .then((response) => {
-          const routes = response.data.routes;
-          const legs = routes[0].legs;
+          const route = response.data.routes[0];
+          const legs = route.legs;
           const steps = legs.flatMap((leg: any) =>
             leg.steps.map((step: any) => ({
               distance: step.distance.text,
@@ -84,6 +101,7 @@ const ARmap = ({ route }: Props) => {
         });
     }
   };
+  
 
   if (!location) {
     return null;
@@ -103,43 +121,48 @@ const ARmap = ({ route }: Props) => {
       >
         <Marker coordinate={{ latitude: latitude, longitude: longitude }} />
         <Marker
-          coordinate={{
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude,
-          }}
-        />
-        {steps.map((step, index) => (
-          <Polyline
-            key={index}
-            coordinates={decodePolyline(step.polyline)}
-            strokeWidth={3}
-            strokeColor={colors.primary}
-          />
-        ))}
-      </MapView>
-      <TouchableOpacity style={styles.cameraButton} onPress={handleImHere} activeOpacity={0.8}>
-        <Text p color={colors.white} semibold>
-          I'm Here!
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.directionsButton} onPress={openDirections} activeOpacity={0.8}>
-        <Text p color={colors.white} semibold>
-          Get Directions
-        </Text>
-      </TouchableOpacity>
-      {cameraVisible && hasPermission && (
-        <Camera style={styles.camera} type={type}>
-          <TouchableOpacity style={styles.cameraCloseButton} onPress={handleCameraClose}>
-            <Text p color={colors.white} semibold>
-              Close
-            </Text>
-          </TouchableOpacity>
-        </Camera>
-      )}
-    </View>
-  );
-};
+  coordinate={{
+    latitude: location.coords.latitude,
+    longitude: location.coords.longitude,
+  }}
+/>
 
+{steps.map((step, index) => (
+  <Polyline
+    key={index}
+    coordinates={decodePolyline(step.polyline)}
+    strokeWidth={3}
+    strokeColor={colors.secondary}
+  />
+))}
+
+</MapView>
+
+<TouchableOpacity style={styles.cameraButton} onPress={handleImHere} activeOpacity={0.8}>
+  <Text h5 color={colors.white} semibold>
+    I'm Here!
+  </Text>
+</TouchableOpacity>
+
+<TouchableOpacity style={styles.directionsButton} onPress={openDirections} activeOpacity={0.8}>
+  <Text h5 color={colors.white} semibold>
+    Get Directions
+  </Text>
+</TouchableOpacity>
+
+{cameraVisible && hasPermission && (
+  <Camera style={styles.camera} type={type}>
+    <TouchableOpacity style={styles.cameraCloseButton} onPress={handleCameraClose}>
+      <Text h5 color={colors.white} semibold>
+        Close
+      </Text>
+    </TouchableOpacity>
+  </Camera>
+)}
+
+</View>
+);
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -147,29 +170,43 @@ const styles = StyleSheet.create({
   map: {
     flex: 1,
   },
-  cameraButton: {
-    position: 'absolute',
-    bottom: 16,
-    left: 16,
-    backgroundColor: 'blue',
-  },
   camera: {
     flex: 1,
   },
   directionsButton: {
     position: 'absolute',
-    bottom: 16,
-    right: 16,
-    backgroundColor: 'green',
+    bottom: 30,
+    right: 20,
+    backgroundColor: 'rgba(0, 30, 68, 0.5)',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cameraButton: {
+    position: 'absolute',
+    bottom: 30,
+    left: 20,
+    backgroundColor: 'rgba(0, 30, 68, 0.5)',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   cameraCloseButton: {
     position: 'absolute',
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0, 30, 68, 0.5)',
     borderRadius: 25,
     paddingVertical: 12,
     paddingHorizontal: 24,
     marginBottom: 20,
     alignItems: 'center',
+    justifyContent: 'center',
+    left: '50%',
+    top: 10,
+    transform: [{ translateX: -50 }],
   },
 });
 
@@ -212,3 +249,4 @@ const decodePolyline = (encoded: string) => {
 };
 
 export default ARmap;
+        

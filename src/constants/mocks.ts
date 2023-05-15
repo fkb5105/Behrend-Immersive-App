@@ -1,6 +1,5 @@
 import dayjs from 'dayjs';
 import { t } from 'i18n-js';
-import { calculateDistance } from '../utils/helpers';
 
 import {
   IGallery,
@@ -222,15 +221,11 @@ export const HISTORY: IHistory[] = [
   },
 ]
 
-// categories
-interface ICategoryWithSortFunction extends ICategory {
-  sortFunction?: (a: IGallery, b: IGallery) => number;
-}
 
-export const CATEGORIES: ICategoryWithSortFunction[] = [
-  { id: 1, name: 'Nearest', sortFunction: (a, b) => calculateDistance(a.location, USER_LOCATION) - calculateDistance(b.location, USER_LOCATION) },
-  { id: 3, name: 'Recommended' },
-  { id: 4, name: 'Most Visited' },
+export const CATEGORIES: ICategory[] = [
+  { id: 1, name: 'Tour'},
+  { id: 2, name: 'Recommended' },
+  { id: 3, name: 'Most Visited' },
 ];
 
 
@@ -241,6 +236,7 @@ export const LOCATIONS: ILocation[] = [
   {id: 3, city: 'London', country: 'United Kingdom'},
 ];
 
+
 // gallerys
 export const GALLERIES: IGallery[] = [
   {
@@ -248,7 +244,7 @@ export const GALLERIES: IGallery[] = [
     title: 'Flexible office space means growth.',
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
-    category: CATEGORIES[3],
+    category:[1, 2],
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -262,9 +258,9 @@ export const GALLERIES: IGallery[] = [
     title: 'Global payments in a single integration.',
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay.',
-    category: CATEGORIES[1],
-    latitude: 42.119422,
-    longitude: -79.985721,
+      category:[1, 3],
+    latitude: 42.119031,
+    longitude: -79.983751,
     image:
       'https://images.unsplash.com/photo-1563492065599-3520f775eeed?fit=crop&w=450&q=80',
     location: LOCATIONS[3],
@@ -276,7 +272,7 @@ export const GALLERIES: IGallery[] = [
     title: 'Working with the latest technologies.',
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
-    category: CATEGORIES[2],
+      category:[1, 2],
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -290,7 +286,7 @@ export const GALLERIES: IGallery[] = [
     title: 'Office space means growth.',
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
-    category: CATEGORIES[0],
+    category:[1, 3],
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -303,7 +299,7 @@ export const GALLERIES: IGallery[] = [
     id: 5,
     title: 'Office space means growth.',
     description: `The mission of LinkedIn is simple: connect the world's professionals.`,
-    category: CATEGORIES[1],
+    category:[1, 2],
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -317,7 +313,7 @@ export const GALLERIES: IGallery[] = [
     title: 'Office space means growth.',
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
-    category: CATEGORIES[1],
+    category:[1, 3],
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -331,7 +327,7 @@ export const GALLERIES: IGallery[] = [
     title: 'Office space means growth.',
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
-    category: CATEGORIES[1],
+      category:[1, 2],
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -345,7 +341,7 @@ export const GALLERIES: IGallery[] = [
     title: 'Office space means growth.',
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
-    category: CATEGORIES[2],
+    category:[1, 3],
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -359,7 +355,7 @@ export const GALLERIES: IGallery[] = [
     title: 'Office space means growth.',
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
-    category: CATEGORIES[2],
+    category:[1, 2],
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -370,10 +366,9 @@ export const GALLERIES: IGallery[] = [
   },
   {
     id: 10,
-    title: 'Office space means growth.',
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
-    category: CATEGORIES[2],
+    category:[1, 3],
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -386,7 +381,7 @@ export const GALLERIES: IGallery[] = [
     id: 11,
     description:
       'A great to stay in Paris without feeling you are in the city!',
-    category: CATEGORIES[3],
+    category:[1, 2],
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -398,7 +393,7 @@ export const GALLERIES: IGallery[] = [
   {
     id: 12,
     description: 'Best Italy location in a bustling neighbourhood, 2 min.',
-    category: CATEGORIES[3],
+    category:[1, 3],
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -411,7 +406,7 @@ export const GALLERIES: IGallery[] = [
     id: 13,
     description:
       'The most beautiful and complex UI Kits built by Creative Tim.',
-    category: CATEGORIES[3],
+    category:[1, 2],
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -422,41 +417,6 @@ export const GALLERIES: IGallery[] = [
   },
 ];
 
-// rental recommendations
-export const RECOMMENDATIONS: IGallery[] = [
-  {
-    id: 1,
-    description:
-      'A great to stay in Paris without feeling you are in the city!',
-    category: CATEGORIES[3], // best deal
-    image:
-      'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80',
-    location: LOCATIONS[0],
-    rating: 4.9,
-    timestamp: dayjs().unix(),
-  },
-  {
-    id: 2,
-    description: 'Best Italy location in a bustling neighbourhood, 2 min.',
-    category: CATEGORIES[3], // best deal
-    image:
-      'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
-    location: LOCATIONS[1],
-    rating: 4.5,
-    timestamp: dayjs().unix(),
-  },
-  {
-    id: 3,
-    description:
-      'The most beautiful and complex UI Kits built by Creative Tim.',
-    category: CATEGORIES[3], // best deal
-    image:
-      'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
-    location: LOCATIONS[2],
-    rating: 4.8,
-    timestamp: dayjs().unix(),
-  },
-];
 // gallery description data
 export const DESCRIPTION: IDescription[] = [
   {
@@ -598,6 +558,5 @@ export default {
   OBJECTS,
   HISTORY,
   GALLERIES,
-  RECOMMENDATIONS,
   DESCRIPTION,
 };

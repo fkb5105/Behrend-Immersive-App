@@ -15,7 +15,7 @@ const About = () => {
 
   async function fetchAboutData() {
     try {
-      const response = await fetch('http://10.0.0.6:3000/about');
+      const response = await fetch('http://66.71.1.174:3000/about');
       console.log('Response status:', response.status);
       const data = await response.json();
       console.log('Data:', data);
