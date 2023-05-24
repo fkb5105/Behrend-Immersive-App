@@ -31,11 +31,7 @@ const Gallery = ({
         longitude: gallery.longitude,
       });
     }
-  };
-  
-  
-  
-
+  }; 
   if (category?.id !== 0) {
     return (
       <TouchableWithoutFeedback>

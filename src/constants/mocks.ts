@@ -150,7 +150,7 @@ export const WELCOME: IProduct[] = [
     title: "Compare Behrend's campus past and present.",
     linkLabel: 'Maps',
     image:
-      'https://pennstateoffice365-my.sharepoint.com/:i:/r/personal/czs791_psu_edu/Documents/VAR%20Lab/Behrend%20History/App%20Media/Behrend%20Family%20-%20Initial%20Photos%20%26%20Videos/Potential%20AR/img134.jpg?csf=1&web=1&e=fRZDOT',
+      'https://immersiveapp.s3.us-east-2.amazonaws.com/Objects/img134.jpg',
   },
   {
     id: 2,
@@ -167,7 +167,7 @@ export const WELCOME: IProduct[] = [
     title: "Learn more about the Behrend's history",
     linkLabel: 'History',
     image:
-      'https://pennstateoffice365-my.sharepoint.com/:i:/r/personal/czs791_psu_edu/Documents/VAR%20Lab/Behrend%20History/App%20Media/Behrend%20Family%20-%20Initial%20Photos%20%26%20Videos/dans%20files/edited%20photos/ernstwithbaby.jpg?csf=1&web=1&e=yefdHv',
+      'https://immersiveapp.s3.us-east-2.amazonaws.com/edited+photos/ernstwithbaby.jpg',
   },
   {
     id: 4,
@@ -175,7 +175,7 @@ export const WELCOME: IProduct[] = [
     title: 'Check out these 3-D models created by VAR Labs.',
     linkLabel: 'Objects',
     image:
-      'https://pennstateoffice365-my.sharepoint.com/personal/czs791_psu_edu/_layouts/15/download.aspx?sourceurl=/personal/czs791_psu_edu/VAR%20Lab/Behrend%20History/App%20Media/Objects/object_menu.png',
+      'https://immersiveapp.s3.us-east-2.amazonaws.com/Objects/objects_menu.png',
   },
   {
     id: 5,
@@ -183,7 +183,7 @@ export const WELCOME: IProduct[] = [
     title: 'Meet the VAR Labs team and see what else we are working on.',
     linkLabel: 'About',
     image:
-      'https://pennstateoffice365-my.sharepoint.com/:i:/g/personal/czs791_psu_edu/ERmHXk30pjdNnJ7q2ax9wGcBfI_8dAca8ClY0PXyFJ-law?e=mIPjyh',
+      'https://immersiveapp.s3.us-east-2.amazonaws.com/Objects/about-pic.png',
   },
 ];
 export const HISTORY: IHistory[] = [

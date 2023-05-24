@@ -74,12 +74,13 @@ const DrawerContent = (
   const handleNavigation = useCallback(
     (to) => {
       setActive(to);
-      navigation.navigate(to);
+      navigation.navigate(to, { active: to });
     },
     [navigation, setActive],
   );
+  
 
-  const handleWebLink = useCallback((url) => Linking.openURL(url), []);
+  const handleWebLink = useCallback((url: string) => Linking.openURL(url), []);
 
   // screen list for Drawer menu
   const screens = [
@@ -122,94 +123,100 @@ const DrawerContent = (
           const isActive = active === screen.to;
           return (
             <Button
-              row
-              justify="flex-start"
-              marginBottom={sizes.s}
-              key={`menu-screen-${screen.name}-${index}`}
-              onPress={() => handleNavigation(screen.to)}>
-              <Block
-                flex={0}
-                radius={6}
-                align="center"
-                justify="center"
-                width={sizes.md}
-                height={sizes.md}
-                marginRight={sizes.s}
-                gradient={gradients[isActive ? 'primary' : 'white']}>
-                <Image
-                  radius={0}
-                  width={14}
-                  height={14}
-                  source={screen.icon}
-                  color={colors[isActive ? 'white' : 'black']}
-                />
-              </Block>
-              <Text p semibold={isActive} color={labelColor}>
-                {screen.name}
-              </Text>
-            </Button>
-          );
-        })}
+  row
+  justify="flex-start"
+  marginBottom={sizes.s}
+  key={`menu-screen-${screen.name}-${index}`}
+  onPress={() => handleNavigation(screen.to)}
+>
+  <Block
+    flex={0}
+    radius={6}
+    align="center"
+    justify="center"
+    width={sizes.md}
+    height={sizes.md}
+    marginRight={sizes.s}
+    gradient={gradients[isActive ? 'primary' : 'white']}
+  >
+    <Image
+      radius={0}
+      width={14}
+      height={14}
+      source={screen.icon}
+      color={colors[isActive ? 'white' : 'black']}
+    />
+  </Block>
+  <Text p semibold={isActive} color={labelColor}>
+    {screen.name}
+  </Text>
+</Button>
+);
+})}
 
-        <Block
-          flex={0}
-          height={1}
-          marginRight={sizes.md}
-          marginVertical={sizes.sm}
-          gradient={gradients.menu}
-        />
+<Block
+  flex={0}
+  height={1}
+  marginRight={sizes.md}
+  marginVertical={sizes.sm}
+  gradient={gradients.menu}
+/>
 
-        <Button
-          row
-          justify="flex-start"
-          marginTop={sizes.sm}
-          marginBottom={sizes.s}
-          onPress={() =>handleNavigation(screen.to)}>
-          <Block
-            flex={0}
-            radius={6}
-            align="center"
-            justify="center"
-            width={sizes.md}
-            height={sizes.md}
-            marginRight={sizes.s}
-            gradient={gradients.white}>
-            <Image
-              radius={0}
-              width={14}
-              height={14}
-              color={colors.black}
-              source={assets.settings}
-            />
-          </Block>
-          <Text p color={labelColor}>
-            {t('menu.started')}
-          </Text>
-        </Button>
-      </Block>
-    </DrawerContentScrollView>
-  );
+<Button
+  row
+  justify="flex-start"
+  marginTop={sizes.sm}
+  marginBottom={sizes.s}
+  onPress={() => handleNavigation(screen.to)}
+>
+  <Block
+    flex={0}
+    radius={6}
+    align="center"
+    justify="center"
+    width={sizes.md}
+    height={sizes.md}
+    marginRight={sizes.s}
+    gradient={gradients.white}
+  >
+    <Image
+      radius={0}
+      width={14}
+      height={14}
+      color={colors.black}
+      source={assets.settings}
+    />
+  </Block>
+  <Text p color={labelColor}>
+    {t('menu.started')}
+  </Text>
+</Button>
+</Block>
+</DrawerContentScrollView>
+);
 };
 
 /* drawer menu navigation */
 export default () => {
-  const {gradients} = useTheme();
+  const { gradients } = useTheme();
 
   return (
     <Block gradient={gradients.light}>
       <Drawer.Navigator
         drawerType="slide"
         overlayColor="transparent"
-        sceneContainerStyle={{backgroundColor: 'transparent'}}
+        sceneContainerStyle={{ backgroundColor: 'transparent' }}
         drawerContent={(props) => <DrawerContent {...props} />}
         drawerStyle={{
           flex: 1,
           width: '60%',
           borderRightWidth: 0,
           backgroundColor: 'transparent',
-        }}>
+        }}
+      >
         <Drawer.Screen name="Screens" component={ScreensStack} />
       </Drawer.Navigator>
     </Block>
   );
 };
+

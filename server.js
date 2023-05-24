@@ -35,17 +35,6 @@ app.get('/image_metadata', (req, res) => {
   });
 });
 
-app.get('/menu', (req, res) => {
-  let sql = 'SELECT * FROM menu';
-  db.query(sql, (err, results) => {
-    if (err) {
-      console.error('Error querying database:', err.stack);
-      res.sendStatus(500);
-      return;
-    }
-    res.send(results);
-  });
-});
 
 app.get('/objects', (req, res) => {
   let sql = 'SELECT * FROM objects';

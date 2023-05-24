@@ -119,58 +119,39 @@ const ARmap = ({ route }: Props) => {
           longitudeDelta: 0.01,
         }}
       >
-        <Marker coordinate={{ latitude: latitude, longitude: longitude }} />
-        <Marker
-  coordinate={{
-    latitude: location.coords.latitude,
-    longitude: location.coords.longitude,
-  }}
-/>
-
-{steps.map((step, index) => (
-  <Polyline
-    key={index}
-    coordinates={decodePolyline(step.polyline)}
-    strokeWidth={3}
-    strokeColor={colors.secondary}
-  />
-))}
-
-</MapView>
-
-<TouchableOpacity style={styles.cameraButton} onPress={handleImHere} activeOpacity={0.8}>
-  <Text h5 color={colors.white} semibold>
-    I'm Here!
-  </Text>
-</TouchableOpacity>
-
-<TouchableOpacity style={styles.directionsButton} onPress={openDirections} activeOpacity={0.8}>
-  <Text h5 color={colors.white} semibold>
-    Get Directions
-  </Text>
-</TouchableOpacity>
-
-{cameraVisible && hasPermission && (
-  <Camera style={styles.camera} type={type}>
-    <TouchableOpacity style={styles.cameraCloseButton} onPress={handleCameraClose}>
-      <Text h5 color={colors.white} semibold>
-        Close
-      </Text>
-    </TouchableOpacity>
-  </Camera>
-)}
-
-</View>
-);
+        {/* Map markers and polylines */}
+      </MapView>
+  
+      <TouchableOpacity style={styles.directionsButton} onPress={openDirections} activeOpacity={0.8}>
+        <Text h5 color={colors.white} semibold>
+          Get Directions
+        </Text>
+      </TouchableOpacity>
+  
+      {cameraVisible && hasPermission && (
+        <Camera style={styles.camera} type={type}>
+          <TouchableOpacity style={styles.cameraCloseButton} onPress={handleCameraClose}>
+            <Text h5 color={colors.white} semibold>
+              Close
+            </Text>
+          </TouchableOpacity>
+        </Camera>
+      )}
+  
+      <TouchableOpacity style={styles.cameraButton} onPress={handleImHere} activeOpacity={0.8}>
+        <Text h5 color={colors.white} semibold>
+          I'm Here!
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+  
 };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   map: {
-    flex: 1,
-  },
-  camera: {
     flex: 1,
   },
   directionsButton: {
@@ -184,6 +165,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  camera: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+  },
   cameraButton: {
     position: 'absolute',
     bottom: 30,
@@ -194,7 +182,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
+    zIndex: 1, // Ensure the button is above the camera view
   },
+  
   cameraCloseButton: {
     position: 'absolute',
     backgroundColor: 'rgba(0, 30, 68, 0.5)',

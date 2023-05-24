@@ -20,10 +20,6 @@ const Home = () => {
 
   return (
     <Block>
-      {/* search input */}
-      <Block color={colors.card} flex={0} padding={sizes.padding}>
-        <Input search placeholder={t('common.search')} />
-      </Block>
 
       <Block
         row
