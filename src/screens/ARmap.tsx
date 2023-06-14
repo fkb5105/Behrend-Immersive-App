@@ -119,7 +119,23 @@ const ARmap = ({ route }: Props) => {
           longitudeDelta: 0.01,
         }}
       >
-        {/* Map markers and polylines */}
+        <Marker coordinate={{ latitude: latitude, longitude: longitude }} />
+        <Marker
+  coordinate={{
+    latitude: location.coords.latitude,
+    longitude: location.coords.longitude,
+  }}
+/>
+
+{steps.map((step, index) => (
+  <Polyline
+    key={index}
+    coordinates={decodePolyline(step.polyline)}
+    strokeWidth={3}
+    strokeColor={colors.secondary}
+  />
+))}
+
       </MapView>
   
       <TouchableOpacity style={styles.directionsButton} onPress={openDirections} activeOpacity={0.8}>

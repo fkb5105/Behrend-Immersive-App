@@ -6,33 +6,12 @@
     "buildVersion": "Build version",
     "expoVersion": "Expo version",
     "about": "About",
-    "visit": "Visit",
-    "posted": "Posted on {{date}}",
-    "recommended": "Recommended for you",
-    "viewall": "View All",
     "more": "More",
-    "follow": "Follow",
-    "followed": "Followed",
-    "search": "Search",
-    "night": "night",
     "day": "day",
-    "selectDate": "Select date",
-    "checkInOut": "Check-In & Check-Out",
-    "adults": "Adults",
-    "roomType": "Room Type",
-    "luxury": "Luxury",
-    "message": "Enter your message",
-    "album": "Album",
-    "or": "or",
-    "name": "Name",
-    "agree": "I agree with the ",
-    "terms": "Terms and Conditions",
     "goBack": "Go back",
-    "readArticle": "Read Article",
     "mapPage":"Map",
     "galleryPage":"Gallery",
-    "aboutPage":"About",
-    "send": "Send"
+    "aboutPage":"About"
   },
   "app": {
     "name": "Behrend Immersive",
@@ -68,14 +47,5 @@
   },
   "home": {
     "welcome": "Welcome!"
-  },
-  "register": {
-    "title": "Welcome",
-    "subtitle": "Register with"
-  },
-  "About": {
-    "title": "About",
-    "posts": "Posts",
-    "aboutMe": "About me"
   }
 }

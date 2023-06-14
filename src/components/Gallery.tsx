@@ -10,13 +10,12 @@ import {IGallery} from '../constants/types';
 import {useNavigation} from '@react-navigation/native';
 import { GALLERIES } from '../constants/mocks';
 
+
 const Gallery = ({
   id,
   description,
   image,
   category,
-  rating,
-  location,
 }: IGallery) => {
   const {t} = useTranslation();
   const {colors, gradients, icons, sizes} = useTheme();
@@ -29,6 +28,7 @@ const Gallery = ({
       navigation.navigate('ARmap', {
         latitude: gallery.latitude,
         longitude: gallery.longitude,
+        arLink: gallery.arLink,
       });
     }
   }; 
@@ -63,26 +63,20 @@ const Gallery = ({
           )}
 
           {/* location & rating */}
-          {(Boolean(location) || Boolean(rating)) && (
+          {(
             <Block row align="center">
-              <Text p size={12} semibold>
-                {location?.city}, {location?.country}
-              </Text>
-              <Text p bold marginHorizontal={sizes.s}>
-                •
-              </Text>
-              <Image 
-              source={icons.location} 
-              marginRight={sizes.s} 
-              color={colors.tertiary}/>
               <TouchableOpacity
                 onPress={() => handlePress(id ?? 0)}>
                 <Text 
                 p
                 color={colors.link} 
                 semibold>
-                Take me there</Text>
+                Take me there  </Text>
               </TouchableOpacity>
+              <Image 
+              source={icons.location} 
+              marginRight={sizes.s} 
+              color={colors.tertiary}/>
             </Block>
           )}
         </Block>

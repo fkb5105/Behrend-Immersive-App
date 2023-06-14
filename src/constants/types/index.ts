@@ -6,30 +6,14 @@ import { Key } from 'react';
 export * from './components';
 export * from './theme';
 
-export interface IUser {
-  id: number | string;
-  name?: string;
-  position?: string;
-  avatar?: string;
-  stats?: {posts?: number; followers?: number; following?: number};
-  social?: {twitter?: string; dribbble?: string};
-  about?: string;
-}
 
 export interface ICategory {
   id?: number;
   name?: string;
 }
-export interface IObjects {
-  image_url: string;
-  object_id: number;
-  title?: string;
-  imageURL?: string;
-  link?: string;
-  linkLabel?: string;
-}
 export interface IHistory {
   id?: number;
+  historyOption?: number;
   title?: string;
   imageURL?: string;
   description?: string;
@@ -42,10 +26,9 @@ export interface IGallery {
   description?: string;
   category?: number[];
   image?: string;
+  arLink?: string;
   latitude?: number,
   longitude?: number,
-  location?: ILocation;
-  rating?: number;
   offers?: IProduct[];
   timestamp?: number;
   onPress?: (event?: any) => void;
@@ -69,13 +52,8 @@ export interface ILocation {
 export interface IUseData {
   theme: ITheme;
   setTheme: (theme?: ITheme) => void;
-  user: IUser;
-  users: IUser[];
-  handleUser: (data?: IUser) => void;
   setWelcome: (data?: IProduct[]) => void;
   categories: ICategory[];
-  setObjects: (data?: IObjects[]) => void;
-  objects: IObjects[];
   setCategories: (data?: ICategory[]) => void;
   recommendations: IGallery[];
   setRecommendations: (data?: IGallery[]) => void;

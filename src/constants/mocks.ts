@@ -4,143 +4,12 @@ import { t } from 'i18n-js';
 import {
   IGallery,
   ICategory,
-  IObjects,
   IHistory,
-  IUser,
-  ILocation,
   IDescription,
   IProduct,
 } from './types';
 
-// users
-export const USERS: IUser[] = [
-  {
-    id: 1,
-    name: 'Devin Coldewey',
-    position: 'Marketing Manager',
-    about:
-      'Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).',
-    avatar:
-      'https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?fit=crop&w=80&q=80',
-  },
-  {
-    id: 2,
-    name: 'Bella Audrey',
-    position: 'Marketing Manager',
-    social: {twitter: 'CreativeTim', dribbble: 'creativetim'},
-    about:
-      'Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).',
-    avatar:
-      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?fit=crop&w=80&q=80',
-  },
-  {
-    id: 3,
-    name: 'Miriam Lendra',
-    position: 'Marketing Manager',
-    social: {twitter: 'CreativeTim', dribbble: 'creativetim'},
-    about:
-      'Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).',
-    avatar:
-      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?fit=crop&w=80&q=80',
-  },
-  {
-    id: 4,
-    name: 'David Bishop',
-    position: 'Marketing Manager',
-    social: {twitter: 'CreativeTim', dribbble: 'creativetim'},
-    about:
-      'Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).',
-    avatar:
-      'https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?fit=crop&w=80&q=80',
-  },
-];
-// Objects
-export const OBJECTS: IObjects[] = [
-  {
-    id: 1,
-    title: 'High Chair',
-    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
-    link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
-    linkLabel: 'View Model',
-  },
-  {
-    id: 2,
-    title: 'Griswaold Iron',
-    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
-    link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
-    linkLabel: 'View Model',
-  },
-  {
-    id: 3,
-    title: 'Wash Tub',
-    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
-    link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
-    linkLabel: 'View Model',
-  },
-  {
-    id: 4,
-    title: 'Metal Highchair',
-    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
-    link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
-    linkLabel: 'View Model',
-  },
-  {
-    id: 5,
-    title: 'Camera',
-    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
-    link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
-    linkLabel: 'View Model',
-  },
-  {
-    id: 6,
-    title: 'Sewing Machine',
-    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
-    link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
-    linkLabel: 'View Model',
-  },
-  {
-    id: 7,
-    title: 'Wooden Shoes',
-    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
-    link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
-    linkLabel: 'View Model',
-  },
-  {
-    id: 8,
-    title: 'Cheese Box',
-    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
-    link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
-    linkLabel: 'View Model',
-  },
-  {
-    id: 9,
-    title: 'Phone',
-    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
-    link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
-    linkLabel: 'View Model',
-  },
-  {
-    id: 10,
-    title: 'Telescope',
-    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
-    link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
-    linkLabel: 'View Model',
-  },
-  {
-    id: 11,
-    title: 'Radio',
-    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
-    link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
-    linkLabel: 'View Model',
-  },
-  {
-    id: 12,
-    title: 'Nittany Lion',
-    imageURL:'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
-    link: 'https://sketchfab.com/models/787f66879cf0417b8ab8be0f0ff073e8/embed-ar',
-    linkLabel: 'View Model',
-  }
-]
+
 
 // following cards
 export const WELCOME: IProduct[] = [
@@ -167,7 +36,7 @@ export const WELCOME: IProduct[] = [
     title: "Learn more about the Behrend's history",
     linkLabel: 'History',
     image:
-      'https://immersiveapp.s3.us-east-2.amazonaws.com/edited+photos/ernstwithbaby.jpg',
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/ernstwithbaby.jpg',
   },
   {
     id: 4,
@@ -175,7 +44,7 @@ export const WELCOME: IProduct[] = [
     title: 'Check out these 3-D models created by VAR Labs.',
     linkLabel: 'Objects',
     image:
-      'https://immersiveapp.s3.us-east-2.amazonaws.com/Objects/objects_menu.png',
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/objects/objects_menu.png',
   },
   {
     id: 5,
@@ -183,7 +52,7 @@ export const WELCOME: IProduct[] = [
     title: 'Meet the VAR Labs team and see what else we are working on.',
     linkLabel: 'About',
     image:
-      'https://immersiveapp.s3.us-east-2.amazonaws.com/Objects/about-pic.png',
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/objects/about-pic.png',
   },
 ];
 export const HISTORY: IHistory[] = [
@@ -219,6 +88,38 @@ export const HISTORY: IHistory[] = [
     linkLabel:'Learn More',
     type: 'vertical',
   },
+  {
+    id:5,
+    title: 'Mary Behrend',
+    imageURL: 'https://www.48ws.com/images/product/S/A/daltile-sa55-1x1-slate-radiance-flint-1-x-1-random-tile.jpg',
+    description:'Meet Mary Behrend',
+    linkLabel:'Learn More',
+    type: 'vertical',
+  },
+  {
+    id:6,
+    title: 'Ernst Behrend',
+    imageURL: 'https://www.48ws.com/images/product/S/A/daltile-sa55-1x1-slate-radiance-flint-1-x-1-random-tile.jpg',
+    description:'Meet Ernst Behrend',
+    linkLabel:'Learn More',
+    type: 'vertical',
+  },
+  {
+    id:7,
+    title: 'Harriet Behrend',
+    imageURL: 'https://www.48ws.com/images/product/S/A/daltile-sa55-1x1-slate-radiance-flint-1-x-1-random-tile.jpg',
+    description:'Meet Harriet Behrend',
+    linkLabel:'Learn More',
+    type: 'vertical',
+  },
+  {
+    id:8,
+    title: 'Warren Behrend',
+    imageURL: 'https://www.48ws.com/images/product/S/A/daltile-sa55-1x1-slate-radiance-flint-1-x-1-random-tile.jpg',
+    description:'Meet Warren Behrend',
+    linkLabel:'Learn More',
+    type: 'vertical',
+  }
 ]
 
 
@@ -230,12 +131,6 @@ export const CATEGORIES: ICategory[] = [
 
 
 // rental locations
-export const LOCATIONS: ILocation[] = [
-  {id: 1, city: 'Paris', country: 'France'},
-  {id: 2, city: 'Rome', country: 'Italy'},
-  {id: 3, city: 'London', country: 'United Kingdom'},
-];
-
 
 // gallerys
 export const GALLERIES: IGallery[] = [
@@ -243,14 +138,13 @@ export const GALLERIES: IGallery[] = [
     id: 1,
     title: 'Flexible office space means growth.',
     description:
-      'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
+      'Rather than worrying about switching offices every couple years, you can instead stay in the same aaa.',
     category:[1, 2],
+    arLink: 'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/harrietBruno.png',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
       'https://images.unsplash.com/photo-1604998103924-89e012e5265a?fit=crop&w=450&q=80',
-    location: LOCATIONS[2],
-    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -259,12 +153,11 @@ export const GALLERIES: IGallery[] = [
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay.',
       category:[1, 3],
+    arLink: 'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/horseerb.jpg',
     latitude: 42.119031,
     longitude: -79.983751,
     image:
       'https://images.unsplash.com/photo-1563492065599-3520f775eeed?fit=crop&w=450&q=80',
-    location: LOCATIONS[3],
-    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -277,8 +170,6 @@ export const GALLERIES: IGallery[] = [
     longitude: -79.985721,
     image:
       'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?fit=crop&w=450&q=80',
-    location: LOCATIONS[3],
-    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -291,8 +182,6 @@ export const GALLERIES: IGallery[] = [
     longitude: -79.985721,
     image:
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
-    location: LOCATIONS[2],
-    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -304,8 +193,6 @@ export const GALLERIES: IGallery[] = [
     longitude: -79.985721,
     image:
       'https://images.unsplash.com/photo-1596720426673-e4e14290f0cc?fit=crop&w=450&q=80',
-    location: LOCATIONS[0],
-    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -318,8 +205,6 @@ export const GALLERIES: IGallery[] = [
     longitude: -79.985721,
     image:
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
-    location: LOCATIONS[1],
-    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -332,8 +217,6 @@ export const GALLERIES: IGallery[] = [
     longitude: -79.985721,
     image:
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
-    location: LOCATIONS[1],
-    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -346,8 +229,6 @@ export const GALLERIES: IGallery[] = [
     longitude: -79.985721,
     image:
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
-    location: LOCATIONS[3],
-    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -360,8 +241,6 @@ export const GALLERIES: IGallery[] = [
     longitude: -79.985721,
     image:
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
-    location: LOCATIONS[1],
-    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -373,8 +252,6 @@ export const GALLERIES: IGallery[] = [
     longitude: -79.985721,
     image:
       'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
-    location: LOCATIONS[1],
-    rating: 4.0,
     timestamp: dayjs().unix(),
   },
   {
@@ -386,8 +263,6 @@ export const GALLERIES: IGallery[] = [
     longitude: -79.985721,
     image:
       'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80',
-    location: LOCATIONS[0],
-    rating: 4.9,
     timestamp: dayjs().unix(),
   },
   {
@@ -398,8 +273,6 @@ export const GALLERIES: IGallery[] = [
     longitude: -79.985721,
     image:
       'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
-    location: LOCATIONS[1],
-    rating: 4.5,
     timestamp: dayjs().unix(),
   },
   {
@@ -411,8 +284,6 @@ export const GALLERIES: IGallery[] = [
     longitude: -79.985721,
     image:
       'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
-    location: LOCATIONS[2],
-    rating: 4.8,
     timestamp: dayjs().unix(),
   },
 ];
@@ -552,10 +423,8 @@ export const DESCRIPTION: IDescription[] = [
 ]
 
 export default {
-  USERS,
   WELCOME,
   CATEGORIES,
-  OBJECTS,
   HISTORY,
   GALLERIES,
   DESCRIPTION,
