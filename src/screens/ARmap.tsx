@@ -1,12 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, TouchableOpacity, Platform, Linking } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Platform,
+  Linking,
+  Image,
+  Animated,
+  PanResponder,
+  ViewStyle,
+} from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { useTheme } from '../hooks';
-import { COLORS, GRADIENTS } from '../constants/light';
 import Text from '../components/Text';
 import { Camera } from 'expo-camera';
 import axios from 'axios';
+import { GALLERIES } from '../constants/mocks';
+import { COLORS } from '../constants/light';
 
 type Props = {
   route: {
@@ -24,7 +35,7 @@ interface Step {
   polyline: string;
 }
 
-const ARmap = ({ route }: Props) => {
+const ARMap = ({ route }: Props) => {
   const { latitude, longitude } = route.params;
   const { colors } = useTheme();
   const [location, setLocation] = useState<Location.LocationObject | null>(null);
@@ -32,6 +43,20 @@ const ARmap = ({ route }: Props) => {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [steps, setSteps] = useState<Step[]>([]);
+  const [overlayImage, setOverlayImage] = useState('');
+  const [overlayPosition, setOverlayPosition] = useState({ x: 0, y: 0 });
+  const [overlaySize, setOverlaySize] = useState({ width: 0, height: 0 });
+  const panResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onPanResponderMove: (_, gestureState) => {
+        setOverlayPosition({
+          x: gestureState.moveX - overlaySize.width / 2,
+          y: gestureState.moveY - overlaySize.height / 2,
+        });
+      },
+    })
+  ).current;
 
   useEffect(() => {
     (async () => {
@@ -67,20 +92,62 @@ const ARmap = ({ route }: Props) => {
 
   const handleImHere = () => {
     setCameraVisible(true);
+    openAROverlay();
   };
+
   const handleCameraClose = () => {
     setCameraVisible(false);
   };
-  
-  // Rest of the code...
 
-  const openDirections = () => {
+  const handleOverlayTouch = (_: any, gestureState: { moveX: any; moveY: any; }) => {
+    const { moveX, moveY } = gestureState;
+    setOverlayPosition({
+      x: moveX - overlaySize.width / 2,
+      y: moveY - overlaySize.height / 2,
+    });
+  };
+
+  const decodePolyline = (encoded: string) => {
+    const points = [];
+    let index = 0,
+      len = encoded.length;
+    let lat = 0,
+      lng = 0;
+
+    while (index < len) {
+      let b,
+        shift = 0,
+        result = 0;
+      do {
+        b = encoded.charAt(index++).charCodeAt(0) - 63;
+        result |= (b & 0x1f) << shift;
+        shift += 5;
+      } while (b >= 0x20);
+      let dlat = (result & 1) !== 0 ? ~(result >> 1) : result >> 1;
+      lat += dlat;
+
+      shift = 0;
+      result = 0;
+      do {
+        b = encoded.charAt(index++).charCodeAt(0) - 63;
+        result |= (b & 0x1f) << shift;
+        shift += 5;
+      } while (b >= 0x20);
+      let dlng = (result & 1) !== 0 ? ~(result >> 1) : result >> 1;
+      lng += dlng;
+
+      points.push({ latitude: lat / 1e5, longitude: lng / 1e5 });
+    }
+    return points;
+  };
+
+  const getDirections = () => {
     if (location) {
       const origin = `${location.coords.latitude},${location.coords.longitude}`;
       const destination = `${latitude},${longitude}`;
-      const apiKey = 'AIzaSyCn8voDgWTZb9QyZjtFn2McLWCnYTr5xFw';
+      const apiKey = '<YOUR_API_KEY>'; // Replace with your Google Maps API key
       const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&mode=walking&key=${apiKey}`;
-  
+
       axios
         .get(url)
         .then((response) => {
@@ -101,7 +168,37 @@ const ARmap = ({ route }: Props) => {
         });
     }
   };
-  
+
+  const openAROverlay = () => {
+    const arLink = GALLERIES[0]?.arLink;
+    if (arLink) {
+      setOverlayImage(arLink);
+      setOverlaySize({ width: 200, height: 200 });
+      setOverlayPosition({ x: 100, y: 100 });
+    }
+  };
+
+  const renderAROverlay = () => {
+    const overlayStyle = {
+      transform: [
+        { translateX: overlayPosition.x },
+        { translateY: overlayPosition.y },
+      ],
+    } as Animated.WithAnimatedObject<ViewStyle>;
+
+    return (
+      <Animated.View
+        style={[styles.overlayContainer, overlayStyle]}
+        {...panResponder.panHandlers}
+      >
+        <Image
+          source={{ uri: overlayImage }}
+          style={{ width: overlaySize.width, height: overlaySize.height }}
+        />
+      </Animated.View>
+    );
+  };
+  const cameraRef = useRef(null);
 
   if (!location) {
     return null;
@@ -113,62 +210,72 @@ const ARmap = ({ route }: Props) => {
         style={styles.map}
         provider={PROVIDER_GOOGLE}
         initialRegion={{
-          latitude: latitude,
-          longitude: longitude,
+          latitude,
+          longitude,
           latitudeDelta: 0.01,
           longitudeDelta: 0.01,
         }}
       >
-        <Marker coordinate={{ latitude: latitude, longitude: longitude }} />
+        <Marker coordinate={{ latitude, longitude }} />
         <Marker
-  coordinate={{
-    latitude: location.coords.latitude,
-    longitude: location.coords.longitude,
-  }}
-/>
+          coordinate={{
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
+          }}
+        />
 
-{steps.map((step, index) => (
-  <Polyline
-    key={index}
-    coordinates={decodePolyline(step.polyline)}
-    strokeWidth={3}
-    strokeColor={colors.secondary}
-  />
-))}
-
+        {steps.map((step, index) => (
+          <Polyline
+            key={index}
+            coordinates={decodePolyline(step.polyline)}
+            strokeWidth={3}
+            strokeColor={colors.secondary}
+          />
+        ))}
       </MapView>
-  
-      <TouchableOpacity style={styles.directionsButton} onPress={openDirections} activeOpacity={0.8}>
-        <Text h5 color={colors.white} semibold>
-          Get Directions
-        </Text>
-      </TouchableOpacity>
-  
-      {cameraVisible && hasPermission && (
-        <Camera style={styles.camera} type={type}>
-          <TouchableOpacity style={styles.cameraCloseButton} onPress={handleCameraClose}>
-            <Text h5 color={colors.white} semibold>
-              Close
-            </Text>
-          </TouchableOpacity>
-        </Camera>
-      )}
-  
-      <TouchableOpacity style={styles.cameraButton} onPress={handleImHere} activeOpacity={0.8}>
-        <Text h5 color={colors.white} semibold>
+      <TouchableOpacity style={styles.imHereButton} onPress={handleImHere}>
+      <Text h5 color={colors.white} semibold>
           I'm Here!
         </Text>
       </TouchableOpacity>
+      <TouchableOpacity style={styles.directionsButton} onPress={getDirections}>
+      <Text h5 color={colors.white} semibold>
+          Get Directions
+        </Text>
+      </TouchableOpacity>
+      {cameraVisible && (
+        <Camera style={styles.camera} type={type} ref={cameraRef}>
+          <View style={styles.cameraContent}>
+            <TouchableOpacity style={styles.closeButton} onPress={handleCameraClose}>
+            <Text h5 color={colors.white} semibold>
+              X
+            </Text>
+            </TouchableOpacity>
+            {renderAROverlay()}
+          </View>
+        </Camera>
+      )}
     </View>
   );
-  
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   map: {
     flex: 1,
+  },
+  imHereButton: {
+    position: 'absolute',
+    bottom: 30,
+    left: 20,
+    backgroundColor: 'rgba(0, 30, 68, 0.5)',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   directionsButton: {
     position: 'absolute',
@@ -188,20 +295,12 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  cameraButton: {
-    position: 'absolute',
-    bottom: 30,
-    left: 20,
-    backgroundColor: 'rgba(0, 30, 68, 0.5)',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 20,
+  cameraContent: {
+    flex: 1,
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 1, // Ensure the button is above the camera view
   },
-  
-  cameraCloseButton: {
+  closeButton: {
     position: 'absolute',
     backgroundColor: 'rgba(0, 30, 68, 0.5)',
     borderRadius: 25,
@@ -210,49 +309,15 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    left: '50%',
+    right: -30,
     top: 10,
     transform: [{ translateX: -50 }],
   },
+  overlayContainer: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
-// Helper function to decode Google Maps polyline
-const decodePolyline = (encoded: string) => {
-  const poly = [];
-  let index = 0,
-    len = encoded.length;
-  let lat = 0,
-    lng = 0;
-
-  while (index < len) {
-    let b,
-      shift = 0,
-      result = 0;
-    do {
-      b = encoded.charCodeAt(index++) - 63;
-      result |= (b & 0x1f) << shift;
-      shift += 5;
-    } while (b >= 0x20);
-
-    const dlat = (result & 1) !== 0 ? ~(result >> 1) : result >> 1;
-    lat += dlat;
-
-    shift = 0;
-    result = 0;
-    do {
-      b = encoded.charCodeAt(index++) - 63;
-      result |= (b & 0x1f) << shift;
-      shift += 5;
-    } while (b >= 0x20);
-
-    const dlng = (result & 1) !== 0 ? ~(result >> 1) : result >> 1;
-    lng += dlng;
-
-    poly.push({ latitude: lat / 1e5, longitude: lng / 1e5 });
-  }
-
-  return poly;
-};
-
-export default ARmap;
-        
+export default ARMap;
