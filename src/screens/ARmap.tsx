@@ -145,7 +145,7 @@ const ARMap = ({ route }: Props) => {
     if (location) {
       const origin = `${location.coords.latitude},${location.coords.longitude}`;
       const destination = `${latitude},${longitude}`;
-      const apiKey = '<YOUR_API_KEY>'; // Replace with your Google Maps API key
+      const apiKey = 'AIzaSyCn8voDgWTZb9QyZjtFn2McLWCnYTr5xFw'; // Replace with your Google Maps API key
       const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&mode=walking&key=${apiKey}`;
 
       axios
