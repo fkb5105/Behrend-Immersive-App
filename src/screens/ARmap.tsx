@@ -38,7 +38,7 @@ interface Step {
   polyline: string;
 }
 
-const overlaySize = 200;
+const overlaySize = 300;
 
 const ARMap = ({ route }: Props) => {
   const { latitude, longitude } = route.params;
@@ -57,12 +57,13 @@ const ARMap = ({ route }: Props) => {
   const panResponder = useRef<PanResponderInstance>(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
-      onPanResponderMove: (evt, gestureState) => {
+      onPanResponderMove: (_, gestureState) => {
         handleOverlayTouch(gestureState);
       },
       onPanResponderRelease: () => {},
     })
   ).current;
+  
 
   useEffect(() => {
     (async () => {
@@ -112,9 +113,10 @@ const ARMap = ({ route }: Props) => {
     const screenHeight = Dimensions.get('window').height;
     const positionX = Math.max(0, Math.min(moveX - overlaySize / 2, screenWidth - overlaySize));
     const positionY = Math.max(0, Math.min(moveY - overlaySize / 2, screenHeight - overlaySize));
-
+  
     setOverlayPosition({ x: positionX, y: positionY });
   };
+  
 
   const decodePolyline = (encoded: string) => {
     const points = [];
