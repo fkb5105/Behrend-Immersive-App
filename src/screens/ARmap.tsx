@@ -9,6 +9,9 @@ import {
   Animated,
   PanResponder,
   ViewStyle,
+  Dimensions,
+  PanResponderGestureState,
+  PanResponderInstance,
 } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
 import * as Location from 'expo-location';
@@ -35,6 +38,8 @@ interface Step {
   polyline: string;
 }
 
+const overlaySize = 200;
+
 const ARMap = ({ route }: Props) => {
   const { latitude, longitude } = route.params;
   const { colors } = useTheme();
@@ -44,17 +49,18 @@ const ARMap = ({ route }: Props) => {
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [steps, setSteps] = useState<Step[]>([]);
   const [overlayImage, setOverlayImage] = useState('');
-  const [overlayPosition, setOverlayPosition] = useState({ x: 0, y: 0 });
-  const [overlaySize, setOverlaySize] = useState({ width: 0, height: 0 });
-  const panResponder = useRef(
+  const [overlayPosition, setOverlayPosition] = useState({
+    x: Dimensions.get('window').width / 2 - overlaySize / 2,
+    y: Dimensions.get('window').height / 2 - overlaySize / 2,
+  });
+
+  const panResponder = useRef<PanResponderInstance>(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
-      onPanResponderMove: (_, gestureState) => {
-        setOverlayPosition({
-          x: gestureState.moveX - overlaySize.width / 2,
-          y: gestureState.moveY - overlaySize.height / 2,
-        });
+      onPanResponderMove: (evt, gestureState) => {
+        handleOverlayTouch(gestureState);
       },
+      onPanResponderRelease: () => {},
     })
   ).current;
 
@@ -97,14 +103,17 @@ const ARMap = ({ route }: Props) => {
 
   const handleCameraClose = () => {
     setCameraVisible(false);
+    setOverlayImage('');
   };
 
-  const handleOverlayTouch = (_: any, gestureState: { moveX: any; moveY: any; }) => {
+  const handleOverlayTouch = (gestureState: PanResponderGestureState) => {
     const { moveX, moveY } = gestureState;
-    setOverlayPosition({
-      x: moveX - overlaySize.width / 2,
-      y: moveY - overlaySize.height / 2,
-    });
+    const screenWidth = Dimensions.get('window').width;
+    const screenHeight = Dimensions.get('window').height;
+    const positionX = Math.max(0, Math.min(moveX - overlaySize / 2, screenWidth - overlaySize));
+    const positionY = Math.max(0, Math.min(moveY - overlaySize / 2, screenHeight - overlaySize));
+
+    setOverlayPosition({ x: positionX, y: positionY });
   };
 
   const decodePolyline = (encoded: string) => {
@@ -173,8 +182,6 @@ const ARMap = ({ route }: Props) => {
     const arLink = GALLERIES[0]?.arLink;
     if (arLink) {
       setOverlayImage(arLink);
-      setOverlaySize({ width: 200, height: 200 });
-      setOverlayPosition({ x: 100, y: 100 });
     }
   };
 
@@ -193,11 +200,13 @@ const ARMap = ({ route }: Props) => {
       >
         <Image
           source={{ uri: overlayImage }}
-          style={{ width: overlaySize.width, height: overlaySize.height }}
+          style={{ width: overlaySize, height: overlaySize }}
+          resizeMode="contain"
         />
       </Animated.View>
     );
   };
+
   const cameraRef = useRef(null);
 
   if (!location) {
@@ -210,51 +219,64 @@ const ARMap = ({ route }: Props) => {
         style={styles.map}
         provider={PROVIDER_GOOGLE}
         initialRegion={{
-          latitude,
-          longitude,
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
           latitudeDelta: 0.01,
           longitudeDelta: 0.01,
         }}
       >
-        <Marker coordinate={{ latitude, longitude }} />
         <Marker
           coordinate={{
             latitude: location.coords.latitude,
             longitude: location.coords.longitude,
           }}
         />
-
-        {steps.map((step, index) => (
-          <Polyline
-            key={index}
-            coordinates={decodePolyline(step.polyline)}
-            strokeWidth={3}
-            strokeColor={colors.secondary}
-          />
-        ))}
+        <Marker
+          coordinate={{
+            latitude: latitude,
+            longitude: longitude,
+          }}
+        />
+        <Polyline
+          coordinates={steps.flatMap((step) => decodePolyline(step.polyline))}
+          strokeColor={colors.primary}
+          strokeWidth={3}
+        />
       </MapView>
-      <TouchableOpacity style={styles.imHereButton} onPress={handleImHere}>
-      <Text h5 color={colors.white} semibold>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={[styles.imHereButton]}
+          onPress={handleImHere}
+        >
+          <Text h5 color={colors.white} semibold>
           I'm Here!
         </Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.directionsButton} onPress={getDirections}>
-      <Text h5 color={colors.white} semibold>
-          Get Directions
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.directionsButton}
+          onPress={getDirections}
+        >
+          <Text h5 color={colors.white} semibold>
+            Get Directions
         </Text>
-      </TouchableOpacity>
-      {cameraVisible && (
-        <Camera style={styles.camera} type={type} ref={cameraRef}>
-          <View style={styles.cameraContent}>
-            <TouchableOpacity style={styles.closeButton} onPress={handleCameraClose}>
-            <Text h5 color={colors.white} semibold>
-              X
-            </Text>
-            </TouchableOpacity>
-            {renderAROverlay()}
-          </View>
+        </TouchableOpacity>
+      </View>
+      {cameraVisible && hasPermission && (
+        <Camera
+          style={styles.camera}
+          type={type}
+          ref={cameraRef}
+          ratio={'16:9'}
+        >
+          <TouchableOpacity
+            style={styles.cameraCloseButton}
+            onPress={handleCameraClose}
+          >
+            <Text style={styles.cameraCloseButtonText}>X</Text>
+          </TouchableOpacity>
         </Camera>
       )}
+      {renderAROverlay()}
     </View>
   );
 };
@@ -262,9 +284,17 @@ const ARMap = ({ route }: Props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: COLORS.white,
   },
   map: {
     flex: 1,
+  },
+  buttonContainer: {
+    position: 'absolute',
+    bottom: 30,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
   },
   imHereButton: {
     position: 'absolute',
@@ -295,28 +325,25 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  cameraContent: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  closeButton: {
+  cameraCloseButton: {
     position: 'absolute',
-    backgroundColor: 'rgba(0, 30, 68, 0.5)',
-    borderRadius: 25,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    marginBottom: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    right: -30,
-    top: 10,
-    transform: [{ translateX: -50 }],
+    top: Platform.OS === 'ios' ? 60 : 40,
+    right: 20,
+    backgroundColor: COLORS.white,
+    borderRadius: 30,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    elevation: 3,
+  },
+  cameraCloseButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: COLORS.primary,
   },
   overlayContainer: {
     position: 'absolute',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: overlaySize,
+    height: overlaySize,
   },
 });
 
