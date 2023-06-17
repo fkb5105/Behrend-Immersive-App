@@ -1,51 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Linking } from 'react-native';
 import { COLORS } from '../constants/light';
+import { USERS } from '../constants/mocks';
+import { ICONS } from '../constants/theme';
 
-interface AboutInfo {
-  about_id: number;
-  image_url: string;
-  name: string;
-  position: string;
-  description: string;
-}
 
 const About = () => {
-  const [aboutData, setAboutData] = useState<AboutInfo[]>([]);
-
-  async function fetchAboutData() {
-    try {
-      const response = await fetch('http://66.71.1.174:3000/about');
-      console.log('Response status:', response.status);
-      const data = await response.json();
-      console.log('Data:', data);
-      setAboutData(data);
-    } catch (error) {
-      console.error('Error fetching about data:', error);
-    }
-  }
-  
-
-  useEffect(() => {
-    fetchAboutData();
-  }, []);
-
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Meet the Team</Text>
-      {aboutData.map((about: { about_id: any; image_url: any; name: any; position: any; description: any; }) => (
-        <View style={styles.card} key={about.about_id}>
-          <Image style={styles.avatar} source={{ uri: about.image_url }} />
+      {USERS.map((user) => (
+        <View style={styles.card} key={user.id}>
+          <Image style={styles.avatar} source={{ uri: user.image_url }} />
           <View style={styles.info}>
-            <Text style={styles.name}>{about.name}</Text>
-            <Text style={styles.position}>{about.position}</Text>
-            <Text style={styles.about}>{about.description}</Text>
+            <View style={styles.nameContainer}>
+              <Text style={styles.name}>{user.name}</Text>
+              <Image source={ICONS.LinkedIn} style={styles.linkedInIcon} />
+            </View>
+            <Text style={styles.position}>{user.position}</Text>
+            <Text style={styles.about}>{user.description}</Text>
           </View>
         </View>
       ))}
       <View style={styles.projectSection}>
         <Text style={styles.projectText}>See what else VAR Labs is working on</Text>
-        <TouchableOpacity style={styles.visitButton} onPress={() => Linking.openURL('https://var.psu.edu/projects/')}>
+        <TouchableOpacity
+          style={styles.visitButton}
+          onPress={() => Linking.openURL('https://var.psu.edu/projects/')}
+        >
           <Text style={styles.buttonText}>Visit Projects</Text>
         </TouchableOpacity>
       </View>
@@ -87,12 +69,24 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   info: {
-    width: '70%',
+    flex: 1, // Added this to make the info view expand to fill the available space
+  },
+  nameContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between', // Aligns name and LinkedIn icon to the ends
+    alignItems: 'center',
   },
   name: {
-    fontSize: 20,
+    flex: 1, // Added this to make the name take all the available space
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 5,
+  },
+  linkedInIcon: {
+    marginLeft: 5,
+    width: 20,
+    height: 20,
+    resizeMode: 'contain',
   },
   position: {
     fontSize: 16,
@@ -116,20 +110,16 @@ const styles = StyleSheet.create({
     color: '#333',
     textAlign: 'center',
   },
-
   visitButton: {
     backgroundColor: COLORS.tertiary,
     paddingVertical: 10,
     paddingHorizontal: 30,
-   
-
     borderRadius: 5,
   },
   buttonText: {
     color: '#fff',
     marginTop: 4,
     padding: 8,
-
     fontSize: 16,
     fontWeight: 'bold',
     textTransform: 'uppercase',
@@ -137,3 +127,4 @@ const styles = StyleSheet.create({
 });
 
 export default About;
+

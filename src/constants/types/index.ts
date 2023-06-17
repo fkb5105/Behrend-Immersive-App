@@ -6,6 +6,22 @@ import { Key } from 'react';
 export * from './components';
 export * from './theme';
 
+export interface IUser {
+  id: number;
+  image_url: string;
+  linkedIn_url: string;
+  name?: string;
+  position?: string;
+  description: string;
+}
+
+export interface IObjects {
+  id: number;
+  image_url: string;
+  title: string;
+  linkLabel: string;
+  link: string;
+}
 
 export interface ICategory {
   id?: number;
@@ -84,7 +100,8 @@ export interface IExtra {
 export interface IDescription {
   id?: number;
   title?: string;
-  image?: string[];
+  caption?: string;
+  image_url?: string[];
   description?: string;
 }
 

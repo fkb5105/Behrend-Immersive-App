@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, Image, ScrollView, FlatList, Dimensions } from 'react-native';
 import { IDescription } from '../constants/types';
 import { DESCRIPTION } from '../constants/mocks';
 
@@ -13,22 +13,28 @@ type DescriptionProps = {
 
 const Description: React.FC<DescriptionProps> = ({ route }) => {
   const { id } = route.params;
-  const description: IDescription | undefined = DESCRIPTION.find(
-    (desc) => desc.id === id
-  );
+  const description: IDescription | undefined = DESCRIPTION.find((desc) => desc.id === id);
 
   if (!description) {
     return <Text>No description found for ID {id}</Text>;
   }
 
-  const { title, image, description: desc } = description;
+  const { title, image_url, description: desc } = description;
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>{title}</Text>
-      <View style={styles.imageContainer}>
-        <Image source={{ uri: image[0] }} style={styles.image} />
-      </View>
+      <FlatList
+        data={image_url}
+        keyExtractor={(item, index) => index.toString()}
+        horizontal
+        pagingEnabled
+        renderItem={({ item }) => (
+          <View style={styles.slide}>
+            <Image source={{ uri: item }} style={styles.image} resizeMode="contain" />
+          </View>
+        )}
+      />
       <Text style={styles.description}>{desc}</Text>
     </ScrollView>
   );
@@ -45,18 +51,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 16,
   },
-  imageContainer: {
-    height: 200,
-    marginBottom: 16,
-  },
   image: {
     flex: 1,
-    height: '100%',
-    resizeMode: 'cover',
+    width: Dimensions.get('window').width - 32,
+    resizeMode: 'contain',
   },
   description: {
     color: '#000',
     fontSize: 16,
+  },
+  slide: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

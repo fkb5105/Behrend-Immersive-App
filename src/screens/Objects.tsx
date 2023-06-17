@@ -1,43 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, ImageBackground } from 'react-native';
+import { IObjects } from '../constants/types';
+import { OBJECTS } from '../constants/mocks';
 import { COLORS } from '../constants/light';
 
-interface ObjectsInfo {
-  object_id: number;
-  title: string;
-  image_url: string;
-  linkLabel: string;
-  link: string;
-}
 
 const Objects: React.FC = () => {
-  const [objectsData, setObjectsData] = useState<ObjectsInfo[]>([]);
-
-  async function fetchObjectsData() {
-    try {
-      const response = await fetch('http://66.71.1.174:3000/objects');
-      console.log('Response status:', response.status);
-      const data = await response.json();
-      console.log('Data:', data);
-      setObjectsData(data);
-    } catch (error) {
-      console.error('Error fetching objects data:', error);
-    }
-  }
-
-  useEffect(() => {
-    fetchObjectsData();
-  }, []);
-
+  
   const renderObjects = () => {
-    return objectsData.map((object) => {
+    return OBJECTS.map((object: IObjects) => {
       return (
-        <TouchableOpacity key={object.object_id} onPress={() => Linking.openURL(object.link)}>
+        <TouchableOpacity key={object.id}>
           <ImageBackground source={{ uri: object.image_url }} style={styles.box}>
             <View style={styles.textContainer}>
               <Text style={styles.title}>{object.title}</Text>
               <View style={styles.buttonContainer}>
-                <Text style={styles.buttonText}>{object.linkLabel}</Text>
+                <Text style={styles.buttonText} onPress={() => Linking.openURL(object.link)}>{object.linkLabel}</Text>
               </View>
             </View>
           </ImageBackground>
@@ -85,7 +63,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    color: '#007AFF',
+    color: COLORS.primary,
   },
 });
 

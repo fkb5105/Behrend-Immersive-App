@@ -67,6 +67,7 @@ export const ICONS: ThemeIcons = {
   users: require('../assets/icons/users.png'),
   warning: require('../assets/icons/warning.png'),
   VAR: require('../assets/icons/VAR.png'),
+  LinkedIn: require('../assets/icons/LinkedIn.png'),
   articles: 0
 };
 

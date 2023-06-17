@@ -26,13 +26,11 @@
     "history": "History",
     "objects": "3D Objects",
     "about": "About",
-    "settings": "Settings",
     "description": "Description"
 
   },
   "navigation": {
     "maps": "Maps",
-    "settings": "Settings",
     "gallery": "AR Gallery",
     "history": "History",
     "notifications": "Notifications",

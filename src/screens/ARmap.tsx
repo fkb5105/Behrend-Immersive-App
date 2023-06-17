@@ -12,6 +12,7 @@ import {
   Dimensions,
   PanResponderGestureState,
   PanResponderInstance,
+  ActivityIndicator,
 } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
 import * as Location from 'expo-location';
@@ -53,17 +54,20 @@ const ARMap = ({ route }: Props) => {
     x: Dimensions.get('window').width / 2 - overlaySize / 2,
     y: Dimensions.get('window').height / 2 - overlaySize / 2,
   });
-
+  const [mapLoaded, setMapLoaded] = useState(false); // Track if the map has loaded
+  const [isOverlayLocked, setIsOverlayLocked] = useState(false);
+  
   const panResponder = useRef<PanResponderInstance>(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onPanResponderMove: (_, gestureState) => {
-        handleOverlayTouch(gestureState);
+        if (!isOverlayLocked) {
+          handleOverlayTouch(gestureState);
+        }
       },
       onPanResponderRelease: () => {},
     })
   ).current;
-  
 
   useEffect(() => {
     (async () => {
@@ -108,13 +112,15 @@ const ARMap = ({ route }: Props) => {
   };
 
   const handleOverlayTouch = (gestureState: PanResponderGestureState) => {
-    const { moveX, moveY } = gestureState;
-    const screenWidth = Dimensions.get('window').width;
-    const screenHeight = Dimensions.get('window').height;
-    const positionX = Math.max(0, Math.min(moveX - overlaySize / 2, screenWidth - overlaySize));
-    const positionY = Math.max(0, Math.min(moveY - overlaySize / 2, screenHeight - overlaySize));
+    if (!isOverlayLocked) {
+      const { moveX, moveY } = gestureState;
+      const screenWidth = Dimensions.get('window').width;
+      const screenHeight = Dimensions.get('window').height;
+      const positionX = Math.max(0, Math.min(moveX - overlaySize / 2, screenWidth - overlaySize));
+      const positionY = Math.max(0, Math.min(moveY - overlaySize / 2, screenHeight - overlaySize));
   
-    setOverlayPosition({ x: positionX, y: positionY });
+      setOverlayPosition({ x: positionX, y: positionY });
+    }
   };
   
 
@@ -156,7 +162,7 @@ const ARMap = ({ route }: Props) => {
     if (location) {
       const origin = `${location.coords.latitude},${location.coords.longitude}`;
       const destination = `${latitude},${longitude}`;
-      const apiKey = 'AIzaSyCn8voDgWTZb9QyZjtFn2McLWCnYTr5xFw'; // Replace with your Google Maps API key
+      const apiKey = 'YOUR_GOOGLE_MAPS_API_KEY'; // Replace with your Google Maps API key
       const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&mode=walking&key=${apiKey}`;
 
       axios
@@ -187,6 +193,10 @@ const ARMap = ({ route }: Props) => {
     }
   };
 
+  const lockOverlayPosition = () => {
+    setIsOverlayLocked(true);
+  };
+  
   const renderAROverlay = () => {
     const overlayStyle = {
       transform: [
@@ -194,7 +204,7 @@ const ARMap = ({ route }: Props) => {
         { translateY: overlayPosition.y },
       ],
     } as Animated.WithAnimatedObject<ViewStyle>;
-
+  
     return (
       <Animated.View
         style={[styles.overlayContainer, overlayStyle]}
@@ -208,6 +218,7 @@ const ARMap = ({ route }: Props) => {
       </Animated.View>
     );
   };
+  
 
   const cameraRef = useRef(null);
 
@@ -217,6 +228,11 @@ const ARMap = ({ route }: Props) => {
 
   return (
     <View style={styles.container}>
+      {!mapLoaded && (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color={colors.primary} />
+        </View>
+      )}
       <MapView
         style={styles.map}
         provider={PROVIDER_GOOGLE}
@@ -226,6 +242,7 @@ const ARMap = ({ route }: Props) => {
           latitudeDelta: 0.01,
           longitudeDelta: 0.01,
         }}
+        onMapReady={() => setMapLoaded(true)}
       >
         <Marker
           coordinate={{
@@ -251,8 +268,8 @@ const ARMap = ({ route }: Props) => {
           onPress={handleImHere}
         >
           <Text h5 color={colors.white} semibold>
-          I'm Here!
-        </Text>
+            I'm Here!
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.directionsButton}
@@ -260,7 +277,7 @@ const ARMap = ({ route }: Props) => {
         >
           <Text h5 color={colors.white} semibold>
             Get Directions
-        </Text>
+          </Text>
         </TouchableOpacity>
       </View>
       {cameraVisible && hasPermission && (
@@ -279,6 +296,14 @@ const ARMap = ({ route }: Props) => {
         </Camera>
       )}
       {renderAROverlay()}
+      {!isOverlayLocked && (
+  <TouchableOpacity
+    style={styles.setPositionButton}
+    onPress={lockOverlayPosition}
+  >
+    <Text style={styles.setPositionButtonText}>Set Position</Text>
+  </TouchableOpacity>
+)}
     </View>
   );
 };
@@ -331,21 +356,42 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: Platform.OS === 'ios' ? 60 : 40,
     right: 20,
-    backgroundColor: COLORS.white,
-    borderRadius: 30,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    elevation: 3,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   cameraCloseButtonText: {
-    fontSize: 16,
+    color: COLORS.white,
+    fontSize: 20,
     fontWeight: 'bold',
-    color: COLORS.primary,
   },
   overlayContainer: {
     position: 'absolute',
-    width: overlaySize,
-    height: overlaySize,
+  },
+  setPositionButton: {
+    position: 'absolute',
+    bottom: 30,
+    left: 20,
+    backgroundColor: 'rgba(0, 30, 68, 0.5)',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  setPositionButtonText: {
+    color: COLORS.white,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  loadingContainer: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: COLORS.white,
   },
 });
 
