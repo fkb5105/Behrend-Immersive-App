@@ -26,7 +26,7 @@
     "history": "History",
     "objects": "3D Objects",
     "about": "About",
-    "description": "Description"
+    "description": "History"
 
   },
   "navigation": {
@@ -39,9 +39,6 @@
     "privacy": "Privacy",
     "objects": "3D Objects",
     "description": "Description"
-  },
-  "menu": {
-    "started": "Settings"
   },
   "home": {
     "welcome": "Welcome!"

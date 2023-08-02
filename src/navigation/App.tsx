@@ -1,14 +1,14 @@
-import React, {useEffect} from 'react';
-import {Platform, StatusBar} from 'react-native';
-import {useFonts} from 'expo-font';
-import AppLoading from 'expo-app-loading';
-import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import React, { useEffect } from 'react';
+import { Platform, StatusBar } from 'react-native';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 
 import Menu from './Menu';
-import {useData, ThemeProvider, TranslationProvider} from '../hooks';
+import { useData, ThemeProvider, TranslationProvider } from '../hooks';
 
 export default () => {
-  const {theme, setTheme} = useData();
+  const { theme, setTheme } = useData();
 
   // load custom fonts
   const [fontsLoaded] = useFonts({
@@ -19,8 +19,17 @@ export default () => {
     'OpenSans-Bold': theme.assets.OpenSansBold,
   });
 
+  useEffect(() => {
+    async function prepareApp() {
+      await SplashScreen.preventAutoHideAsync();
+      // Perform any additional setup or loading tasks here
+      SplashScreen.hideAsync();
+    }
+    prepareApp();
+  }, []);
+
   if (!fontsLoaded) {
-    return <AppLoading />;
+    return null; // You can replace this with a loading component if needed
   }
 
   const navigationTheme = {

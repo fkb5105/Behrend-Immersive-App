@@ -8,6 +8,7 @@ import {
   IHistory,
   IDescription,
   IProduct,
+  ISponsor,
   IUser,
 } from './types';
 
@@ -16,7 +17,7 @@ export const USERS: IUser[] = [
     id: 1,
     name: 'Felipe Bassi',
     position: 'App Developer',
-    linkedIn_url: '',
+    linkedIn_url: 'https://www.linkedin.com/in/felipe-bassi/',
     description:
       'Short sentence about ourselves',
     image_url:
@@ -26,7 +27,7 @@ export const USERS: IUser[] = [
     id: 2,
     name: 'Daniel Shreiber',
     position: 'Content Creator',
-    linkedIn_url: '',
+    linkedIn_url: 'https://www.linkedin.com/in/daniel-schreiber-44a9b6266/',
     description:
       'Short sentence about ourselves',
     image_url:
@@ -34,21 +35,38 @@ export const USERS: IUser[] = [
   },
   {
     id: 3,
-    name: 'Chris Shelton',
-    position: 'Project Supervisor',
-    linkedIn_url: '',
-    description:'Short sentence about ourselves',
-    image_url:
-      'https://live-var-labs.pantheonsite.io/wp-content/uploads/2022/08/1-225x300.png',
-  },
-  {
-    id: 4,
     name: 'Remington Orange',
     position: 'TBD',
-    linkedIn_url: '',
+    linkedIn_url: 'https://www.linkedin.com/in/remington-orange-38746b266/',
     description:'Short sentence about ourselves',
     image_url:
       'https://var.psu.edu/wp-content/uploads/2023/02/REMI-025_Original-400x500.jpg',
+  },
+]
+
+export const SPONSOR: ISponsor [] = [
+  {
+    id:1,
+    name: 'Christopher R. Shelton, Ph.D',
+    position: 'Assistant Professor of Clinical Psychology',
+    company: 'Director, Virtual/Augmanted Reality Lab'
+  },
+  {
+    id:2,
+    name: 'Jasper Sachsenmeier, M.Litt',
+    position: 'Lecturer in Composition',
+    company: 'Coordinator of Testing and Summer Programs, ELSC'
+  },
+  {
+    id:3,
+    name: 'Elisa Beshero-Bondar, Ph.D',
+    position: 'Professor of Digital Humanities',
+    company: 'Director of the Digital Humanities Lab'
+  },
+  {
+    id:4,
+    name: 'Jane Ingold',
+    position: 'Refrence and Instruction Librarian/Archivist',
   },
 ]
 
@@ -154,7 +172,7 @@ export const WELCOME: IProduct[] = [
     title: "Compare Behrend's campus past and present.",
     linkLabel: 'Maps',
     image:
-      'https://immersiveapp.s3.us-east-2.amazonaws.com/Objects/img134.jpg',
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/imgs/profile/img134.jpg',
   },
   {
     id: 2,
@@ -194,7 +212,7 @@ export const HISTORY: IHistory[] = [
   {
     id:1,
     title: 'Glenhill Farm',
-    imageURL: 'https://www.48ws.com/images/product/S/A/daltile-sa55-1x1-slate-radiance-flint-1-x-1-random-tile.jpg',
+    imageURL: 'https://varlab.bd.psu.edu/_app/IMMR_BD/imgs/profile/glenhill profile.PNG',
     description:'Explore the home of the Behrends',
     linkLabel:'Learn More',
     type: 'horizontal',
@@ -202,7 +220,7 @@ export const HISTORY: IHistory[] = [
   {
     id:2,
     title: 'Turnbull Building',
-    imageURL: 'https://www.48ws.com/images/product/S/A/daltile-sa55-1x1-slate-radiance-flint-1-x-1-random-tile.jpg',
+    imageURL: 'https://varlab.bd.psu.edu/_app/IMMR_BD/imgs/profile/turbull profile.PNG',
     description:"Don't know what Turnbull was",
     linkLabel:'Learn More',
     type: 'horizontal'
@@ -210,7 +228,7 @@ export const HISTORY: IHistory[] = [
   {
     id:3,
     title: 'Hamermill Factory',
-    imageURL: 'https://www.48ws.com/images/product/S/A/daltile-sa55-1x1-slate-radiance-flint-1-x-1-random-tile.jpg',
+    imageURL: 'https://varlab.bd.psu.edu/_app/IMMR_BD/imgs/profile/hammermil profile.PNG',
     description:'Sentence for Hamermill Factory',
     linkLabel:'Learn More',
     type: 'vertical',
@@ -218,7 +236,7 @@ export const HISTORY: IHistory[] = [
   {
     id:4,
     title: 'Behrend Family',
-    imageURL: 'https://www.48ws.com/images/product/S/A/daltile-sa55-1x1-slate-radiance-flint-1-x-1-random-tile.jpg',
+    imageURL: 'https://varlab.bd.psu.edu/_app/IMMR_BD/imgs/profile/MBBWarrenHarriet Sailor.jpg',
     description:'Meet the Behrend family',
     linkLabel:'Learn More',
     type: 'vertical',
@@ -226,7 +244,7 @@ export const HISTORY: IHistory[] = [
   {
     id:5,
     title: 'Mary Behrend',
-    imageURL: 'https://www.48ws.com/images/product/S/A/daltile-sa55-1x1-slate-radiance-flint-1-x-1-random-tile.jpg',
+    imageURL: 'https://varlab.bd.psu.edu/_app/IMMR_BD/imgs/profile/mary profile.PNG',
     description:'Meet Mary Behrend',
     linkLabel:'Learn More',
     type: 'vertical',
@@ -234,7 +252,7 @@ export const HISTORY: IHistory[] = [
   {
     id:6,
     title: 'Ernst Behrend',
-    imageURL: 'https://www.48ws.com/images/product/S/A/daltile-sa55-1x1-slate-radiance-flint-1-x-1-random-tile.jpg',
+    imageURL: 'https://varlab.bd.psu.edu/_app/IMMR_BD/imgs/profile/ernst profile.PNG',
     description:'Meet Ernst Behrend',
     linkLabel:'Learn More',
     type: 'vertical',
@@ -242,7 +260,7 @@ export const HISTORY: IHistory[] = [
   {
     id:7,
     title: 'Harriet Behrend',
-    imageURL: 'https://www.48ws.com/images/product/S/A/daltile-sa55-1x1-slate-radiance-flint-1-x-1-random-tile.jpg',
+    imageURL: 'https://varlab.bd.psu.edu/_app/IMMR_BD/imgs/profile/harriet profile.PNG',
     description:'Meet Harriet Behrend',
     linkLabel:'Learn More',
     type: 'vertical',
@@ -250,7 +268,7 @@ export const HISTORY: IHistory[] = [
   {
     id:8,
     title: 'Warren Behrend',
-    imageURL: 'https://www.48ws.com/images/product/S/A/daltile-sa55-1x1-slate-radiance-flint-1-x-1-random-tile.jpg',
+    imageURL: 'https://varlab.bd.psu.edu/_app/IMMR_BD/imgs/profile/warren profile.PNG',
     description:'Meet Warren Behrend',
     linkLabel:'Learn More',
     type: 'vertical',
@@ -273,13 +291,13 @@ export const GALLERIES: IGallery[] = [
     id: 1,
     title: 'Flexible office space means growth.',
     description:
-      'Rather than worrying about switching offices every couple years, you can instead stay in the same aaa.',
+      'Harriet Behrend and Bruno',
     category:[1, 2],
-    arLink: 'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/harrietBruno.png',
+    arLink: 'https://skfb.ly/oINJs',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
-      '',
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/harrietBruno.png',
     timestamp: dayjs().unix(),
   },
   {
@@ -288,11 +306,11 @@ export const GALLERIES: IGallery[] = [
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay.',
       category:[1, 3],
-    arLink: 'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/horseerb.jpg',
+    arLink: 'https://skfb.ly/oINJs',
     latitude: 42.119031,
     longitude: -79.983751,
     image:
-      'https://images.unsplash.com/photo-1563492065599-3520f775eeed?fit=crop&w=450&q=80',
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/Ernst.png',
     timestamp: dayjs().unix(),
   },
   {
@@ -301,10 +319,11 @@ export const GALLERIES: IGallery[] = [
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
       category:[1, 2],
+    arLink: 'https://skfb.ly/oINJs',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
-      'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?fit=crop&w=450&q=80',
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/glenhill reno.png',
     timestamp: dayjs().unix(),
   },
   {
@@ -313,10 +332,11 @@ export const GALLERIES: IGallery[] = [
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
     category:[1, 3],
+    arLink: 'https://skfb.ly/oINJs',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
-      'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/harrietBrunoChambers.png',
     timestamp: dayjs().unix(),
   },
   {
@@ -324,10 +344,11 @@ export const GALLERIES: IGallery[] = [
     title: 'Office space means growth.',
     description: `The mission of LinkedIn is simple: connect the world's professionals.`,
     category:[1, 2],
+    arLink: 'https://skfb.ly/oINJs',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
-      'https://images.unsplash.com/photo-1596720426673-e4e14290f0cc?fit=crop&w=450&q=80',
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/HEBweddingbedroomcolor.jpg',
     timestamp: dayjs().unix(),
   },
   {
@@ -336,10 +357,11 @@ export const GALLERIES: IGallery[] = [
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
     category:[1, 3],
+    arLink: 'https://skfb.ly/oINJs',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
-      'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/horseerb.jpg',
     timestamp: dayjs().unix(),
   },
   {
@@ -348,10 +370,11 @@ export const GALLERIES: IGallery[] = [
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
       category:[1, 2],
+    arLink: 'https://skfb.ly/oINJs',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
-      'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/horses infront of turnbull.png',
     timestamp: dayjs().unix(),
   },
   {
@@ -360,10 +383,11 @@ export const GALLERIES: IGallery[] = [
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
     category:[1, 3],
+    arLink: 'https://skfb.ly/oINJs',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
-      'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/MoritzAndRebecca1909.jpg',
     timestamp: dayjs().unix(),
   },
   {
@@ -372,10 +396,11 @@ export const GALLERIES: IGallery[] = [
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
     category:[1, 2],
+    arLink: 'https://skfb.ly/oINJs',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
-      'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/reno.1.jpg',
     timestamp: dayjs().unix(),
   },
   {
@@ -383,10 +408,11 @@ export const GALLERIES: IGallery[] = [
     description:
       'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
     category:[1, 3],
+    arLink: 'https://skfb.ly/oINJs',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
-      'https://images.unsplash.com/photo-1497215728101-856f4ea42174?fit=crop&w=450&q=80',
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/dogserb.jpg',
     timestamp: dayjs().unix(),
   },
   {
@@ -394,20 +420,22 @@ export const GALLERIES: IGallery[] = [
     description:
       'A great to stay in Paris without feeling you are in the city!',
     category:[1, 2],
+    arLink: 'https://skfb.ly/oINJs',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
-      'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fit=crop&w=450&q=80',
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/marry with dogs.png',
     timestamp: dayjs().unix(),
   },
   {
     id: 12,
     description: 'Best Italy location in a bustling neighbourhood, 2 min.',
     category:[1, 3],
+    arLink: 'https://skfb.ly/oINJs',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
-      'https://images.unsplash.com/photo-1529154036614-a60975f5c760?fit=crop&w=450&q=80',
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/OldHouseFarmAnimals.png',
     timestamp: dayjs().unix(),
   },
   {
@@ -415,10 +443,11 @@ export const GALLERIES: IGallery[] = [
     description:
       'The most beautiful and complex UI Kits built by Creative Tim.',
     category:[1, 2],
+    arLink: 'https://skfb.ly/oINJs',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
-      'https://images.unsplash.com/photo-1486299267070-83823f5448dd?fit=crop&w=450&q=80',
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/Schilling%20HouseBecameGlenhill.png',
     timestamp: dayjs().unix(),
   },
 ];
@@ -429,18 +458,24 @@ export const DESCRIPTION: IDescription[] = [
     id: 1,
     title: 'Glenhill Farm',
     image_url: [
-      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/Schilling HouseBecameGlenhill.png',
-      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/Schilling HouseBecameGlenhill.png',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/reno2.jpg',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/glenhill reno.png',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/reno.1.jpg',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/guarden statue 2.png',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/guarden statue 1 copy.png',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/dogserb.jpg',
-      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/bruno and family.png'
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/bruno and family (2).png'
     ],
-    caption: 'Caption for an image',
-    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
+    captions:[
+       'Caption for an image',
+       'Caption for an image',
+       'Caption for an image',
+       'Caption for an image',
+       'Caption for an image',
+       'Caption for an image',
+       'Caption for an image',
+    ],
+    description: "The family’s original mansion was on the Hammermill site, which was convenient for managing the plant, but came with the unpleasant smells of papermaking and much sawdust in the air which made its way into the house. Beginning in the late 1920’s the Behrends began buying farms in Harborcreek to build a new home and outbuildings. The Glenhill Farmhouse was meant to be a home for their farmer, and they intended to build a larger one behind it on the hill, but that plan was abandoned. They hired renowned architect R. Brognard Okie of Philadelphia to bring their dream to fruition. Okie had worked on the renovations of Pennsbury Manor, home of William Penn, and the Betsy Ross house and had built new houses for other prominent people. The Behrends enjoyed their first night there at Thanksgiving of 1933. Since the inception of the campus in 1948, it has served as the administration building, but in the early days it was also used as the women’s dorm.",
   },
   {
     id: 2,
@@ -452,8 +487,14 @@ export const DESCRIPTION: IDescription[] = [
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/horseerb.jpg',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/girl on diving board.png',
     ],
-    caption: 'Caption for an image',
-    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
+    captions: [
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+  ],
+    description: 'What we know as Turnbull Hall now was once the barn for the original Glenhill Farm. No doubt Harriet kept her horses there. On the first day of classes at the newly formed Behrend Center, workers were still mucking the stalls below while the students took classes on the second floor. When beloved history professor Thomas Turnbull, a WWII veteran, died in 1956, the students dedicated their yearbook (Bits of Behrend) to him and requested that Penn State allow the campus to rename the barn Turnbull Hall. For building has had many purposes over the years including offices and classrooms and the library was located there for a while',
   },
   {
     id: 3,
@@ -462,7 +503,9 @@ export const DESCRIPTION: IDescription[] = [
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/ErnstRBehrend1905HammermillPlant.jpg',
 
     ],
-    caption: 'Caption for an image',
+    captions: [
+      'Caption for an image',
+  ],
     description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
   {
@@ -477,8 +520,16 @@ export const DESCRIPTION: IDescription[] = [
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/EddyOttoErnstBehrendInGermany.jpg',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/close up photo.png',
     ],
-    caption: 'Caption for an image',
-    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
+    captions: [ 
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+  ],
+    description: 'Mary Brownell Behrend, was born into privilege in Providence, RI on December 29, 1879. In 1907 she married Ernst Behrend who she met when she traveled to Erie to visit a finishing school friend who introduced her to the most eligible local bachelors. Her early diaries and scrapbooks hinted at the Renaissance woman she would become. She was interested in domestic pursuits such as gardening and crafts, but she had a sporty side and was the women’s golf champion of Rhode Island in 1902. In her later years she took to her art studio (now the Studio Theatre) for painting lessons from renowned local artist Joseph Plavcan. Many of her paintings hang in her beloved Glenhill Farmhouse. She was deeply involved with its design, and she corresponded sometimes daily with the architect about every detail of the work down to the door hinges. After her husband died in 1940, she moved back to New England. In 1948 she donated Glenhill Farm to Penn State to honor her husband’s love of education and she often visited the campus. A decade later Penn State she received the newly created Penn State Medal. She passed away on July 5, 1976 at age 96.',
   },
   {
     id: 6,
@@ -495,14 +546,24 @@ export const DESCRIPTION: IDescription[] = [
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/ernsthomehpc.png',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/Ernst.png',
     ],
-    caption: 'Caption for an image',
-    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
+    captions: [ 
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+    ],
+    description: 'Ernst Behrend, born in Coeslin, Germany on March 29, 1869, was a man of remarkable drive and precision who left an indelible mark on both his business endeavors and his personal life. He studied at the Dresden and Charlottenburg Polytechnic Institutes and served as a Lieutenant in the Prussian Mounted Artillery. Ernst and his father and brother founded the Hammermill Paper Company in 1898. It eventually became a Forbes 500 Company. The company was known for forward-thinking employee policies, including vacations and pensions. Ernst and his brother, Otto, patented a unique watermarking device in 1902 which was a boon for the company. He was also devoted to the Erie community and he sat on many boards, was president of the Community Chest, and served as a Four Minute Man during World War I, giving rousing short speeches to inspire support for the troops. Ernst and Mary were world travelers, taking many commercial cruises until they took possession of their yacht named Amida in April 1929. Custom-built in Keil, Germany and requiring a staff of 33, it encountered a gale while on its maiden voyage to be delivered to the family in the United States. The crew rescued 10 men whose schooner had capsized. Ernst passed away in Glenhill Farmhouse on September 20, 1940. He received an honorary PhD from Thiel College in 1936 and was posthumously inducted into the Paper Industry International Hall of Fame in 2012.',
   },
   {
     id: 7,
     title: 'Harriet Behrend',
     image_url: [
-      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/bruno and family (2).png',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/MBBWarrenHarriet Sailor.jpg',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/HEBWeddingClipping.jpg',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/HEBweddingbedroomcolor.jpg',
@@ -515,8 +576,20 @@ export const DESCRIPTION: IDescription[] = [
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/child with sledd.jpg',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/child on sled.jpg'
     ],
-    caption: 'Caption for an image',
-    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
+    captions: [ 
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+      'Caption for an image',
+    ],
+    description: 'Daughter Harriet Ellen Behrend Sayre Ninow led an adventurous life. Born on January 4, 1911 in Boston, Massachusetts, she attended Spence School and then Vassar College where she, a passionate equestrienne, was involved in horse shows. She was an accomplished markswoman who was the “Woman’s All-Bore Skeet Shooting Champion” of 1941. During that tournament she met widower Caryl Sayre who was raising two young daughters, Calista and Suzanne. They married at Glenhill in 1942 and she bore two sons, Richard and William. They made their home on Long Island where she was such a tireless charity worker that she had a second telephone line in her home dedicated to that purpose. Like her mother and her uncle Otto, she enjoyed golf. She served on the Behrend Council of Fellows and was awarded the Behrend Medallion in 1981. After Caryl’s 1963 death, she married Earl Ninow, a Navy psychiatrist who later served as chief of White House military aides for President Lyndon Johnson. He died in a plane accident on August 13, 1984. Harriet, who was already being treated for cancer at the time of his death, succumbed on December 28, 1986.',
   },
   {
     id: 8,
@@ -524,14 +597,17 @@ export const DESCRIPTION: IDescription[] = [
     image_url: [
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/ottowarren.jpg',
     ],
-    caption: 'Caption for an image',
-    description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
+    captions: [ 
+      'Caption for an image',
+    ],
+    description: "The elder of the Behrends’ two children was their son Warren Moritz. Born on March 14, 1909, in Rhode Island, he attended Deerfield Academy in Massachusetts. It was from there that he and friend Ned Richardson travelled by train to Washington, DC where they picked up the family car and headed south to meet the family in Charleston, South Carolina for Christmas on the Amida. On December 19, 1929, near Pleasant Hill, North Carolina he swerved to miss a school bus that had cut in front of them. Warren died instantly, but Ned survived. He was remembered at two concurrent funerals. One was held in DC’s National Episcopal Cathedral and the other at Erie’s St. Paul’s Episcopal Cathedral. A stone memorial shaped like a cross was erected at the site of the crash and later moved to Wintergreen Gorge Cemetery near the chapel that holds his remains and that of his family. His heartbroken parents sold the Amida to an Egyptian shipping magnate for a quarter of its original cost. They also built a new pool and outfitted a visiting room in his honor at Deerfield. Behrend Center students dedicated the first campus yearbook, The Cub (1950), to him",
   },
 ]
 
 export default {
   WELCOME,
   USERS,
+  SPONSOR,
   CATEGORIES,
   HISTORY,
   GALLERIES,

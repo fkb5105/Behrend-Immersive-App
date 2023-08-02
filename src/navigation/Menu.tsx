@@ -153,44 +153,6 @@ const DrawerContent = (
 </Button>
 );
 })}
-
-<Block
-  flex={0}
-  height={1}
-  marginRight={sizes.md}
-  marginVertical={sizes.sm}
-  gradient={gradients.menu}
-/>
-
-<Button
-  row
-  justify="flex-start"
-  marginTop={sizes.sm}
-  marginBottom={sizes.s}
-  onPress={() => handleNavigation(screen.to)}
->
-  <Block
-    flex={0}
-    radius={6}
-    align="center"
-    justify="center"
-    width={sizes.md}
-    height={sizes.md}
-    marginRight={sizes.s}
-    gradient={gradients.white}
-  >
-    <Image
-      radius={0}
-      width={14}
-      height={14}
-      color={colors.black}
-      source={assets.settings}
-    />
-  </Block>
-  <Text p color={labelColor}>
-    {t('menu.started')}
-  </Text>
-</Button>
 </Block>
 </DrawerContentScrollView>
 );

@@ -100,8 +100,13 @@ export interface IExtra {
 export interface IDescription {
   id?: number;
   title?: string;
-  caption?: string;
-  image_url?: string[];
+  captions?: string[];
+  image_url: string[];
   description?: string;
 }
-
+export interface ISponsor {
+  id: number;
+  name: string;
+  position: string;
+  company?: string;
+}

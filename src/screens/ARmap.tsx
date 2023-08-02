@@ -6,19 +6,12 @@ import {
   Platform,
   Linking,
   Image,
-  Animated,
-  PanResponder,
-  ViewStyle,
-  Dimensions,
-  PanResponderGestureState,
-  PanResponderInstance,
   ActivityIndicator,
 } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { useTheme } from '../hooks';
 import Text from '../components/Text';
-import { Camera } from 'expo-camera';
 import axios from 'axios';
 import { GALLERIES } from '../constants/mocks';
 import { COLORS } from '../constants/light';
@@ -26,6 +19,7 @@ import { COLORS } from '../constants/light';
 type Props = {
   route: {
     params: {
+      id: number;
       latitude: number;
       longitude: number;
     };
@@ -42,49 +36,22 @@ interface Step {
 const overlaySize = 300;
 
 const ARMap = ({ route }: Props) => {
-  const { latitude, longitude } = route.params;
+  const { id, latitude, longitude } = route.params;
   const { colors } = useTheme();
   const [location, setLocation] = useState<Location.LocationObject | null>(null);
-  const [cameraVisible, setCameraVisible] = useState(false);
-  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
-  const [type, setType] = useState(Camera.Constants.Type.back);
   const [steps, setSteps] = useState<Step[]>([]);
-  const [overlayImage, setOverlayImage] = useState('');
-  const [overlayPosition, setOverlayPosition] = useState({
-    x: Dimensions.get('window').width / 2 - overlaySize / 2,
-    y: Dimensions.get('window').height / 2 - overlaySize / 2,
-  });
-  const [mapLoaded, setMapLoaded] = useState(false); // Track if the map has loaded
-  const [isOverlayLocked, setIsOverlayLocked] = useState(false);
+  const [mapLoaded, setMapLoaded] = useState(false);
   
-  const panResponder = useRef<PanResponderInstance>(
-    PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onPanResponderMove: (_, gestureState) => {
-        if (!isOverlayLocked) {
-          handleOverlayTouch(gestureState);
-        }
-      },
-      onPanResponderRelease: () => {},
-    })
-  ).current;
+  // Find the gallery with the matching id
+  const gallery = GALLERIES.find((gallery) => gallery.id === id);
 
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        return;
-      }
-
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-    })();
-
-    (async () => {
-      const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })();
-  }, []);
+  const openArLink = () => {
+    if (gallery && gallery.arLink) {
+      Linking.openURL(gallery.arLink);
+    } else {
+      console.log('Gallery not found or missing arLink.');
+    }
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -99,31 +66,8 @@ const ARMap = ({ route }: Props) => {
   const updateCurrentLocation = async () => {
     let currentLocation = await Location.getCurrentPositionAsync({});
     setLocation(currentLocation);
-  };
-
-  const handleImHere = () => {
-    setCameraVisible(true);
-    openAROverlay();
-  };
-
-  const handleCameraClose = () => {
-    setCameraVisible(false);
-    setOverlayImage('');
-  };
-
-  const handleOverlayTouch = (gestureState: PanResponderGestureState) => {
-    if (!isOverlayLocked) {
-      const { moveX, moveY } = gestureState;
-      const screenWidth = Dimensions.get('window').width;
-      const screenHeight = Dimensions.get('window').height;
-      const positionX = Math.max(0, Math.min(moveX - overlaySize / 2, screenWidth - overlaySize));
-      const positionY = Math.max(0, Math.min(moveY - overlaySize / 2, screenHeight - overlaySize));
+  }; 
   
-      setOverlayPosition({ x: positionX, y: positionY });
-    }
-  };
-  
-
   const decodePolyline = (encoded: string) => {
     const points = [];
     let index = 0,
@@ -162,7 +106,7 @@ const ARMap = ({ route }: Props) => {
     if (location) {
       const origin = `${location.coords.latitude},${location.coords.longitude}`;
       const destination = `${latitude},${longitude}`;
-      const apiKey = 'YOUR_GOOGLE_MAPS_API_KEY'; // Replace with your Google Maps API key
+      const apiKey = 'AIzaSyCn8voDgWTZb9QyZjtFn2McLWCnYTr5xFw'; // Replace with your Google Maps API key
       const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&mode=walking&key=${apiKey}`;
 
       axios
@@ -185,42 +129,6 @@ const ARMap = ({ route }: Props) => {
         });
     }
   };
-
-  const openAROverlay = () => {
-    const arLink = GALLERIES[0]?.arLink;
-    if (arLink) {
-      setOverlayImage(arLink);
-    }
-  };
-
-  const lockOverlayPosition = () => {
-    setIsOverlayLocked(true);
-  };
-  
-  const renderAROverlay = () => {
-    const overlayStyle = {
-      transform: [
-        { translateX: overlayPosition.x },
-        { translateY: overlayPosition.y },
-      ],
-    } as Animated.WithAnimatedObject<ViewStyle>;
-  
-    return (
-      <Animated.View
-        style={[styles.overlayContainer, overlayStyle]}
-        {...panResponder.panHandlers}
-      >
-        <Image
-          source={{ uri: overlayImage }}
-          style={{ width: overlaySize, height: overlaySize }}
-          resizeMode="contain"
-        />
-      </Animated.View>
-    );
-  };
-  
-
-  const cameraRef = useRef(null);
 
   if (!location) {
     return null;
@@ -265,7 +173,7 @@ const ARMap = ({ route }: Props) => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={[styles.imHereButton]}
-          onPress={handleImHere}
+          onPress={openArLink} // Use the openArLink function to open the correct arLink
         >
           <Text h5 color={colors.white} semibold>
             I'm Here!
@@ -280,30 +188,6 @@ const ARMap = ({ route }: Props) => {
           </Text>
         </TouchableOpacity>
       </View>
-      {cameraVisible && hasPermission && (
-        <Camera
-          style={styles.camera}
-          type={type}
-          ref={cameraRef}
-          ratio={'16:9'}
-        >
-          <TouchableOpacity
-            style={styles.cameraCloseButton}
-            onPress={handleCameraClose}
-          >
-            <Text style={styles.cameraCloseButtonText}>X</Text>
-          </TouchableOpacity>
-        </Camera>
-      )}
-      {renderAROverlay()}
-      {!isOverlayLocked && (
-  <TouchableOpacity
-    style={styles.setPositionButton}
-    onPress={lockOverlayPosition}
-  >
-    <Text style={styles.setPositionButtonText}>Set Position</Text>
-  </TouchableOpacity>
-)}
     </View>
   );
 };
@@ -370,6 +254,8 @@ const styles = StyleSheet.create({
   },
   overlayContainer: {
     position: 'absolute',
+    width: overlaySize,
+    height: overlaySize,
   },
   setPositionButton: {
     position: 'absolute',
@@ -395,4 +281,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ARMap;
+export default ARMap; 

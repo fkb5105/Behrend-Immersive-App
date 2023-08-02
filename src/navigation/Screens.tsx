@@ -1,9 +1,8 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {Gallery, Maps, Home, About, Objects, History} from '../screens'
+import {Gallery, Maps, Home, About, Objects, History, Description} from '../screens'
 import {useScreenOptions, useTranslation} from '../hooks';
-import Description from '../screens/Description';
 import ARmap from '../screens/ARmap';
 
 
