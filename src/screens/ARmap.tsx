@@ -15,17 +15,16 @@ import Text from '../components/Text';
 import axios from 'axios';
 import { GALLERIES } from '../constants/mocks';
 import { COLORS } from '../constants/light';
-
 type Props = {
   route: {
     params: {
       id: number;
       latitude: number;
       longitude: number;
+      arLink: string;
     };
   };
 };
-
 interface Step {
   distance: string;
   duration: string;
@@ -33,25 +32,44 @@ interface Step {
   polyline: string;
 }
 
-const overlaySize = 300;
-
 const ARMap = ({ route }: Props) => {
-  const { id, latitude, longitude } = route.params;
+  // Check if params is defined and destructure its properties
+  const { params } = route || {};
+  const { id, latitude, longitude, arLink } = params || {};
+
   const { colors } = useTheme();
   const [location, setLocation] = useState<Location.LocationObject | null>(null);
   const [steps, setSteps] = useState<Step[]>([]);
   const [mapLoaded, setMapLoaded] = useState(false);
-  
-  // Find the gallery with the matching id
-  const gallery = GALLERIES.find((gallery) => gallery.id === id);
 
-  const openArLink = () => {
-    if (gallery && gallery.arLink) {
-      Linking.openURL(gallery.arLink);
-    } else {
-      console.log('Gallery not found or missing arLink.');
+  // Fetch the gallery based on the id
+const gallery = GALLERIES.find((gallery) => gallery.arLink === arLink);
+  
+
+  const openArLink = async () => {
+    try {
+      if (gallery && gallery.arLink) {
+        console.log('Opening AR link:', gallery.arLink);
+        await Linking.openURL(gallery.arLink);
+      } else {
+        console.log('Gallery not found or missing arLink.');
+      }
+    } catch (error) {
+      console.error('Error opening AR link:', error);
     }
   };
+
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        return;
+      }
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -59,22 +77,20 @@ const ARMap = ({ route }: Props) => {
         updateCurrentLocation();
       }
     }, 5000);
-
     return () => clearInterval(interval);
   }, [location]);
 
   const updateCurrentLocation = async () => {
     let currentLocation = await Location.getCurrentPositionAsync({});
     setLocation(currentLocation);
-  }; 
-  
+  };
+
   const decodePolyline = (encoded: string) => {
     const points = [];
     let index = 0,
       len = encoded.length;
     let lat = 0,
       lng = 0;
-
     while (index < len) {
       let b,
         shift = 0,
@@ -86,7 +102,6 @@ const ARMap = ({ route }: Props) => {
       } while (b >= 0x20);
       let dlat = (result & 1) !== 0 ? ~(result >> 1) : result >> 1;
       lat += dlat;
-
       shift = 0;
       result = 0;
       do {
@@ -96,12 +111,10 @@ const ARMap = ({ route }: Props) => {
       } while (b >= 0x20);
       let dlng = (result & 1) !== 0 ? ~(result >> 1) : result >> 1;
       lng += dlng;
-
       points.push({ latitude: lat / 1e5, longitude: lng / 1e5 });
     }
     return points;
   };
-
   const getDirections = () => {
     if (location) {
       const origin = `${location.coords.latitude},${location.coords.longitude}`;
@@ -129,6 +142,7 @@ const ARMap = ({ route }: Props) => {
         });
     }
   };
+
 
   if (!location) {
     return null;
@@ -173,7 +187,7 @@ const ARMap = ({ route }: Props) => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={[styles.imHereButton]}
-          onPress={openArLink} // Use the openArLink function to open the correct arLink
+          onPress={openArLink}
         >
           <Text h5 color={colors.white} semibold>
             I'm Here!
@@ -191,7 +205,6 @@ const ARMap = ({ route }: Props) => {
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -229,50 +242,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  camera: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-  },
-  cameraCloseButton: {
-    position: 'absolute',
-    top: Platform.OS === 'ios' ? 60 : 40,
-    right: 20,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  cameraCloseButtonText: {
-    color: COLORS.white,
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  overlayContainer: {
-    position: 'absolute',
-    width: overlaySize,
-    height: overlaySize,
-  },
-  setPositionButton: {
-    position: 'absolute',
-    bottom: 30,
-    left: 20,
-    backgroundColor: 'rgba(0, 30, 68, 0.5)',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  setPositionButtonText: {
-    color: COLORS.white,
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
   loadingContainer: {
     ...StyleSheet.absoluteFillObject,
     alignItems: 'center',
@@ -281,4 +250,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ARMap; 
+export default ARMap;

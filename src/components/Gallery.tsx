@@ -7,23 +7,30 @@ import Block from './Block';
 import Image from './Image';
 import {useTheme, useTranslation} from '../hooks/';
 import {IGallery} from '../constants/types';
+import { ICategory } from '../constants/types';
 import {useNavigation} from '@react-navigation/native';
 import { GALLERIES } from '../constants/mocks';
 
+
+interface IGalleryProps {  // Use the same name you've used in the component destructuring
+  id: number;
+  description: string;
+  image: string;
+  category: number[]; 
+}
 
 const Gallery = ({
   id,
   description,
   image,
   category,
-}: IGallery) => {
-  const {t} = useTranslation();
-  const {colors, gradients, icons, sizes} = useTheme();
-
+}: IGalleryProps) => {
+  const { t } = useTranslation();
+  const { colors, gradients, icons, sizes } = useTheme();
   const navigation = useNavigation();
 
   const handlePress = (id: number) => {
-    const gallery = GALLERIES.find(g => g.id === id);
+    const gallery = GALLERIES.find((g) => g.id === id);
     if (gallery) {
       navigation.navigate('ARmap', {
         latitude: gallery.latitude,
@@ -31,8 +38,8 @@ const Gallery = ({
         arLink: gallery.arLink,
       });
     }
-  }; 
-  if (category?.id !== 0) {
+  };
+  if (category?.length !== 0) {
     return (
       <TouchableWithoutFeedback>
         <Block card padding={sizes.sm} marginTop={sizes.sm}>
@@ -82,7 +89,10 @@ const Gallery = ({
         </Block>
       </TouchableWithoutFeedback>
     );
-  }
+     }
+   else {
+      return null;
+    }
 };
 
 export default Gallery;

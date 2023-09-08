@@ -5,6 +5,7 @@ import { useData, useTheme } from '../hooks/';
 import { IGallery, ICategory } from '../constants/types';
 import { Block, Button, Text } from '../components/';
 import { NavigationProp } from '@react-navigation/native';
+import { GALLERIES } from '../constants/mocks';
 
 interface GalleryScreenProps {
   navigation: NavigationProp<Record<string, object | undefined>>;
@@ -33,10 +34,18 @@ const GalleryScreen = ({ navigation }: GalleryScreenProps) => {
     setGalleries(newGalleries);
   }, [data?.galleries, selected]);
 
-  const handlePress = (gallery: IGallery) => {
-    navigation.navigate('ARmap', { gallery });
+  const handlePress = (id: number) => {
+    const gallery = GALLERIES.find(g => g.id === id);
+    if (gallery) {
+      navigation.navigate('ARmap', {
+        id: gallery.id, // Add id here
+        latitude: gallery.latitude,
+        longitude: gallery.longitude,
+        arLink: gallery.arLink,
+      });
+    }
   };
-
+  
   return (
     <Block>
       {/* Categories list */}

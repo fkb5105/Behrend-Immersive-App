@@ -289,7 +289,6 @@ export const CATEGORIES: ICategory[] = [
 export const GALLERIES: IGallery[] = [
   {
     id: 1,
-    title: 'Flexible office space means growth.',
     description:
       'Harriet Behrend and Bruno',
     category:[1, 2],
@@ -302,11 +301,10 @@ export const GALLERIES: IGallery[] = [
   },
   {
     id: 2,
-    title: 'Global payments in a single integration.',
     description:
-      'Rather than worrying about switching offices every couple years, you can instead stay.',
+      'Ernst Behrend enjoying a drink',
       category:[1, 3],
-    arLink: 'https://skfb.ly/oINJs',
+    arLink: 'https://skfb.ly/oINJw',
     latitude: 42.119031,
     longitude: -79.983751,
     image:
@@ -315,11 +313,10 @@ export const GALLERIES: IGallery[] = [
   },
   {
     id: 3,
-    title: 'Working with the latest technologies.',
     description:
-      'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
+      'Glenhill Renovation',
       category:[1, 2],
-    arLink: 'https://skfb.ly/oINJs',
+    arLink: '',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -328,9 +325,8 @@ export const GALLERIES: IGallery[] = [
   },
   {
     id: 4,
-    title: 'Office space means growth.',
     description:
-      'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
+      'Harriet and Bruno spending time together',
     category:[1, 3],
     arLink: 'https://skfb.ly/oINJs',
     latitude: 42.119422,
@@ -341,10 +337,9 @@ export const GALLERIES: IGallery[] = [
   },
   {
     id: 5,
-    title: 'Office space means growth.',
-    description: `The mission of LinkedIn is simple: connect the world's professionals.`,
+    description: `Harriet with Mary's wedding dress`,
     category:[1, 2],
-    arLink: 'https://skfb.ly/oINJs',
+    arLink: 'https://skfb.ly/oINJL',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -353,11 +348,11 @@ export const GALLERIES: IGallery[] = [
   },
   {
     id: 6,
-    title: 'Office space means growth.',
+  
     description:
-      'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
+      'Otto and Ernst riding horses in front of Turnbull',
     category:[1, 3],
-    arLink: 'https://skfb.ly/oINJs',
+    arLink: 'https://skfb.ly/oINJy',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -366,11 +361,10 @@ export const GALLERIES: IGallery[] = [
   },
   {
     id: 7,
-    title: 'Office space means growth.',
     description:
-      'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
+      'Horses pulling a sled in front of turnbull',
       category:[1, 2],
-    arLink: 'https://skfb.ly/oINJs',
+    arLink: '',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -379,11 +373,10 @@ export const GALLERIES: IGallery[] = [
   },
   {
     id: 8,
-    title: 'Office space means growth.',
     description:
-      'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
+      'Moritz and Rebecca sitting on a bench',
     category:[1, 3],
-    arLink: 'https://skfb.ly/oINJs',
+    arLink: 'https://skfb.ly/oIXuL',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -392,11 +385,10 @@ export const GALLERIES: IGallery[] = [
   },
   {
     id: 9,
-    title: 'Office space means growth.',
     description:
-      'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
+      'Glenhill renovation',
     category:[1, 2],
-    arLink: 'https://skfb.ly/oINJs',
+    arLink: 'https://skfb.ly/oINJH',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -406,9 +398,9 @@ export const GALLERIES: IGallery[] = [
   {
     id: 10,
     description:
-      'Rather than worrying about switching offices every couple years, you can instead stay in the same location.',
+      "Ernst with the dogs in Glenhill Farm's porch",
     category:[1, 3],
-    arLink: 'https://skfb.ly/oINJs',
+    arLink: 'https://skfb.ly/oINJJ',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -418,9 +410,9 @@ export const GALLERIES: IGallery[] = [
   {
     id: 11,
     description:
-      'A great to stay in Paris without feeling you are in the city!',
+      'Mary playing with dogs',
     category:[1, 2],
-    arLink: 'https://skfb.ly/oINJs',
+    arLink: '',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -429,9 +421,9 @@ export const GALLERIES: IGallery[] = [
   },
   {
     id: 12,
-    description: 'Best Italy location in a bustling neighbourhood, 2 min.',
+    description: 'Sheep grazing next to Turnbull',
     category:[1, 3],
-    arLink: 'https://skfb.ly/oINJs',
+    arLink: 'https://skfb.ly/oINJF',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -441,9 +433,21 @@ export const GALLERIES: IGallery[] = [
   {
     id: 13,
     description:
-      'The most beautiful and complex UI Kits built by Creative Tim.',
+      'Original Schilling house (Later became Glenhill)',
     category:[1, 2],
-    arLink: 'https://skfb.ly/oINJs',
+    arLink: 'https://skfb.ly/oINJI',
+    latitude: 42.119422,
+    longitude: -79.985721,
+    image:
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/Schilling%20HouseBecameGlenhill.png',
+    timestamp: dayjs().unix(),
+  },
+  {
+  id: 14,
+    description:
+      'Pool next to Glenhill Farmhouse',
+    category:[1, 2],
+    arLink: 'https://skfb.ly/oIOSO',
     latitude: 42.119422,
     longitude: -79.985721,
     image:
@@ -464,16 +468,18 @@ export const DESCRIPTION: IDescription[] = [
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/guarden statue 2.png',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/guarden statue 1 copy.png',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/dogserb.jpg',
-      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/bruno and family (2).png'
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/bruno and family (2).png',
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/girl on diving board.png'
     ],
     captions:[
-       'Caption for an image',
-       'Caption for an image',
-       'Caption for an image',
-       'Caption for an image',
-       'Caption for an image',
-       'Caption for an image',
-       'Caption for an image',
+       'Glenhill farmhouse during construction',
+       'Glenhill being renovated and expanded',
+       'Glenhill being renovated',
+       "Girls statue in Glenhill's garden",
+       'Girls statue in Glenhill garden',
+       "Ernst feeding the dogs on the Glenhill's porch",
+       'Bruno laying on the ground with the Behrend family in the garden',
+       "Girl on a springboard on Glenhill's pool",
     ],
     description: "The family’s original mansion was on the Hammermill site, which was convenient for managing the plant, but came with the unpleasant smells of papermaking and much sawdust in the air which made its way into the house. Beginning in the late 1920’s the Behrends began buying farms in Harborcreek to build a new home and outbuildings. The Glenhill Farmhouse was meant to be a home for their farmer, and they intended to build a larger one behind it on the hill, but that plan was abandoned. They hired renowned architect R. Brognard Okie of Philadelphia to bring their dream to fruition. Okie had worked on the renovations of Pennsbury Manor, home of William Penn, and the Betsy Ross house and had built new houses for other prominent people. The Behrends enjoyed their first night there at Thanksgiving of 1933. Since the inception of the campus in 1948, it has served as the administration building, but in the early days it was also used as the women’s dorm.",
   },
@@ -485,14 +491,12 @@ export const DESCRIPTION: IDescription[] = [
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/OldHouseFarmAnimals.png',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/horses infront of turnbull.png',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/horseerb.jpg',
-      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/girl on diving board.png',
     ],
     captions: [
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
+      'Horses carrying a buggy',
+      'Sheep grazing on the side of Turnbull',
+      'Horses pushing a sled during winter',
+      'Otto and Ernst riding horses',
   ],
     description: 'What we know as Turnbull Hall now was once the barn for the original Glenhill Farm. No doubt Harriet kept her horses there. On the first day of classes at the newly formed Behrend Center, workers were still mucking the stalls below while the students took classes on the second floor. When beloved history professor Thomas Turnbull, a WWII veteran, died in 1956, the students dedicated their yearbook (Bits of Behrend) to him and requested that Penn State allow the campus to rename the barn Turnbull Hall. For building has had many purposes over the years including offices and classrooms and the library was located there for a while',
   },
@@ -504,7 +508,7 @@ export const DESCRIPTION: IDescription[] = [
 
     ],
     captions: [
-      'Caption for an image',
+      'Ernst Behrend riding a horse with the Hammermill factory on the background',
   ],
     description: 'Lose away off why half led have near bed. At engage simple father of period others except. My giving do summer of though narrow marked at. Spring formal no county ye waited. My whether cheered at regular it of promise blushes perhaps. Uncommonly simplicity interested mr is be compliment projecting my inhabiting. Gentleman he september in oh excellent.',
   },
@@ -521,13 +525,13 @@ export const DESCRIPTION: IDescription[] = [
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/close up photo.png',
     ],
     captions: [ 
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
+      'Mary wearing a wedding dress',
+      'Mary playing the harp',
+      "Mary making christmas trees on Glenhill's porch",
+      'Young Mary as a bride',
+      'Mary playing with her dogs during winter on the side of the house',
+      'Caption',
+      'Portait image of Mary Behrend',
   ],
     description: 'Mary Brownell Behrend, was born into privilege in Providence, RI on December 29, 1879. In 1907 she married Ernst Behrend who she met when she traveled to Erie to visit a finishing school friend who introduced her to the most eligible local bachelors. Her early diaries and scrapbooks hinted at the Renaissance woman she would become. She was interested in domestic pursuits such as gardening and crafts, but she had a sporty side and was the women’s golf champion of Rhode Island in 1902. In her later years she took to her art studio (now the Studio Theatre) for painting lessons from renowned local artist Joseph Plavcan. Many of her paintings hang in her beloved Glenhill Farmhouse. She was deeply involved with its design, and she corresponded sometimes daily with the architect about every detail of the work down to the door hinges. After her husband died in 1940, she moved back to New England. In 1948 she donated Glenhill Farm to Penn State to honor her husband’s love of education and she often visited the campus. A decade later Penn State she received the newly created Penn State Medal. She passed away on July 5, 1976 at age 96.',
   },
@@ -547,16 +551,16 @@ export const DESCRIPTION: IDescription[] = [
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/Ernst.png',
     ],
     captions: [ 
+      'Otto and Ernst wearing suits',
+      'Ernst and his family in the garden',
+      'Ernst as a young shoemaker',
+      'Ernst posing with a horse in front of Turnbull',
+      'Picture of Ernst sitting on a bench',
+      'Moritz and Rebecca Behrend, parents of Ernst and Otto, sitting on a bench',
+      'Ernst and his daughter Harriet Behrend ',
       'Caption for an image',
       'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
+      'Ernst holding a drink',
     ],
     description: 'Ernst Behrend, born in Coeslin, Germany on March 29, 1869, was a man of remarkable drive and precision who left an indelible mark on both his business endeavors and his personal life. He studied at the Dresden and Charlottenburg Polytechnic Institutes and served as a Lieutenant in the Prussian Mounted Artillery. Ernst and his father and brother founded the Hammermill Paper Company in 1898. It eventually became a Forbes 500 Company. The company was known for forward-thinking employee policies, including vacations and pensions. Ernst and his brother, Otto, patented a unique watermarking device in 1902 which was a boon for the company. He was also devoted to the Erie community and he sat on many boards, was president of the Community Chest, and served as a Four Minute Man during World War I, giving rousing short speeches to inspire support for the troops. Ernst and Mary were world travelers, taking many commercial cruises until they took possession of their yacht named Amida in April 1929. Custom-built in Keil, Germany and requiring a staff of 33, it encountered a gale while on its maiden voyage to be delivered to the family in the United States. The crew rescued 10 men whose schooner had capsized. Ernst passed away in Glenhill Farmhouse on September 20, 1940. He received an honorary PhD from Thiel College in 1936 and was posthumously inducted into the Paper Industry International Hall of Fame in 2012.',
   },
@@ -577,17 +581,17 @@ export const DESCRIPTION: IDescription[] = [
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/child on sled.jpg'
     ],
     captions: [ 
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
-      'Caption for an image',
+      'Harriet with her brother Warren and her mother Mary ',
+      'Newspaper clip of her wedding day',
+      "Harriet wearing her mother's wedding dress",
+      'Harriet (left) and Mary (right) wearing the same wedding dress',
+      'Harriet playing with her dog Bruno',
+      'Bruno and Harriet laying on the ground',
+      'Harriet with her shooting club results',
+      'Harriet and all her shooting team members',
+      'Portrait picture of Harriet smoking',
+      'Harriet as a baby with a sled',
+      'Harriet as a baby playing with a sled',
     ],
     description: 'Daughter Harriet Ellen Behrend Sayre Ninow led an adventurous life. Born on January 4, 1911 in Boston, Massachusetts, she attended Spence School and then Vassar College where she, a passionate equestrienne, was involved in horse shows. She was an accomplished markswoman who was the “Woman’s All-Bore Skeet Shooting Champion” of 1941. During that tournament she met widower Caryl Sayre who was raising two young daughters, Calista and Suzanne. They married at Glenhill in 1942 and she bore two sons, Richard and William. They made their home on Long Island where she was such a tireless charity worker that she had a second telephone line in her home dedicated to that purpose. Like her mother and her uncle Otto, she enjoyed golf. She served on the Behrend Council of Fellows and was awarded the Behrend Medallion in 1981. After Caryl’s 1963 death, she married Earl Ninow, a Navy psychiatrist who later served as chief of White House military aides for President Lyndon Johnson. He died in a plane accident on August 13, 1984. Harriet, who was already being treated for cancer at the time of his death, succumbed on December 28, 1986.',
   },
@@ -598,7 +602,7 @@ export const DESCRIPTION: IDescription[] = [
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/ottowarren.jpg',
     ],
     captions: [ 
-      'Caption for an image',
+      'Warren and his father Ernst riding a sled',
     ],
     description: "The elder of the Behrends’ two children was their son Warren Moritz. Born on March 14, 1909, in Rhode Island, he attended Deerfield Academy in Massachusetts. It was from there that he and friend Ned Richardson travelled by train to Washington, DC where they picked up the family car and headed south to meet the family in Charleston, South Carolina for Christmas on the Amida. On December 19, 1929, near Pleasant Hill, North Carolina he swerved to miss a school bus that had cut in front of them. Warren died instantly, but Ned survived. He was remembered at two concurrent funerals. One was held in DC’s National Episcopal Cathedral and the other at Erie’s St. Paul’s Episcopal Cathedral. A stone memorial shaped like a cross was erected at the site of the crash and later moved to Wintergreen Gorge Cemetery near the chapel that holds his remains and that of his family. His heartbroken parents sold the Amida to an Egyptian shipping magnate for a quarter of its original cost. They also built a new pool and outfitted a visiting room in his honor at Deerfield. Behrend Center students dedicated the first campus yearbook, The Cub (1950), to him",
   },
