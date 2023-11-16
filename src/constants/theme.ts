@@ -80,7 +80,7 @@ export const ASSETS: ThemeAssets = {
   OpenSansBold: require('../assets/fonts/OpenSans-Bold.ttf'),
 
   // backgrounds/logo
-  logo: require('../assets/images/logo.png'),
+  logo: require('../assets/images/MicrosoftTeams-image.png'),
   ios: require('../assets/images/ios.png'),
   android: require('../assets/images/android.png'),
 
@@ -89,8 +89,8 @@ export const ASSETS: ThemeAssets = {
   map2: require('../assets/images/map2.svg'),
 
   // gallery photos
-  photo1: require('../assets/images/photo1.png'),
-  photo2: require('../assets/images/photo2.png'),
+  photo2: require('../assets/images/early_behrend.jpg'),
+  photo1: require('../assets/images/modern_behrend.jpg'),
   switch: null
 };
 

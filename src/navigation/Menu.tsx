@@ -105,7 +105,6 @@ const DrawerContent = (
             radius={0}
             width={33}
             height={33}
-            color={colors.text}
             source={assets.logo}
             marginRight={sizes.sm}
           />

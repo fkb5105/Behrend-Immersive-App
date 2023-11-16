@@ -36,7 +36,7 @@ export const USERS: IUser[] = [
   {
     id: 3,
     name: 'Remington Orange',
-    position: 'TBD',
+    position: 'Content Creator',
     linkedIn_url: 'https://www.linkedin.com/in/remington-orange-38746b266/',
     description:'Short sentence about ourselves',
     image_url:
@@ -559,7 +559,7 @@ export const DESCRIPTION: IDescription[] = [
       'Moritz and Rebecca Behrend, parents of Ernst and Otto, sitting on a bench',
       'Ernst and his daughter Harriet Behrend ',
       'Caption for an image',
-      'Caption for an image',
+      'Ernst home before Glenhill farmhhouse',
       'Ernst holding a drink',
     ],
     description: 'Ernst Behrend, born in Coeslin, Germany on March 29, 1869, was a man of remarkable drive and precision who left an indelible mark on both his business endeavors and his personal life. He studied at the Dresden and Charlottenburg Polytechnic Institutes and served as a Lieutenant in the Prussian Mounted Artillery. Ernst and his father and brother founded the Hammermill Paper Company in 1898. It eventually became a Forbes 500 Company. The company was known for forward-thinking employee policies, including vacations and pensions. Ernst and his brother, Otto, patented a unique watermarking device in 1902 which was a boon for the company. He was also devoted to the Erie community and he sat on many boards, was president of the Community Chest, and served as a Four Minute Man during World War I, giving rousing short speeches to inspire support for the troops. Ernst and Mary were world travelers, taking many commercial cruises until they took possession of their yacht named Amida in April 1929. Custom-built in Keil, Germany and requiring a staff of 33, it encountered a gale while on its maiden voyage to be delivered to the family in the United States. The crew rescued 10 men whose schooner had capsized. Ernst passed away in Glenhill Farmhouse on September 20, 1940. He received an honorary PhD from Thiel College in 1936 and was posthumously inducted into the Paper Industry International Hall of Fame in 2012.',

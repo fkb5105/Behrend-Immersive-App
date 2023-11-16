@@ -14,9 +14,9 @@
     "aboutPage":"About"
   },
   "app": {
-    "name": "Behrend Immersive",
-    "fullname": "Behrend Immersive App",
-    "native": "React Native",
+    "name": "Echoes of HistErie",
+    "fullname": "Echoes of HistErie",
+    "native": "VAR Labs",
     "link": "https://var.psu.edu/"
   },
   "screens": {
