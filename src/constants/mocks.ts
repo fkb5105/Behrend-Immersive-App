@@ -469,7 +469,7 @@ export const DESCRIPTION: IDescription[] = [
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/guarden statue 1 copy.png',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/dogserb.jpg',
       'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/bruno and family (2).png',
-      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/girl on diving board.png'
+      'https://varlab.bd.psu.edu/_app/IMMR_BD/edited/girl on diving board.png',
     ],
     captions:[
        'Glenhill farmhouse during construction',

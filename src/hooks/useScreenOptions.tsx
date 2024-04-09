@@ -1,14 +1,11 @@
 import React from 'react';
-import {Linking, LogBox, TouchableOpacity} from 'react-native';
-import {
-  StackHeaderTitleProps,
-  CardStyleInterpolators,
-} from '@react-navigation/stack';
-import {useNavigation} from '@react-navigation/core';
-import {DrawerActions} from '@react-navigation/native';
-import {StackHeaderOptions} from '@react-navigation/stack/lib/typescript/src/types';
+import { Linking, LogBox, TouchableOpacity } from 'react-native';
+import { StackHeaderProps, CardStyleInterpolators } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/core';
+import { DrawerActions } from '@react-navigation/native';
+import { StackHeaderOptions } from '@react-navigation/stack/lib/typescript/src/types';
 
-import {useTranslation} from './useTranslation';
+import { useTranslation } from './useTranslation';
 
 import Image from '../components/Image';
 import Text from '../components/Text';
@@ -17,38 +14,36 @@ import Button from '../components/Button';
 import Block from '../components/Block';
 
 export default () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const navigation = useNavigation();
-  const {icons, colors, gradients, sizes} = useTheme();
+  const { icons, colors, gradients, sizes } = useTheme();
 
   const menu = {
-    headerStyle: {elevation: 0},
+    headerStyle: { elevation: 0 },
     headerTitleAlign: 'left',
-    headerTitleContainerStyle: {marginLeft: -sizes.sm},
-    headerLeftContainerStyle: {paddingLeft: sizes.s},
-    headerRightContainerStyle: {paddingRight: sizes.s},
+    headerTitleContainerStyle: { marginLeft: -sizes.sm },
+    headerLeftContainerStyle: { paddingLeft: sizes.s },
+    headerRightContainerStyle: { paddingRight: sizes.s },
     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-    headerTitle: ({children}: StackHeaderTitleProps) => (
+    headerTitle: ({ children }: { children: React.ReactNode }) => ( // Explicitly define the type of children
       <Text p>{children}</Text>
     ),
     headerLeft: () => (
       <Button onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
-        <Image source={icons.menu} radius={0} color={colors.primary} />
+        <Image source={icons.menu} radius={0} marginRight={10} color={colors.secondary} />
       </Button>
     ),
     headerRight: () => (
       <Block row flex={0} align="center" marginRight={sizes.padding}>
-        
         <TouchableOpacity
-           onPress={() => {
+          onPress={() => {
             Linking.openURL('https://var.psu.edu/');
-          }}>
+          } }>
           <Image source={icons.VAR} radius={0} />
-        
         </TouchableOpacity>
       </Block>
     ),
-  } as StackHeaderOptions;
+  } as unknown as StackHeaderOptions;
 
   const options = {
     stack: menu,
@@ -76,14 +71,14 @@ export default () => {
             radius={0}
             width={10}
             height={18}
-            color={colors.primary}
+            color={colors.secondary}
             source={icons.arrow}
-            transform={[{rotate: '180deg'}]}
+            marginRight={20}
+            transform={[{ rotate: '180deg' }]}
           />
         </Button>
       ),
     },
-
   };
   return options;
 };
